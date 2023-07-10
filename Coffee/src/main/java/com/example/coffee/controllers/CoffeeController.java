@@ -16,9 +16,10 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/CoffeeVerse")
 public class CoffeeController {
-@Autowired
-private IKnowledgeService knowledgeService;
-   /*@GetMapping("/knowledge")
+     @Autowired
+     private IKnowledgeService knowledgeService;
+
+   @GetMapping("/knowledge")
     public Result page(@RequestParam(defaultValue="1") int pageNum,@RequestParam(defaultValue="2")int pageSize){
         log.info("pageNum={},pageSize={}",pageNum,pageSize);
         Page<Knowledge> page = new Page<>(pageNum,pageSize);
@@ -31,5 +32,5 @@ private IKnowledgeService knowledgeService;
         log.info("id={}", id);
         Knowledge knowledge=knowledgeService.getById(id);
         return Result.suc(knowledge);
-    }*/
+    }
 }
