@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Coffee
+
+  datasource:
+    username: root
+    password: #pwd
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/coffee
