@@ -28,9 +28,11 @@ public class CoffeeController {
     }
 
     @GetMapping("/knowledge/detail")
-    public Result detail(@RequestParam(defaultValue="1") int id) {
+    public Result knowledgedetail(@RequestParam(defaultValue="1") int id) {
         log.info("id={}", id);
-        Knowledge knowledge=knowledgeService.getById(id);
+        QueryWrapper<Knowledge> detail = new QueryWrapper<>();
+        detail.eq("k_id",id);
+        Knowledge knowledge=knowledgeService.getOne(detail);
         return Result.suc(knowledge);
     }
 }
