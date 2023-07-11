@@ -8,3 +8,7 @@ spring:
     password: ljjdsr0618
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/coffee
+    mybatis-plus:
+      type-enums-package: com.bjbss.bbcsupport.domain
+      configuration:
+        default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler

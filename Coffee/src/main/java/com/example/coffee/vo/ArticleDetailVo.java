@@ -9,6 +9,6 @@ public class ArticleDetailVo {
     private  String abs;
     private  String content;
     private  String pictureUrl;
-    private  DateTimeLiteralExpression.DateTime date;
+    //private  DateTimeLiteralExpression.DateTime date;
     private  String tag;
 }
