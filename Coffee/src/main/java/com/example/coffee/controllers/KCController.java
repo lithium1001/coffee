@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.coffee.pojo.KCollection;
-import com.example.coffee.pojo.User;
 import com.example.coffee.service.IKCService;
 import com.example.coffee.vo.KCVo;
 import com.example.coffee.vo.Result;
@@ -20,6 +19,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequestMapping("/CoffeeVerse")
+
 public class KCController {
     @Autowired
     private IKCService kcService;
@@ -69,11 +69,13 @@ public class KCController {
         QueryWrapper<KCollection> query = new QueryWrapper<>();
         query.and(w -> w.eq("user_id", newkc.getUserId()))
                 .and(w -> w.eq("k_id", newkc.getKId()));
-        if(query!=null){
-            return Result.suc("已经收藏过了，无法重新收藏！");
+        KCollection kc = kcService.getOne(query);
+        if(kc==null){
+            kcService.save(newkc);
+            return Result.suc("收藏成功！");
         }
-            else{kcService.save(newkc);
-                return Result.suc("收藏成功！");
+            else{
+            return Result.suc("已经收藏过了，无法重新收藏！");
             }
         }
     @DeleteMapping("/knowledge/delete")
@@ -81,12 +83,13 @@ public class KCController {
         QueryWrapper<KCollection> query = new QueryWrapper<>();
         query.and(w -> w.eq("user_id", delkc.getUserId()))
                 .and(w -> w.eq("k_id", delkc.getKId()));
-        if(query!=null){
-            kcService.remove(query);
-            return Result.suc("删除成功");
+        KCollection kc = kcService.getOne(query);
+        if(kc==null){
+            return Result.suc("删除失败！");
         }
         else{
-            return Result.suc("删除失败！");
+            kcService.remove(query);
+            return Result.suc("删除成功");
         }
     }
 }
