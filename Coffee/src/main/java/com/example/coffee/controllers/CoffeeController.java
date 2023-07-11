@@ -28,10 +28,36 @@ public class CoffeeController {
      private IKnowledgeService knowledgeService;
 
    @GetMapping("/knowledge")
-    public Result page(@RequestParam(defaultValue="1") int pageNum,@RequestParam(defaultValue="2")int pageSize){
+    public Result page(@RequestParam(defaultValue="1") int pageNum,@RequestParam(defaultValue="2")int pageSize,@RequestParam(defaultValue = "id") String refer,@RequestParam(defaultValue = "asc") String order){
         log.info("pageNum={},pageSize={}",pageNum,pageSize);
         Page<Knowledge> page = new Page<>(pageNum,pageSize);
-        IPage<Knowledge> pageResult=knowledgeService.page(page);
+       QueryWrapper<Knowledge> query = new QueryWrapper<>();
+       if (refer.equals("id")) {
+           if(order.equals("asc")){
+               query.orderByAsc("k_id");}
+           else{
+               query.orderByDesc("k_id");
+           }
+       } else if (refer.equals("title")) {
+           if(order.equals("asc")){
+               query.orderByAsc("title");}
+           else{
+               query.orderByDesc("title");
+           }
+       } else if (refer.equals("tag")) {
+           if(order.equals("asc")){
+               query.orderByAsc("tag");}
+           else{
+               query.orderByDesc("tag");
+           }
+       } else if (refer.equals("collections")) {
+           if(order.equals("asc")){
+               query.orderByAsc("collections");}
+           else{
+               query.orderByDesc("collections");
+           }
+       }
+        IPage<Knowledge> pageResult=knowledgeService.page(page,query);
         List<Knowledge> knowledges=pageResult.getRecords();
        List voList = new ArrayList();
        for(Knowledge knowledge:knowledges){
