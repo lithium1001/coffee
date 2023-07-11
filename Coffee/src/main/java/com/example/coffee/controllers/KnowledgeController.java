@@ -126,21 +126,5 @@ public class KnowledgeController {
         pageResult.setRecords(voList);
         return Result.suc(pageResult);
     }
-    /*@PostMapping("/knowledge/add")
-    public Result Kadd(int uid,int kid) {
-        QueryWrapper<Knowledge> query = new QueryWrapper<>();
-        query.and(w -> w.eq("user_id", uid))
-                .and(w -> w.eq("k_id", kid));
-        if(query.nonEmptyOfEntity()){
-            return Result.suc("已经收藏过了，无法重新收藏！");
-        }
-            else{
-            QueryWrapper<Knowledge> query1 = new QueryWrapper<>();
-            query1.inSql()
-                //knowledgeService.
-                return Result.suc("收藏成功！");
-            }
-        }*/
-/*
-    }*/
+
 }
