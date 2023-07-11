@@ -36,17 +36,16 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public Result login(@RequestParam String name,@RequestParam String pwd) {
+    public Result login(@RequestBody User newuser) {
         QueryWrapper<User> detail = new QueryWrapper<>();
-        detail.and(w -> w.eq("username", name))
-                .and(w -> w.eq("password", pwd));
+        String name=newuser.getUsername();
+        detail.eq("username", name);
         User user=userService.getOne(detail);
         if (user==null) {
-            return Result.suc("请正确输入用户名或密码!");
+            userService.save(newuser);
+            return Result.suc("已成功注册！");
         } else {
-            UserVo userVo=new UserVo();
-            BeanUtils.copyProperties(user,userVo);
-            return Result.suc(userVo);
+            return Result.suc("用户名重复，请重新输入！");
         }
     }
 }
