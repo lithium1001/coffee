@@ -2,7 +2,6 @@ package com.example.coffee.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 import java.util.Date;
 
@@ -14,7 +13,7 @@ public class Article {
     private  String abs;
     private  String content;
     private  String pictureUrl;
-    //private DateTimeLiteralExpression.DateTime date;
+    private Date date;
     private  String tag;
 
 }
