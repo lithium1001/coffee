@@ -1,11 +1,9 @@
-package com.example.coffee.pojo;
+package com.example.coffee.vo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-@TableName("knowledge")
 @Data
-public class Knowledge {
+public class KnowledgeDetailVo {
     private Integer kId;
     private String title;
     private String videoUrl;

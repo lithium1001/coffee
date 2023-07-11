@@ -7,13 +7,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.coffee.mapper.KMapper;
 import com.example.coffee.pojo.Knowledge;
 import com.example.coffee.service.IKnowledgeService;
+import com.example.coffee.vo.KnowledgeDetailVo;
+import com.example.coffee.vo.KnowledgeListVo;
 import com.example.coffee.vo.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -27,7 +32,15 @@ public class CoffeeController {
         log.info("pageNum={},pageSize={}",pageNum,pageSize);
         Page<Knowledge> page = new Page<>(pageNum,pageSize);
         IPage<Knowledge> pageResult=knowledgeService.page(page);
-        return Result.suc(pageResult);
+        List<Knowledge> knowledges=pageResult.getRecords();
+       List voList = new ArrayList();
+       for(Knowledge knowledge:knowledges){
+           KnowledgeListVo knowledgeListVo=new KnowledgeListVo();
+           BeanUtils.copyProperties(knowledge,knowledgeListVo);
+           voList.add(knowledgeListVo);
+       }
+       pageResult.setRecords(voList);
+       return Result.suc(pageResult);
     }
 
     @GetMapping("/knowledge/detail")
@@ -36,7 +49,9 @@ public class CoffeeController {
         QueryWrapper<Knowledge> detail = new QueryWrapper<>();
         detail.eq("k_id",id);
         Knowledge knowledge=knowledgeService.getOne(detail);
-        return Result.suc(knowledge);
+        KnowledgeDetailVo knowledgeDetailVo=new KnowledgeDetailVo();
+        BeanUtils.copyProperties(knowledge,knowledgeDetailVo);
+        return Result.suc(knowledgeDetailVo);
     }
     @GetMapping("/knowledge/query")
     public Result knowledgequery(String q,@RequestParam(defaultValue="1") int pageNum,@RequestParam(defaultValue="2")int pageSize,@RequestParam(defaultValue = "id") String refer,@RequestParam(defaultValue = "asc") String order) {
@@ -77,6 +92,14 @@ public class CoffeeController {
         }
         Page<Knowledge> page = new Page<>(pageNum,pageSize);
         IPage<Knowledge> pageResult=knowledgeService.page(page,query);
+        List<Knowledge> knowledges=pageResult.getRecords();
+        List voList = new ArrayList();
+        for(Knowledge knowledge:knowledges){
+            KnowledgeListVo knowledgeListVo=new KnowledgeListVo();
+            BeanUtils.copyProperties(knowledge,knowledgeListVo);
+            voList.add(knowledgeListVo);
+        }
+        pageResult.setRecords(voList);
         return Result.suc(pageResult);
     }
 }
