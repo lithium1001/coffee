@@ -28,7 +28,7 @@ public class ArticleController {
     @Autowired
     private IArticleService articleService;
     @GetMapping("/articles")
-    public Result articlepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "asc") String order){
+    public Result articlepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order){
         Page<Article> page = new Page<>(pageNum,pageSize);
         QueryWrapper<Article> query = new QueryWrapper<>();
         if (refer.equals("id")) {
@@ -78,7 +78,7 @@ public class ArticleController {
         return Result.suc(articleDetailVo);
     }
     @GetMapping("/articles/query")
-    public Result articlequery(String q,@RequestParam(defaultValue="1") int pageNum,@RequestParam(defaultValue="2")int pageSize,@RequestParam(defaultValue = "id") String refer,@RequestParam(defaultValue = "asc") String order) {
+    public Result articlequery(String q,@RequestParam(defaultValue="1") int pageNum,@RequestParam(defaultValue="2")int pageSize,@RequestParam(defaultValue = "id") String refer,@RequestParam(defaultValue = "desc") String order) {
         if (StringUtils.isBlank(q)) {
             return Result.suc(Collections.emptyList());
         }
