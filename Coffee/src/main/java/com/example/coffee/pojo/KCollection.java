@@ -6,8 +6,9 @@ import lombok.Data;
 @TableName("kcollections")
 @Data
 public class KCollection {
-    private Integer kId;
+    private  Integer id;
+    private Integer kid;
     private Integer userId;
-    private String kUrl;
+    private String kurl;
 }
 

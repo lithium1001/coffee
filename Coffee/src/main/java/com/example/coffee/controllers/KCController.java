@@ -4,11 +4,13 @@ package com.example.coffee.controllers;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.coffee.mapper.KCMapper;
 import com.example.coffee.pojo.KCollection;
 import com.example.coffee.service.IKCService;
 import com.example.coffee.vo.KCVo;
 import com.example.coffee.vo.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,8 @@ import java.util.List;
 public class KCController {
     @Autowired
     private IKCService kcService;
-    @GetMapping("/user/kcollection")
+    //private KCMapper kcMapper;
+    /*@GetMapping("/user/kcollection")
     public Result kcpage(@RequestParam int uid,@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order){
         Page<KCollection> page = new Page<>(pageNum,pageSize);
         QueryWrapper<KCollection> query = new QueryWrapper<>();
@@ -63,13 +66,14 @@ public class KCController {
         }
         pageResult.setRecords(voList);
         return Result.suc(pageResult);
-    }
+    }*/
     @PostMapping("/knowledge/add")
     public Result Kadd(@RequestBody KCollection newkc) {
         QueryWrapper<KCollection> query = new QueryWrapper<>();
         query.and(w -> w.eq("user_id", newkc.getUserId()))
-                .and(w -> w.eq("k_id", newkc.getKId()));
+                .and(w -> w.eq("kid", newkc.getKid()));
         KCollection kc = kcService.getOne(query);
+
         if(kc==null){
             kcService.save(newkc);
             return Result.suc("收藏成功！");
@@ -80,10 +84,12 @@ public class KCController {
         }
     @DeleteMapping("/knowledge/delete")
     public Result Kdel(@RequestBody KCollection delkc) {
+
         QueryWrapper<KCollection> query = new QueryWrapper<>();
         query.and(w -> w.eq("user_id", delkc.getUserId()))
-                .and(w -> w.eq("k_id", delkc.getKId()));
+                .and(w -> w.eq("kid", delkc.getKid()));
         KCollection kc = kcService.getOne(query);
+
         if(kc==null){
             return Result.suc("删除失败！");
         }

@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class KCVo {
-    private Integer kId;
-    private String kUrl;
+    private Integer kid;
+    private String kurl;
 }
