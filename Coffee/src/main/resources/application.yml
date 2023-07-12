@@ -4,10 +4,8 @@ spring:
 
   datasource:
     username: root
-<<<<<<< Updated upstream
-    password: #pwd
-=======
-    password:
->>>>>>> Stashed changes
+    password: Yuan230708
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/coffee
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
