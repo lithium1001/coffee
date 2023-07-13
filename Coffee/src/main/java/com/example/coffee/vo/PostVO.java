@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostVO implements Serializable {
+
     private static final long serialVersionUID = -261082150965211545L; //定义程序序列化ID
 
     private String postId;

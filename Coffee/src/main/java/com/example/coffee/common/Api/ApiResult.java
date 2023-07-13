@@ -1,4 +1,4 @@
-package com.example.coffee.common;
+package com.example.coffee.common.Api;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,6 +48,7 @@ public class ApiResult<T> implements Serializable {
      * @param data 结果集
      * @return {code:200,message:操作成功,data:自定义}
      */
+
     public static <T> ApiResult<T> success() {
         return new ApiResult<T>(ApiErrorCode.SUCCESS.getCode(), ApiErrorCode.SUCCESS.getMessage(), null);
     }

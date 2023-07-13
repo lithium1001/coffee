@@ -16,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Post {
     private static final long serialVersionUID = 1L;
+
     @TableId(value = "postId", type = IdType.ASSIGN_ID)
     private String id;
     /**

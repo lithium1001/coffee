@@ -1,4 +1,4 @@
-package com.example.coffee.common;
+package com.example.coffee.common.Api;
 
 public enum ApiErrorCode implements IErrorCode {
 
