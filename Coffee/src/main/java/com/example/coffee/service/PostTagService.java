@@ -11,10 +11,12 @@ import com.example.coffee.vo.PostVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 public interface PostTagService extends IService<PostTag> {
     List<PostTag> selectByTopicId(String tagId);
     //获取关联记录
     void createPostTag(String id, List<Tags> tags);
 
+    Set<String> selectTopicIdsByTagId(String id);
 }

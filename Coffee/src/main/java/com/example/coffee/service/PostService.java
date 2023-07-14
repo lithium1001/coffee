@@ -8,9 +8,11 @@ import com.example.coffee.pojo.User;
 import com.example.coffee.vo.PostVO;
 
 import java.util.Map;
+import java.util.Set;
 
 public interface PostService extends IService<Post> {
     Page<PostVO> getList(Page<PostVO> page, String tab);
     Post create(CreatePostDTO dto, User principal);
     Map<String, Object> viewTopic(String id);
+    Page<PostVO> searchByKey(String keyword, Page<PostVO> page);
 }

@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostMapper extends BaseMapper<Post> {
     Page<PostVO> selectListAndPage(@Param("page") Page<PostVO> page, @Param("tab") String tab);
+
+    Page<PostVO> searchByKey(@Param("page") Page<PostVO> page, @Param("keyword") String keyword);
 }

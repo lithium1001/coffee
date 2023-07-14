@@ -57,6 +57,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 post.setTags(tags);
             }
         });
+        setTopicTags(iPage);
         return iPage;
     }
 
@@ -94,7 +95,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         Assert.notNull(topic, "当前话题不存在,或已被作者删除");
         // 查询话题详情
         this.baseMapper.updateById(topic);
-        // emoji转码
         topic.setContent(topic.getContent());
         map.put("topic", topic);
         // 标签
@@ -108,10 +108,28 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         map.put("tags", tags);
 
         // 作者
-
         ProfileVO user = UserService.getUserProfile(topic.getUserId());
         map.put("user", user);
-
         return map;
+    }
+
+    @Override
+    public Page<PostVO> searchByKey(String keyword, Page<PostVO> page) {
+        // 查询话题
+        Page<PostVO> iPage = this.baseMapper.searchByKey(page, keyword);
+        // 查询话题的标签
+        setTopicTags(iPage);
+        return iPage;
+    }
+
+    private void setTopicTags(Page<PostVO> iPage) {
+        iPage.getRecords().forEach(topic -> {
+            List<PostTag> topicTags = PostTagService.selectByTopicId(topic.getPostId());
+            if (!topicTags.isEmpty()) {
+                List<String> tagIds = topicTags.stream().map(PostTag::getTagId).collect(Collectors.toList());
+                List<Tags> tags = TagMapper.selectBatchIds(tagIds);
+                topic.setTags(tags);
+            }
+        });
     }
 }

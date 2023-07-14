@@ -33,4 +33,27 @@
             order by t.replynum desc, t.create_time desc
         </if>
     </select>
+
+    <select id="searchByKey" resultMap="postVO">
+        SELECT t.post_id,
+        t.title,
+        t.user_id,
+        t.replynum,
+        t.picture_url,
+        t.create_time,
+        u.username,
+        u.avatar_url
+        FROM forumposts t
+        LEFT JOIN users u
+        ON t.user_id = u.user_id
+        <where>
+            <if test="keyword!=null">
+                and t.title like CONCAT('%','${keyword}')
+                or t.title like CONCAT('${keyword}','%')
+                or t.title like CONCAT('%','${keyword}','%')
+                or t.title = #{keyword}
+            </if>
+        </where>
+        order by t.replynum desc, t.create_time desc
+    </select>
 </mapper>

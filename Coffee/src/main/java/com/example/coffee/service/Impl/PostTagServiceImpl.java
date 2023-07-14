@@ -4,13 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.coffee.mapper.PostTagMapper;
+import com.example.coffee.pojo.Post;
 import com.example.coffee.pojo.PostTag;
 import com.example.coffee.pojo.Tags;
 import com.example.coffee.service.PostTagService;
+import com.example.coffee.service.PostService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
@@ -33,4 +36,9 @@ public class PostTagServiceImpl extends ServiceImpl<PostTagMapper, PostTag> impl
             this.baseMapper.insert(postTag);
         });
     }
+    @Override
+    public Set<String> selectTopicIdsByTagId(String id){
+        return this.baseMapper.getTopicIdsByTagId(id);
+    }
+
 }
