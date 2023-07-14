@@ -28,9 +28,21 @@ public class ArticleController {
     @Autowired
     private IArticleService articleService;
     @GetMapping("/articles")
-    public Result articlepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order){
+    public Result articlepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order, @RequestParam(defaultValue = "all") String filter){
         Page<Article> page = new Page<>(pageNum,pageSize);
         QueryWrapper<Article> query = new QueryWrapper<>();
+        if(filter.equals("all")) {;
+        }
+        else if(filter.equals("赛事")){
+            query.eq("tag","赛事");
+        }
+        else if(filter.equals("资讯")){
+            query.eq("tag","资讯");
+        }
+        else if(filter.equals("行业报告")){
+            query.eq("tag","行业报告");
+        }
+
         if (refer.equals("id")) {
             if(order.equals("asc")){
                 query.orderByAsc("article_id");}
@@ -56,6 +68,7 @@ public class ArticleController {
                 query.orderByDesc("date");
             }
         }
+
         IPage<Article> pageResult=articleService.page(page,query);
         List<Article> articles=pageResult.getRecords();
         List voList = new ArrayList();

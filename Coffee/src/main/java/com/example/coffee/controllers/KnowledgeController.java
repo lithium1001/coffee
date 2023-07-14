@@ -26,10 +26,19 @@ public class KnowledgeController {
     @Autowired
     private IKnowledgeService knowledgeService;
     @GetMapping("/knowledge")
-    public Result knowledgepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order){
+    public Result knowledgepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order,@RequestParam(defaultValue = "all") String filter){
 
         Page<Knowledge> page = new Page<>(pageNum,pageSize);
         QueryWrapper<Knowledge> query = new QueryWrapper<>();
+        if(filter.equals("all")) {;
+        }
+        else if(filter.equals("冲泡")){
+            query.eq("tag","冲泡");
+        }
+        else if(filter.equals("加工")){
+            query.eq("tag","加工");
+        }
+
         if (refer.equals("id")) {
             if(order.equals("asc")){
                 query.orderByAsc("k_id");}
