@@ -7,29 +7,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Builder
-@TableName("forumposts")
+@TableName("replyposts")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+public class Comment implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "post_id", type = IdType.ASSIGN_ID)
+    /**
+     * 主键
+     */
+    @TableId(value = "reply_id", type = IdType.ASSIGN_ID)
     private String id;
     /**
-     * 标题
-     */
-    @NotBlank(message = "标题不可以为空")
-    @TableField(value = "title")
-    private String title;
-    /**
-     * markdown
+     * 内容
      */
     @NotBlank(message = "内容不可以为空")
-    @TableField("content")
+    @TableField(value = "content")
     private String content;
 
     /**
@@ -38,20 +36,22 @@ public class Post {
     @TableField("user_id")
     private String userId;
 
+    /**
+     * postID
+     */
+    @TableField("post_id")
+    private String postId;
+
+    /**
+     * picture_url
+     */
     @TableField("picture_url")
     private String pictureUrl;
-    /**
-     * 评论数
-     */
-    @TableField("replynum")
-    @Builder.Default
-    private Integer comments = 0;
 
     /**
      * 创建时间
      */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
-
 
 }

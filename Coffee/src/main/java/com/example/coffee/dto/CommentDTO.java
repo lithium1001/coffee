@@ -2,14 +2,12 @@ package com.example.coffee.dto;
 
 import lombok.Data;
 
-import java.util.List;
+import java.io.Serializable;
 
 @Data
-public class CreatePostDTO {
+public class CommentDTO implements Serializable {
     private static final long serialVersionUID = -5957433707110390852L;
-    private String title;
+    private String post_id;
     private String content;
-    private List<String> tags;
     private String pictureUrl;
 }
-

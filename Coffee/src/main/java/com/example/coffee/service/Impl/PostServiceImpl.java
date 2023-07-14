@@ -1,6 +1,7 @@
 package com.example.coffee.service.Impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.coffee.dto.CreatePostDTO;
@@ -15,6 +16,7 @@ import com.example.coffee.service.PostService;
 import com.example.coffee.service.PostTagService;
 import com.example.coffee.service.TagService;
 import com.example.coffee.vo.PostVO;
+import com.example.coffee.vo.ProfileVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -23,8 +25,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 @Service
 public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements PostService {
@@ -37,6 +38,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
     @Autowired
     @Lazy
     private com.example.coffee.service.TagService TagService;
+
+    @Autowired
+    private com.example.coffee.service.UserService UserService;
 
     @Autowired
     private com.example.coffee.service.PostTagService PostTagService;
@@ -68,6 +72,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .createTime(new Date())
+                .pictureUrl(dto.getPictureUrl())
                 .build();
         this.baseMapper.insert(topic);
 
@@ -80,5 +85,33 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         }
 
         return topic;
+    }
+
+    @Override
+    public Map<String, Object> viewTopic(String id) {
+        Map<String, Object> map = new HashMap<>(16);
+        Post topic = this.baseMapper.selectById(id);
+        Assert.notNull(topic, "当前话题不存在,或已被作者删除");
+        // 查询话题详情
+        this.baseMapper.updateById(topic);
+        // emoji转码
+        topic.setContent(topic.getContent());
+        map.put("topic", topic);
+        // 标签
+        QueryWrapper<PostTag> wrapper = new QueryWrapper<>();
+        wrapper.lambda().eq(PostTag::getPostId, topic.getId());
+        Set<String> set = new HashSet<>();
+        for (PostTag articleTag : PostTagService.list(wrapper)) {
+            set.add(articleTag.getTagId());
+        }
+        List<Tags> tags = TagService.listByIds(set);
+        map.put("tags", tags);
+
+        // 作者
+
+        ProfileVO user = UserService.getUserProfile(topic.getUserId());
+        map.put("user", user);
+
+        return map;
     }
 }
