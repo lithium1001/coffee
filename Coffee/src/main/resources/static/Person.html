@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>CoffeeVerse</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--框架: 我另外导入了bootstrap框架,版本号4.6.2,选了v4没选v5;
+      第三方库:animate是动态效果库，链接https://animate.style；fontawesome是图标库，链接https://fontawesome.com.cn/；dripicons也是图标库,我这边没有用到,感觉能够被fontawesome替换;
+      插件（和js配套）:magnific-popu动态弹出图片的插件;slick图片轮播的插件；meanmenu响应式导航插件；
+      其他：default 基础样式表；responsive 响应式样式-->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/basicStyle.css">
+  <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/PersonStyle.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <!--  没用到的-->
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/dripicons.css">
+  <link rel="stylesheet" href="css/slick.css">
+  <link rel="stylesheet" href="css/meanmenu.css">
+
+</head>
+
+<body>
+<!--导航栏 header -->
+<header class="header-nav">
+  <div id="header-sticky" class="sticky-nav">
+    <div class="container">
+      <div class="row align-items-centerjustify-content-center login-center">
+        <!--logo-->
+        <div class="col-xl-2 col-lg-2">
+          <div class="logo">
+            <a href="index.html"><img src="img/logo/logo.png" alt="logo"></a>
+          </div>
+        </div>
+        <!--不同块面-->
+        <div class="col-xl-8 col-lg-8">
+          <div class="main-menu text-right text-xl-right">
+            <ul>
+              <li class="has-sub">
+                <a href="首页.html">首页</a>
+              </li>
+              <li class="has-sub">
+                <a href="资讯板块.html">资讯</a>
+              </li>
+              <li>
+                <a href="知识板块.html">知识</a>
+              </li>
+              <li class="has-sub">
+                <a href="shop.html">地图</a>
+              </li>
+              <li class="has-sub">
+                <a href="forum.html">社区</a>
+              </li>
+              <li class="has-sub">
+                <a onclick="window.scrollTo(0, document.body.scrollHeight); return false;">联系我们</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 text-right d-none d-lg-block text-right text-xl-right ">
+          <div class="login-btn">
+            <a href="contact.html" class="btn">登录/注册</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+<!-- header-end -->
+
+<!-- 主体 main -->
+<main>
+  
+  <div class="p-relative pt-100 pb-50">
+    <div class="background p-relative pt-30 pb-30" style="background:#ffffff">
+      <h2 align="center">            <span class="circle-left">
+        <img src="img/bg/circle-left.png" alt="img"/>
+        </span>个人信息            <span class="circle-left">
+            <img src="img/bg/circle-left.png" alt="img"/>
+            </span>
+    </h2>
+    <div class="brand-area pt-10 pb-10" style="background:#3f271e">
+   </div>
+  </div>
+    <div class="container">
+      <div class="row">
+        <!--个人信息板块-->
+        <div class="col-lg-2.5 text-center personalInfo" >
+          <img src="img/testimonial/testi_avatar.png" alt="img">
+          <h3>用户昵称</h3>
+          <p>xxx具体信息</p>
+          <p>xxx具体信息</p>
+          <p>xxx具体信息</p>
+          <!--需要element-ui实现弹窗-->
+          <button type="button" class="btn">修改信息</button>
+          <button type="button" class="btn">退出登陆</button>
+        </div>
+        <!--个人收藏/评论板块-->
+        <div class="col-lg-9 personalDisplay">
+        <!--切换与内部导航后续会导入elementui组件，目前仅示意-->
+          <div class="switchingType">切换模块</div>
+          <div class="collection">
+            <div class="col-lg-3 card" >
+            <a href="#">
+              <img src="img/gallery/protfolio-img02.png" />
+              <h5 class="card-title">店铺名称</h5>
+              <button class="btn" type="button">
+                <i class="far fa-heart"/></i>
+              </button>
+              <button class="btn " type="button">
+                <i class="far fa-share"/></i>
+              </button>
+              <div class="shopMark align-self-center" style="height: 30px">
+                  <span>4.5分</span>
+                  <span>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fad fa-star-half-alt"/></i>
+                  </span>
+              </div>
+              <p class="card-text">所处区域</p>
+            </a>
+          </div>
+            <div class="col-lg-3 card" >
+              <a href="#">
+                <img src="img/gallery/protfolio-img02.png" />
+                <h5 class="card-title">店铺名称</h5>
+                <button class="btn" type="button">
+                  <i class="far fa-heart"/></i>
+                </button>
+                <button class="btn " type="button">
+                  <i class="far fa-share"/></i>
+                </button>
+                <div class="shopMark align-self-center" style="height: 30px">
+                  <span>4.5分</span>
+                  <span>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fad fa-star-half-alt"/></i>
+                  </span>
+                </div>
+                <p class="card-text">所处区域</p>
+              </a>
+            </div>
+            <div class="col-lg-3 card" >
+              <a href="#">
+                <img src="img/gallery/protfolio-img02.png" />
+                <h5 class="card-title">店铺名称</h5>
+                <button class="btn" type="button">
+                  <i class="far fa-heart"/></i>
+                </button>
+                <button class="btn " type="button">
+                  <i class="far fa-share"/></i>
+                </button>
+                <div class="shopMark align-self-center" style="height: 30px">
+                  <span>4.5分</span>
+                  <span>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fad fa-star-half-alt"/></i>
+                  </span>
+                </div>
+                <p class="card-text">所处区域</p>
+              </a>
+            </div>
+            <div class="col-lg-3 card" >
+              <a href="#">
+                <img src="img/gallery/protfolio-img02.png" />
+                <h5 class="card-title">店铺名称</h5>
+                <button class="btn" type="button">
+                  <i class="far fa-heart"/></i>
+                </button>
+                <button class="btn " type="button">
+                  <i class="far fa-share"/></i>
+                </button>
+                <div class="shopMark align-self-center" style="height: 30px">
+                  <span>4.5分</span>
+                  <span>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fad fa-star-half-alt"/></i>
+                  </span>
+                </div>
+                <p class="card-text">所处区域</p>
+              </a>
+            </div>
+            <div class="col-lg-3 card" >
+              <a href="#">
+                <img src="img/gallery/protfolio-img02.png" />
+                <h5 class="card-title">店铺名称</h5>
+                <button class="btn" type="button">
+                  <i class="far fa-heart"/></i>
+                </button>
+                <button class="btn " type="button">
+                  <i class="far fa-share"/></i>
+                </button>
+                <div class="shopMark align-self-center" style="height: 30px">
+                  <span>4.5分</span>
+                  <span>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fad fa-star-half-alt"/></i>
+                  </span>
+                </div>
+                <p class="card-text">所处区域</p>
+              </a>
+            </div>
+            <div class="col-lg-3 card" >
+              <a href="#">
+                <img src="img/gallery/protfolio-img02.png" />
+                <h5 class="card-title">店铺名称</h5>
+                <button class="btn" type="button">
+                  <i class="far fa-heart"/></i>
+                </button>
+                <button class="btn " type="button">
+                  <i class="far fa-share"/></i>
+                </button>
+                <div class="shopMark align-self-center" style="height: 30px">
+                  <span>4.5分</span>
+                  <span>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fas fa-star"/></i>
+                    <i class="fad fa-star-half-alt"/></i>
+                  </span>
+                </div>
+                <p class="card-text">所处区域</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- main-area-end -->
+<div class="brand-area pt-40 pb-40" style="background:#3f271e"></div>
+            <!-- newslater-area -->
+            <section class="newslater-area p-relative pt-120 pb-120">
+              <div class="animations-01"><img src="img/bg/an-img-07.png" alt="contact-bg-an-05"></div>
+              <div class="container">
+                  <div class="row justify-content-center align-items-center text-center">
+                      <div class="col-xl-9 col-lg-9">
+                          <div class="section-title center-align mb-40 text-center wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
+                               <h5><span class="circle-left"><img src="img/bg/circle-left.png" alt="img"></span> 加入我们</h5>
+                              <h2>
+                                  在CoffeeVerse,畅游咖啡世界！
+                              </h2>
+                              <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
+                          </div>
+                      </div>
+                     
+                  </div>
+                 
+              </div>
+          </section>
+          <!-- newslater-aread-end -->
+      </main>
+       <!-- footer -->
+      <footer class="footer-bg footer-p">
+       <div class="footer-top  pt-90 pb-40" style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
+              <div class="container">
+                  <div class="row justify-content-between">
+                      
+                        <div class="col-xl-4 col-lg-4 col-sm-6">
+                          <div class="footer-widget mb-30">
+                              <div class="f-widget-title mb-30">
+                                 <img src="img/首页/logo.png" alt="img">
+                              </div>
+                              <div class="f-contact">
+                                  <ul>
+                                  <li>
+                                      <i class="icon fal fa-phone"></i>
+                                      <span>1800-121-3637<br>+91-7052-101-786</span>
+                                  </li>
+                                 <li><i class="icon fal fa-envelope"></i>
+                                      <span>
+                                          <a href="mailto:info@example.com">info@example.com</a>
+                                     <br>
+                                     <a href="mailto:help@example.com">help@example.com</a>
+                                     </span>
+                                  </li>
+                                  <li>
+                                      <i class="icon fal fa-map-marker-check"></i>
+                                      <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
+                                  </li>
+                                  
+                              </ul>
+                                  
+                                  </div>
+                          </div>
+                      </div>
+                      <div class="col-xl-2 col-lg-2 col-sm-6">
+                          <div class="footer-widget mb-30">
+                              <div class="f-widget-title">
+                                  <h2>相关链接</h2>
+                              </div>
+                              <div class="footer-link">
+                                  <ul>      
+                                    <li><a href="首页.html">首页</a></li>                                  
+                                    <li><a href="资讯板块.html">资讯</a></li>
+                                    <li><a href="知识板块.html"> 知识 </a></li>
+                                    <li><a href="forum.html"> 社区</a></li>
+                                    <li><a href="shop.html">地图</a></li>
+                                    <li><a href="Person.html">个人中心</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div> 
+          <div class="col-xl-2 col-lg-2 col-sm-6">
+                          <div class="footer-widget mb-30">
+                              <div class="f-widget-title">
+                                  <h2>素材来源</h2>
+                              </div>
+                              <div class="footer-link">
+                                  <ul>      
+                                      <li><a href="index.html">哔哩哔哩</a></li>                                  
+                                      <li><a href="index.html">百度</a></li>
+                                      <li><a href="about.html">Youtube</a></li>
+                                      <li><a href="services.html"> ... </a></li>
+                                      <li><a href="contact.html"> ...</a></li>
+                                      <li><a href="blog.html">...</a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div> 
+                      <div class="col-xl-2 col-lg-2 col-sm-6">
+                          
+                              <!-- <div class="col-md-20">
+                                      <div class="signature">
+                                          <img src="img/brand/星巴克.jpg" alt="img">  
+                                      </div> -->
+                          
+                               
+                          </div> 
+                          </div>
+                      </div> 
+                  
+                                                   
+                  </div>
+              </div>
+          </div>
+          <div class="copyright-wrap">
+              <div class="container">
+                  <div class="row align-items-center">
+                      <div class="col-lg-6">                         
+                         Copyright &copy; CoffeeVerse 2023 . All rights reserved.         
+                      </div>
+                      <div class="col-lg-6 text-right text-xl-right">                       
+                         <div class="footer-social">                                    
+                                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                  <a href="#"><i class="fab fa-twitter"></i></a>
+                                  <a href="#"><i class="fab fa-instagram"></i></a>
+                                  <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                              </div>        
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </footer>
+      <!-- footer-end -->
+
+<!-- JS here -->
+<script src="js/jquery-3.7.0.min.js"></script>
+<script src="js/ajax-form.js"></script>
+<!--modernizr是用来检查浏览器的版本是否适配html5和css3的，不知道有什么具体作用，但先留着-->
+<script src="js/modernizr-3.5.0.min.js"></script>
+<!--popper是用来实现JS定位的，例如提示框定位，目前还不太会用，先留着，介绍链接：https://blog.csdn.net/jhzhahuaiyu/article/details/90213582-->
+<script src="js/popper.min.js"></script>
+<!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
+<script src="js/plug-in/slick.min.js"></script>
+<script src="js/plug-in/paroller.js"></script>
+<script src="js/plug-in/wow.min.js"></script>
+<script src="js/plug-in/js_isotope.pkgd.min.js"></script>
+<script src="js/plug-in/imagesloaded.min.js"></script>
+<script src="js/plug-in/parallax.min.js"></script>
+<script src="js/plug-in/jquery.waypoints.min.js"></script>
+<script src="js/plug-in/jquery.counterup.min.js"></script>
+<script src="js/plug-in/jquery.scrollUp.min.js"></script>
+<script src="js/plug-in/jquery.meanmenu.min.js"></script>
+<script src="js/plug-in/parallax-scroll.js"></script>
+<script src="js/plug-in/jquery.magnific-popup.min.js"></script>
+<script src="js/element-in-view.js"></script>
+<script src="js/main.js"></script>
+<script src="BootStrap/js/bootstrap.bundle.js"></script>
+<script src="BootStrap/js/bootstrap.js"> </script>
+</body>
+</html>

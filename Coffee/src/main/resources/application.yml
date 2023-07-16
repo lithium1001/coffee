@@ -5,10 +5,9 @@ spring:
   datasource:
     username: root
 
-    password: ljjdsr0618
+    password:tzxzjyzzyljjyzxdfwq0707
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/coffee
-    mybatis-plus:
-      type-enums-package: com.bjbss.bbcsupport.domain
-      configuration:
-        default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+    url: jdbc:mysql://47.115.230.54:3306/coffee
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+

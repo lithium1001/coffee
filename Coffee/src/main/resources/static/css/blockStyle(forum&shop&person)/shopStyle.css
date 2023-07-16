@@ -1,0 +1,102 @@
+.background{
+    background-color: #f7f5f1;
+}
+.choosing{
+    margin: 25px auto 20px;
+}
+.choosing .btn{
+    background-color: transparent;
+    border: 1px solid #76452f;
+    color: #76452f;
+    margin-right: 20px;
+}
+.mapDisplay{
+    width: 700px;
+    height: 425px;
+    border: 3px solid #76452f;
+    margin: 0px auto;
+}
+.shopSearch{
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border: 2px solid #f7f5f1 !important;
+    background: #FFFFFF;
+    height: auto;
+}
+.shopSearch-title{
+    font-size: 16px;
+    line-height: 1;
+    text-align:left;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.shopSearch .search-form{
+    width: 100%;
+}
+.card{
+    border: 2px solid #f7f5f1 !important;
+    padding: 20px;
+    padding-bottom: 10px;
+    background: #FFFFFF;
+    height: auto;
+    font-family: 宋体;
+}
+.card img{
+    border-radius: 3px;
+}
+.card p{
+    margin-bottom: 5px;
+}
+.storeArrangement{
+    border-top: 4px solid #c7a092;
+    border-bottom: 2px solid #faeadd;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+.storeArrangement .btn{
+    border-right: 2px solid #EEEEEE;
+}
+.shopList{
+    width: 900px;
+    margin:10px auto;
+}
+.shopListItem{
+    height: 150px;
+    border-bottom: 2px solid #EEEEEE;
+}
+.shopListItem img{
+    top: 2px;
+    width: 120px;
+    height: 120px;
+    object-fit: none;
+    border-radius: 3px;
+    margin:0 10px;
+}
+.shopListItem .shopInfo{
+    display: inline-block;
+    width: 700px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+.shopInfo p{
+    margin-bottom: 5px;
+}
+.paging{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+.shopList .pagination .page-item a.page-link {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    background: #f8f8f8;
+    color: #9fa7c5;
+    font-size: 14px;
+    border: none;
+    font-weight: 500;
+}
