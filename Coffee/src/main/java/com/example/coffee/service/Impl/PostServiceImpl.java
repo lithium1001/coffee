@@ -97,6 +97,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         this.baseMapper.updateById(topic);
         topic.setContent(topic.getContent());
         map.put("topic", topic);
+
         // 标签
         QueryWrapper<PostTag> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(PostTag::getPostId, topic.getId());
