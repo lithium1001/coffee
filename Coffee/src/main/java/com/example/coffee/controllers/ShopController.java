@@ -15,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -33,10 +34,12 @@ public class ShopController {
 
     @GetMapping("/shoplist")   //分页功能（包括是否按评分rating降序显示、分类）
     public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "30")int pageSize,
-                           String district, String tag, @RequestParam(defaultValue = "false") boolean sort) {
+                               String district, String tag, @RequestParam(defaultValue = "false") boolean sort,
+                               HttpServletResponse response) {
 
         log.info("shop list, pageNum={}, pageSize={}, district={}, tag={}, sort={}", pageNum, pageSize, district, tag, sort);
 
+        response.setHeader("Access-Control-Allow-Origin","*");
         Page<Shop> page = new Page<>(pageNum, pageSize);
         if (sort || district != null || tag != null){
             //需要先查询符合条件的所有记录
