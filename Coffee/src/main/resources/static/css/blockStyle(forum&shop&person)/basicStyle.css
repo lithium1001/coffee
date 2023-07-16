@@ -1,0 +1,244 @@
+/*通用基础内容*/
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    color: #777;
+    font-style: normal;
+    line-height: 26px;
+}
+
+img {
+    max-width: 100%;
+    transition: all 0.3s ease-out 0s;
+}
+a,.button {
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+a:focus,.button:focus {
+    text-decoration: none;
+    outline: none;
+}
+a:focus,a:hover,.portfolio-cat a:hover,.footer -menu li a:hover {
+    text-decoration: none;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+a,button {
+    color: #101010;
+    outline: medium none;
+}
+a:hover {
+    color: #3f271e;
+}
+.box20 .title a{
+    color: #fff;
+}
+.box20 .title a:hover{
+    color: #444;
+}
+button:focus,input:focus,input:focus,textarea,textarea:focus{outline: none;box-shadow: none;}
+.uppercase {
+    text-transform: uppercase;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Caudex', serif;
+    color: #101010;
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: normal;
+}
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+    color: inherit;
+}
+h1 {
+    font-size: 40px;
+    font-weight: 600;
+}
+h2 {
+    font-size: 35px;
+}
+h3 {
+    font-size: 28px;
+}
+h4 {
+    font-size: 22px;
+}
+h5 {
+    font-size: 18px;
+}
+h6 {
+    font-size: 16px;
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+li {
+    list-style: none
+}
+hr {
+    border-bottom: 1px solid #eceff8;
+    border-top: 0 none;
+    margin: 30px 0;
+    padding: 0;
+}
+label {
+    color: #7e7e7e;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/*导航栏*/
+.header-nav,.sticky-nav {
+    height: 70px;
+    margin-bottom: -106px;
+    border-top: 0;
+    position: relative;
+    z-index: 9;
+    background:#3f271e;
+}
+
+.logo {
+    line-height: 66px;
+    width: 146px;
+    color: #fff;
+}
+
+.main-menu ul li {
+    display: inline-block;
+    margin-left: 30px;
+    position: relative;
+    color: #fff;
+    padding: 20px 0;
+    font-weight:700;
+    position: relative;
+    font-size: 18px;
+    font-family: 'Caudex', serif;
+}
+.main-menu ul li a{
+    color: #fff;
+}
+.main-menu ul li:hover > a {
+    color: rgba(230, 211, 204, 1);
+}
+.main-menu ul li a::after {
+    margin-left: 10px;
+    color: #3f271e;
+}
+
+.login-btn .btn {
+    background: #6f3727;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 10px 10px;
+    margin: 12px 0px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.login-btn .btn:hover {
+    color: #fff;
+    background: #aa725a;
+}
+
+
+/*footer*/
+.footer{
+    background-color: #3f271e;
+    background-image: url(img/bg/footer-bg.png);
+    padding-top: 50px;
+}
+
+.f-widget-title h2  {
+    font-size: 24px;
+    margin-bottom: 0px;
+    position: relative;
+    padding-bottom: 10px;
+    color: #fff;
+}
+.f-widget-title h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 50px;
+}
+.f-widget-title img {
+    width: 146px;
+}
+.footer-widget td {
+    padding: 5px;
+    text-align: center;
+}
+.footer-link ul li {
+    margin-bottom: 10px;
+}
+.footer-link ul li a {
+    color: #fff1f0;
+}
+.footer-link ul li a:hover {
+    color: #fff;
+}
+.footer-widget table {
+    width: 100%;
+    padding: 10px;
+    background: #f5f5f5;
+}
+.footer-widget th {
+    background: #e4e4e4;
+    padding: 10px 5px;
+    text-align: center;
+    color: #101010;
+}
+.f-contact i {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    line-height: 40px;
+    color: #412720 !important;
+    text-align: center;
+    border-radius: 50%;
+    float: left;
+}
+.f-contact a{
+    color:#fffc  !important;
+}
+.f-contact a:hover{
+    color: #fffc!important;
+}
+.f-contact span{
+    color:#fffc ;
+}
+.f-contact h3 {
+    color: #fff;
+    font-size: 24px;
+}
+.f-contact .icon {
+    float: left;
+    margin-top: 7px;
+    margin-right: 15px;
+    width: 40px;
+}
+
+.f-contact li {
+    float: left;
+    margin-bottom: 15px !important;
+    width: 100%;
+}
+.f-contact li:last-child{
+    margin-bottom: 0px !important;
+}
