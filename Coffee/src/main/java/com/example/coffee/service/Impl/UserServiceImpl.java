@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -34,8 +35,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //查询是否有相同用户名的用户
         LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(User::getUsername, dto.getName()).or().eq(User::getEmail, dto.getEmail());
-        User umsUser = baseMapper.selectOne(wrapper);
-        if (!ObjectUtils.isEmpty(umsUser)) {
+        List<User> userList = baseMapper.selectList(wrapper);
+        if (!userList.isEmpty()) {
             ApiAsserts.fail("账号或邮箱已存在！");
         }
         User addUser = User.builder()
