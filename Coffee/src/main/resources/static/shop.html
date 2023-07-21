@@ -11,6 +11,7 @@
         插件（和js配套）:magnific-popu动态弹出图片的插件;slick图片轮播的插件；meanmenu响应式导航插件；
         其他：default 基础样式表；responsive 响应式样式-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" >
     <link href="fontawesome/css/all.min.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -23,7 +24,6 @@
     <link href="css/dripicons.css" rel="stylesheet">
     <link href="css/slick.css" rel="stylesheet">
     <link href="css/meanmenu.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/bootstrap-select-min.css">
 
 
 </head>
@@ -37,7 +37,7 @@
                 <!--logo-->
                 <div class="col-xl-2 col-lg-2">
                     <div class="logo">
-                        <a href="index.html"><img alt="logo" src="img/logo/logo.png"></a>
+                        <a href="首页.html"><img alt="logo" src="img/logo/logo.png"></a>
                     </div>
                 </div>
                 <!--不同块面-->
@@ -111,8 +111,6 @@
 </header>
 <!-- header-end -->
 
-<!-- 主体 main -->
-
 <!--地图区域-->
 <div>
     <div class="background p-relative pt-130 pb-30" style="background:#ffffff">
@@ -137,39 +135,38 @@
                 </h4>
                 <!--下拉菜单选择-->
                 <div class="choosing text-center margin-left: 30px;">
+                    <div style="display: inline-block; width:175px" >
                     <span>地区：</span>
-                    <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            type="button">
-                        choosing the area
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">杨浦区</li>
-                        <li class="dropdown-item">嘉定区</li>
-                        <li class="dropdown-item">宝山区</li>
-                    </ul>
-                    <select class="selectpicker" multiple data-live-search="true">
-                        <option value="1">广东省</option>
-                        <option value="2">广西省</option>
-                        <option value="3">福建省</option>
-                        <option value="4">湖南省</option>
-                        <option value="5">山东省</option>
+                    <select class="selectpicker multiple " id="sel-district" data-live-search="true" multiple title="请选择地区">
+                        <option>浦东新区</option>
+                        <option>徐汇</option>
+                        <option>长宁</option>
+                        <option>普陀</option>
+                        <option>虹口</option>
+                        <option>杨浦</option>
+                        <option>黄浦</option>
+                        <option>静安</option>
+                        <option>宝山</option>
+                        <option>闵行</option>
+                        <option>嘉定</option>
+                        <option>金山</option>
+                        <option>松江</option>
+                        <option>青浦</option>
+                        <option>奉贤</option>
+                        <option>崇明</option>
                     </select>
-                    &nbsp;
+                    </div>
                     <span>店铺类型：</span>
-                    <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            type="button">
-                        choosing the type
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">aaa</li>
-                        <li class="dropdown-item">bbb</li>
-                        <li class="dropdown-item">ccc</li>
-                    </ul>
-
+                    <select class="selectpicker multiple" id="sel-tag" multiple title="请选择类型">
+                        <option>快取店</option>
+                        <option>标准店</option>
+                    </select>
+                    <button onclick="selectByTag()" type="button" class="btn btn-outline-primary">筛选</button>
+                    <button onclick="clearSelect()" type="button" class="btn btn-outline-primary">清空</button>
                 </div>
                 <!--地图显示-->
                 <div class="mapDisplay ">
-                    <img src="img/mapDisplay.png"/>
+                    <img src="img/mapdisplay.png" alt="地图"/>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -186,7 +183,7 @@
                 <!--选中的店铺的信息展示 bootstrap组件修改-->
                 <div class="card">
                     <a href="#">
-                        <img src="img/gallery/protfolio-img02.png"/>
+                        <img src="img/gallery/protfolio-img02.png" alt=""/>
                         <div class="card-body">
                             <h5 class="card-title">店铺名称</h5>
                             <p class="card-text">店铺地址</p>
@@ -197,7 +194,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!--店铺罗列区域-->
@@ -210,12 +206,8 @@
             </div>
             <div class="col-xl-8 col-lg-8">
                 <div class="text-right">
-                    <button class="btn" type="button">
+                    <button onclick="sortByRating()" class="btn" type="button">
                         按评分排序
-                        <i class="far fa-arrow-alt-down"></i>
-                    </button>
-                    <button class="btn" type="button">
-                        按距离排序
                         <i class="far fa-arrow-alt-down"></i>
                     </button>
                 </div>
@@ -252,23 +244,23 @@
 <!--        </div>-->
         <!--bootstrap 分页组件 后续用elementui替换-->
     </div>
-    <nav aria-label="Page navigation example" class="text-center paging">
-        <ul class="pagination">
-            <li class="page-item">
-                <a aria-label="Previous" class="page-link" href="#">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a aria-label="Next" class="page-link" href="#">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<!--    <nav aria-label="Page navigation example" class="text-center paging">-->
+<!--        <ul class="pagination">-->
+<!--            <li class="page-item">-->
+<!--                <a aria-label="Previous" class="page-link" href="#">-->
+<!--                    <span aria-hidden="true">&laquo;</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--            <li class="page-item">-->
+<!--                <a aria-label="Next" class="page-link" href="#">-->
+<!--                    <span aria-hidden="true">&raquo;</span>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
 </div>
 
 
@@ -295,7 +287,7 @@
     </div>
 </section>
 <!-- newslater-aread-end -->
-</main>
+
 <!-- main-area-end -->
 
 <!-- footer -->
@@ -368,13 +360,6 @@
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-6">
-
-                    <!-- <div class="col-md-20">
-                            <div class="signature">
-                                <img src="img/brand/星巴克.jpg" alt="img">
-                            </div> -->
-
-
                 </div>
             </div>
         </div>
@@ -403,10 +388,6 @@
 
 <script src="js/jquery-3.7.0.min.js"></script>
 <script src="js/ajax-form.js"></script>
-<!--modernizr是用来检查浏览器的版本是否适配html5和css3的，不知道有什么具体作用，但先留着-->
-<script src="js/modernizr-3.5.0.min.js"></script>
-<!--popper是用来实现JS定位的，例如提示框定位，目前还不太会用，先留着，介绍链接：https://blog.csdn.net/jhzhahuaiyu/article/details/90213582-->
-<script src="js/popper.min.js"></script>
 <!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
 <script src="js/plug-in/slick.min.js"></script>
 <script src="js/plug-in/paroller.js"></script>
@@ -422,9 +403,10 @@
 <script src="js/plug-in/jquery.magnific-popup.min.js"></script>
 <script src="js/element-in-view.js"></script>
 <script src="js/main.js"></script>
-<script src="BootStrap/js/bootstrap.bundle.js"></script>
-<script src="BootStrap/js/bootstrap.js"></script>
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="bootstrap/js/bootstrap-select.min.js"></script>
+
 <script>
     $(function () {
         $.ajax({
@@ -432,13 +414,12 @@
             url: "http://localhost:8080/coffee-shop/shoplist",
             dataType: "json",
             success: function (shoplist) {
-                alert('没有问题')
-                for(var i=0;i<shoplist.data.records.length;i++)
-                {
-                    var a=shoplist.data.records[i];
+                // alert('没有问题');
+                $.each(shoplist.data.records,function(i,a) {
                     var shopListItem='<div class="media shopListItem"><img class="align-self-center" src="'
                         +a.pictureUrl
-                        +'"/><div class="shopInfo"> <h4>'
+                        +'"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)" hashId="'
+                        +a.shopId+'">>'
                         +a.name
                         +'</h4> <div class="shopMark align-self-center" style="height: 30px"> <span id="rating">店铺评分：'
                         +a.rating
@@ -446,16 +427,87 @@
                         +a.location
                         +'</p> <p>'
                         +a.opentime+'</p></div></div>';
-                    $(".shopList").append(shopListItem)   ;
-                }
-
-
+                    $(".shopList").append(shopListItem);
+                })
             },
             error: function () {
                 alert('出现问题')
             }
-        });
+        })
     });
+    function goShop(a){
+        // alert('页面跳转');
+        shopName=$(a).attr("hashId");
+        alert(shopName);
+        window.location.href="shop-detail.html?"+$(a).attr("hashId");
+    };
+    function sortByRating(){
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8080/coffee-shop/shoplist",
+            dataType: "json",
+            data:{
+                district:$("#sel-district").text(),
+            },
+            success: function (shoplist) {
+                $(".shopList").empty();
+                // alert('没有问题');
+                $.each(shoplist.data.records,function(i,a) {
+                    var shopListItem='<div class="media shopListItem"><img class="align-self-center" src="'
+                        +a.pictureUrl
+                        +'"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)" hashId="'
+                        +a.shopId+'">>'
+                        +a.name
+                        +'</h4> <div class="shopMark align-self-center" style="height: 30px"> <span id="rating">店铺评分：'
+                        +a.rating
+                        +'分 &nbsp;</span> <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span> <button class="btn " type="button">收藏 <i class="far fa-heart"></i></button> <span style="margin-right: 10px">&nbsp;</span><button class="btn " type="button">转发 <i class="far fa-share"></i></button></div><p>'
+                        +"上海市"+a.district+a.road+a.number+a.description
+                        +'</p> <p>'
+                        +a.opentime+'</p></div></div>';
+                    $(".shopList").append(shopListItem);
+                })
+            },
+            error: function () {
+                alert('筛选出现问题')
+            }
+        })
+    };
+    function selectByTag(){
+        $.ajax({
+            type: "get",
+            url: "http://localhost:8080/coffee-shop/shoplist",
+            dataType: "json",
+            data:{
+                district:$("#sel-district").val(),
+                tag:$("#sel-tag").val()
+            },
+            success: function (shoplist) {
+                $(".shopList").empty();
+                // alert('没有问题');
+                $.each(shoplist.data.records,function(i,a) {
+                    var shopListItem='<div class="media shopListItem"><img class="align-self-center" src="'
+                        +a.pictureUrl
+                        +'"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)" hashId="'
+                        +a.shopId+'">>'
+                        +a.name
+                        +'</h4> <div class="shopMark align-self-center" style="height: 30px"> <span id="rating">店铺评分：'
+                        +a.rating
+                        +'分 &nbsp;</span> <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span> <button class="btn " type="button">收藏 <i class="far fa-heart"></i></button> <span style="margin-right: 10px">&nbsp;</span><button class="btn " type="button">转发 <i class="far fa-share"></i></button></div><p>'
+                        +"上海市"+a.district+a.road+a.number+a.description
+                        +'</p> <p>'
+                        +a.opentime+'</p></div></div>';
+                    $(".shopList").append(shopListItem);
+                })
+            },
+            error: function () {
+                alert('筛选出现问题')
+            }
+        })
+    };
+    function clearSelect(){
+        ("#sel-district").find('option').remove();
+        ("#sel-tag").find('option').remove();
+    }
 </script>
 </body>
 </html>
