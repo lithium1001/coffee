@@ -19,8 +19,8 @@ public class SearchController extends CoffeeController {
 
     @GetMapping
     public ApiResult<Page<PostVO>> searchlist(@RequestParam("keyword") String keyword,
-                                              @RequestParam(value = "pageNum") Integer pageNum,
-                                              @RequestParam(value = "pageSize") Integer pageSize
+                                              @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                              @RequestParam(value = "pageSize",defaultValue = "10") Integer pageSize
 
     ){
         Page<PostVO> results = PostService.searchByKey(keyword, new Page<>(pageNum, pageSize));
