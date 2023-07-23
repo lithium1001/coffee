@@ -17,6 +17,13 @@
     <link href="css/blockStyle(forum&shop&person)/basicStyle.css" rel="stylesheet">
     <link href="css/blockStyle(forum&shop&person)/shopStyle.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
+
+    <!--地图-->
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css" />
+    <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
+    <script src="https://webapi.amap.com/maps?v=1.4.8&key=c63790e173e5c52c26b68bed8ecc18ea"></script>
+    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+
     <!--  没用到的-->
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
@@ -116,14 +123,15 @@
 <!--地图区域-->
 <div>
     <div class="background p-relative pt-130 pb-30" style="background:#ffffff">
-        <h2 align="center">            <span class="circle-left">
-      <img alt="img" src="img/bg/circle-left.png"/>
-      </span>地图专区 <span class="circle-left">
-          <img alt="img" src="img/bg/circle-left.png"/>
-          </span>
+        <h2 align="center">
+            <span class="circle-left">
+                <img alt="img" src="img/bg/circle-left.png"/>
+            </span>地图专区
+            <span class="circle-left">
+                <img alt="img" src="img/bg/circle-left.png"/>
+            </span>
         </h2>
-        <div class="brand-area pt-10 pb-10" style="background:#3f271e">
-        </div>
+        <div class="brand-area pt-10 pb-10" style="background:#3f271e"></div>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -131,45 +139,138 @@
             <div class="col-lg-8">
                 <h4>
                     <span class="circle-left">
-                    <img alt="img" src="img/bg/circle-left.png"/>
+                        <img alt="img" src="img/bg/circle-left.png"/>
                     </span>
                     咖啡地图，了解您附近的独立咖啡店
                 </h4>
                 <!--下拉菜单选择-->
                 <div class="choosing text-center margin-left: 30px;">
-                    <span>地区：</span>
+                    <select id="selectArea" class="form-control form-control-placeholder">
+                        <option value="-1" style="color: #CCCCCC;" disabled selected hidden>choosing the area</option>
+                        <option value="0" style="color: black;">杨浦区</option>
+                        <option value="1" style="color: black;">黄浦区</option>
+                        <option value="2" style="color: black;">嘉定区</option>
+                        <option value="3" style="color: black;">宝山区</option>
+                        <option value="4" style="color: black;">静安区</option>
+                    </select>
+
+                    <select id="selectType" class="form-control form-control-placeholder">
+                        <option value="-1" disabled selected hidden>choosing the shop type</option>
+                        <option value="0" style="color: black;">标准店</option>
+                        <option value="1" style="color: black;">快取店</option>
+                    </select>
+
+                    <!--
+                    <span>区域：</span>
                     <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                             type="button">
                         choosing the area
                     </button>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item">杨浦区</li>
+                        <li class="dropdown-item">黄浦区</li>
                         <li class="dropdown-item">嘉定区</li>
                         <li class="dropdown-item">宝山区</li>
+                        <li class="dropdown-item">静安区</li>
+                        <li class="dropdown-item">青浦区</li>
+                        <li class="dropdown-item">徐汇区</li>
+                        <li class="dropdown-item">长宁区</li>
+                        <li class="dropdown-item">普陀区</li>
+                        <li class="dropdown-item">虹口区</li>
+                        <li class="dropdown-item">浦东新区</li>
+                        <li class="dropdown-item">闵行区</li>
+                        <li class="dropdown-item">金山区</li>
+                        <li class="dropdown-item">松江区</li>
+                        <li class="dropdown-item">奉贤区</li>
+                        <li class="dropdown-item">崇明区</li>
                     </ul>
-                    <select class="selectpicker" multiple data-live-search="true">
-                        <option value="1">广东省</option>
-                        <option value="2">广西省</option>
-                        <option value="3">福建省</option>
-                        <option value="4">湖南省</option>
-                        <option value="5">山东省</option>
-                    </select>
-                    &nbsp;
+                </div>
+                <div>
                     <span>店铺类型：</span>
                     <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
                             type="button">
                         choosing the type
                     </button>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item">aaa</li>
-                        <li class="dropdown-item">bbb</li>
-                        <li class="dropdown-item">ccc</li>
-                    </ul>
-
+                        <li class="dropdown-item">标准店</li>
+                        <li class="dropdown-item">快取店</li>
+                    </ul>-->
                 </div>
                 <!--地图显示-->
-                <div class="mapDisplay ">
-                    <img src="img/mapDisplay.png"/>
+                <div id="mapContainer" class="mapDisplay ">
+                    <script>
+                        var map = new AMap.Map('mapContainer', {
+                            resizeEnable: true,
+                            zoom: 11,
+                            center: [121.215252, 31.286054]
+                        });
+
+                        //初始化定位
+                        map.plugin('AMap.Geolocation', function () {
+                            geolocation = new AMap.Geolocation({
+                                enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                                maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                                convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                                showButton: true,        //显示定位按钮，默认：true
+                                buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                                showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                                showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                                panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                                zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                            });
+                            map.addControl(geolocation);
+                            geolocation.getCurrentPosition();
+                            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+                        });
+                        function onComplete(obj){
+                            var res = '经纬度：' + obj.position +
+                                '\n精度范围：' + obj.accuracy +
+                                '米\n定位结果的来源：' + obj.location_type +
+                                '\n状态信息：' + obj.info +
+                                '\n地址：' + obj.formattedAddress +
+                                '\n地址信息：' + JSON.stringify(obj.addressComponent, null, 4);
+                            console.log("当前位置信息"+res);
+
+                        }
+
+                        function onError(obj) {
+                            alert(obj.info + ',,,,' + obj.message);
+                            console.log(obj);
+                        }
+
+                        // 高德地图查询周边
+                        function aMapSearchNearBy(centerPoint, city) {
+                            AMap.service(["AMap.PlaceSearch"], function() {
+                                var placeSearch = new AMap.PlaceSearch({
+                                    pageSize: 20,    // 每页10条
+                                    pageIndex: 1,    // 获取第一页
+                                    city: city      // 指定城市名(如果你获取不到城市名称，这个参数也可以不传，注释掉)
+                                });
+
+                                // 第一个参数是关键字，这里传入的空表示不需要根据关键字过滤
+                                // 第二个参数是经纬度，数组类型
+                                // 第三个参数是半径，周边的范围
+                                // 第四个参数为回调函数
+                                placeSearch.searchNearBy('', centerPoint, 200, function(status, result) {
+                                    if(result.info === 'OK') {
+                                        console.log(result);
+                                        var locationList = result.poiList.pois; // 周边地标建筑列表
+                                        // 生成地址列表html　　　　　　　　　 createLocationHtml(locationList);
+                                    } else {
+                                        console.log('获取位置信息失败!');
+                                    }
+                                });
+                            });
+                        }
+                        aMapSearchNearBy([118.76431,31.9844], '');
+
+                    </script>
+
+
+                    <!--<img src="img/mapDisplay.png"/>-->
                 </div>
             </div>
             <div class="col-lg-4">
@@ -212,10 +313,6 @@
                 <div class="text-right">
                     <button class="btn" type="button">
                         按评分排序
-                        <i class="far fa-arrow-alt-down"></i>
-                    </button>
-                    <button class="btn" type="button">
-                        按距离排序
                         <i class="far fa-arrow-alt-down"></i>
                     </button>
                 </div>
