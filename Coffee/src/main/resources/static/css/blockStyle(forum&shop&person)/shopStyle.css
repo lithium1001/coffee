@@ -2,17 +2,25 @@
     background-color: #f7f5f1;
 }
 .choosing{
-    margin: 25px auto 20px;
+    margin: 20px auto;
 }
-.choosing select{
-    width: 150px!important;
-    margin-right: 20px;
+.choosing span{
+    margin-left: 20px;
 }
 .choosing .btn{
     background-color: transparent;
     border: 1px solid #76452f;
     color: #76452f;
-    margin-right: 20px;
+}
+.choosing .btn1{
+    margin-left: 15px;
+    background-color:#76452f;
+    padding: 6px 15px;
+    color: #FFF5F4;
+}
+.choosing .btn1:hover{
+    background-color:#faeadd;
+    color: #76452f;
 }
 .mapDisplay{
     width: 700px;
