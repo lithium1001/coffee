@@ -153,8 +153,52 @@ label {
     color: #fff;
     background: #aa725a;
 }
-
-
+.prompt{
+    font-size: 13px;
+}
+#prompt_checkpass{
+    display: none;
+}
+#prompt_register{
+    display: none;
+}
+#sign_checkpass{
+    width: 66%;
+}
+.modal-header{
+    border-bottom: 1px solid rgba(230, 211, 204, 1);
+}
+.modal-title{
+    color: #6f3727;
+}
+.modal-footer{
+    display: block;
+    padding: 5px;
+    border-top: 1px solid rgba(230, 211, 204, 1);
+}
+.modal-footer .btn{
+    border:2px solid rgba(230, 211, 204, 1);
+    color: #3f271e;
+    padding: 6px 15px;
+    border-radius: 5px;
+}
+.modal-content{
+    width: 90%;
+    padding: 0 15px;
+    background-color: #f7f5f1;
+}
+.modal-content label{
+    font-size: 15px;
+    color: #3f271e;
+}
+.modal-footer .btn:hover {
+    color: #fff;
+    background: rgba(230, 211, 204, 1);
+}
+.form-control{
+    display: inline-block;
+    width: 85%;
+}
 /*footer*/
 .footer{
     background-color: #3f271e;

@@ -1,437 +1,296 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>CoffeeVerse</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--框架: 我另外导入了bootstrap框架,版本号4.6.2,选了v4没选v5;
-      第三方库:animate是动态效果库，链接https://animate.style；fontawesome是图标库，链接https://fontawesome.com.cn/；dripicons也是图标库,我这边没有用到,感觉能够被fontawesome替换;
-      插件（和js配套）:magnific-popu动态弹出图片的插件;slick图片轮播的插件；meanmenu响应式导航插件；
-      其他：default 基础样式表；responsive 响应式样式-->
-  <link rel="stylesheet" href="BootStrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="css/default.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/basicStyle.css">
-  <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/forumStyle.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <!--  没用到的-->
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/dripicons.css">
-  <link rel="stylesheet" href="css/slick.css">
-  <link rel="stylesheet" href="css/meanmenu.css">
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>CoffeeVerse</title>
+    <meta content="" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/blockStyle(forum&shop&person)/basicStyle.css" rel="stylesheet">
+    <link href="css/blockStyle(forum&shop&person)/forumStyle.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/magnific-popup.css" rel="stylesheet">
+    <link href="css/dripicons.css" rel="stylesheet">
+    <link href="css/slick.css" rel="stylesheet">
+    <link href="css/meanmenu.css" rel="stylesheet">
 
 </head>
 
 <body>
 <!--导航栏 header -->
 <header class="header-nav">
-  <div id="header-sticky" class="sticky-nav">
-    <div class="container">
-      <div class="row align-items-centerjustify-content-center login-center">
-        <!--logo-->
-        <div class="col-xl-2 col-lg-2">
-          <div class="logo">
-            <a href="index.html"><img src="img/logo/logo.png" alt="logo"></a>
-          </div>
+    <div class="sticky-nav" id="header-sticky">
+        <div class="container">
+            <div class="row align-items-centerjustify-content-center login-center">
+                <!--logo-->
+                <div class="col-xl-2 col-lg-2">
+                    <div class="logo">
+                        <a href="index.html"><img alt="logo" src="img/logo/logo.png"></a>
+                    </div>
+                </div>
+                <!--不同块面-->
+                <div class="col-xl-8 col-lg-8">
+                    <div class="main-menu text-right text-xl-right">
+                        <ul>
+                            <li class="has-sub">
+                                <a href="首页.html">首页</a>
+                            </li>
+                            <li class="has-sub">
+                                <a href="资讯板块.html">资讯</a>
+                            </li>
+                            <li>
+                                <a href="知识板块.html">知识</a>
+                            </li>
+                            <li class="has-sub">
+                                <a href="shop.html">地图</a>
+                            </li>
+                            <li class="has-sub">
+                                <a href="forum.html">社区</a>
+                            </li>
+                            <li class="has-sub">
+                                <a onclick="window.scrollTo(0, document.body.scrollHeight); return false;">联系我们</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 text-right d-none d-lg-block text-right text-xl-right ">
+                    <div class="login-btn">
+                        <a class="btn" href="contact.html">登录/注册</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--不同块面-->
-        <div class="col-xl-8 col-lg-8">
-          <div class="main-menu text-right text-xl-right">
-            <ul>
-              <li class="has-sub">
-                <a href="首页.html">首页</a>
-              </li>
-              <li class="has-sub">
-                <a href="资讯板块.html">资讯</a>
-              </li>
-              <li>
-                <a href="知识板块.html">知识</a>
-              </li>
-              <li class="has-sub">
-                <a href="shop.html">地图</a>
-              </li>
-              <li class="has-sub">
-                <a href="forum.html">社区</a>
-              </li>
-              <li class="has-sub">
-                <a onclick="window.scrollTo(0, document.body.scrollHeight); return false;">联系我们</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-xl-2 col-lg-2 text-right d-none d-lg-block text-right text-xl-right ">
-          <div class="login-btn">
-            <a href="contact.html" class="btn">登录/注册</a>
-          </div>
-        </div>
-
-      </div>
-
     </div>
-  </div>
 </header>
 <!-- header-end -->
 
 <!-- 主体 main -->
 <main>
-  <div class="brand-area pt-100 pb-20">
-    <div class="background p-relative pt-30 pb-30" style="background:#ffffff">
-      <h2 align="center">            <span class="circle-left">
-        <img src="img/bg/circle-left.png" alt="img"/>
-        </span>爱好者社区            <span class="circle-left">
-            <img src="img/bg/circle-left.png" alt="img"/>
-            </span>
-    </h2>
-    <div class="brand-area pt-10 pb-10" style="background:#3f271e">
-   </div>
-  </div>
-    <!-- inner-blog -->
-      <div class="container">
-        <div class="row">
-          <!--左侧论坛区-->
-          <div class="col-lg-8 forumList">
-            <h3>
-            <span class="circle-left">
-            <img src="img/bg/circle-left.png" alt="img"/>
-            </span>
-              咖啡论坛，与世界各地的朋友谈论您感兴趣的咖啡话题
-            </h3>
-            <ul class="">
-              <!--帖子-->
-              <li class="forumListItem">
-                <div class="media">
-                  <img src="img/team/team01.jpg" class="align-self-start mr-3" alt="...">
-                  <div class="media-body">
-                    <a href="#" class="name">
-                      发帖人昵称
-                    </a>
-                    <a href="#" class="title_name">
-                      <h4>
-                        帖子的标题
-                      </h4>
-                      <p>帖子的简介内容 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介帖子的简介帖子的简介帖子的简介</p>
-                     <div>
-                       <span>发帖时间:2023/1/1 12:00:00</span>
-                       <span>回帖数：3</span>
-                       <button class="btn" type="button">
-                         <i class="far fa-comment" ></i>
-                       </button>
-                       <button class="btn" type="button">
-                         <i class="far fa-share"/></i>
-                       </button>
-                     </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li class="forumListItem">
-                <div class="media">
-                  <img src="img/team/team01.jpg" class="align-self-start mr-3" alt="...">
-                  <div class="media-body">
-                    <a href="#" class="name">
-                      发帖人昵称
-                    </a>
-                    <a href="#" class="title_name">
-                      <h4>
-                        帖子的标题
-                      </h4>
-                      <p>帖子的简介内容 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介帖子的简介帖子的简介帖子的简介</p>
-                      <div>
-                        <span>发帖时间:2023/1/1 12:00:00</span>
-                        <span>回帖数：3</span>
-                        <button class="btn" type="button">
-                          <i class="far fa-comment" ></i>
-                        </button>
-                        <button class="btn" type="button">
-                          <i class="far fa-share"/></i>
-                        </button>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li class="forumListItem">
-                <div class="media">
-                  <img src="img/team/team01.jpg" class="align-self-start mr-3" alt="...">
-                  <div class="media-body">
-                    <a href="#" class="name">
-                      发帖人昵称
-                    </a>
-                    <a href="#" class="title_name">
-                      <h4>
-                        帖子的标题
-                      </h4>
-                      <p>帖子的简介内容 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介帖子的简介帖子的简介帖子的简介</p>
-                      <div>
-                        <span>发帖时间:2023/1/1 12:00:00</span>
-                        <span>回帖数：3</span>
-                        <button class="btn" type="button">
-                          <i class="far fa-comment" ></i>
-                        </button>
-                        <button class="btn" type="button">
-                          <i class="far fa-share"/></i>
-                        </button>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li class="forumListItem">
-                <div class="media">
-                  <img src="img/team/team01.jpg" class="align-self-start mr-3" alt="...">
-                  <div class="media-body">
-                    <a href="#" class="name">
-                      发帖人昵称
-                    </a>
-                    <a href="#" class="title_name">
-                      <h4>
-                        帖子的标题
-                      </h4>
-                      <p>帖子的简介内容 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介帖子的简介帖子的简介帖子的简介</p>
-                      <div>
-                        <span>发帖时间:2023/1/1 12:00:00</span>
-                        <span>回帖数：3</span>
-                        <button class="btn" type="button">
-                          <i class="far fa-comment" ></i>
-                        </button>
-                        <button class="btn" type="button">
-                          <i class="far fa-share"/></i>
-                        </button>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li class="forumListItem">
-                <div class="media">
-                  <img src="img/team/team01.jpg" class="align-self-start mr-3" alt="...">
-                  <div class="media-body">
-                    <a href="#" class="name">
-                      发帖人昵称
-                    </a>
-                    <a href="#" class="title_name">
-                      <h4>
-                        帖子的标题
-                      </h4>
-                      <p>帖子的简介内容 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介 帖子的简介帖子的简介帖子的简介帖子的简介</p>
-                      <div>
-                        <span>发帖时间:2023/1/1 12:00:00</span>
-                        <span>回帖数：3</span>
-                        <button class="btn" type="button">
-                          <i class="far fa-comment" ></i>
-                        </button>
-                        <button class="btn" type="button">
-                          <i class="far fa-share"/></i>
-                        </button>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <!--bootstrap 分页组件 后续用elementui替换-->
-            <nav aria-label="Page navigation example"class="text-center paging">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <!-- #右侧乱七八糟信息区 -->
-          <div class="col-sm-12 col-md-12 col-lg-4">
-            <div class="forumSearch">
-            <h4 class="forumSearch-title">查找：</h4>
-            <form role="search" method="get" class="search-form" action="http://wordpress.zcube.in/finco/">
-              <label>
-                <input type="search" class="search-field" placeholder="请输入关键词" value="" name="s">
-              </label>
-              <input type="submit" class="search-submit" value="search">
-            </form>
-          </div>
-            <div class="forumTopic">
-              <h4 class="forumTopic-title">热议话题</h4>
-              <ul>
-                <li class="forumTopicItem">
-                  <a href="#"># 同济大学军训晚会暴雨</a>
-                </li>
-                <li class="forumTopicItem">
-                  <a href="#"># 同济大学军训晚会暴雨</a>
-                </li>
-                <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-                <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-                <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-              </ul>
-            </div>
-          </div>
+    <div class="brand-area pt-120 pb-20">
+        <!--标识-->
+        <div class="text-center mb-30" style="background:#ffffff">
+            <img alt="img" src="img/bg/circle-left.png"/>
+            <h2 style="display: inline-block">&nbsp;爱好者社区&nbsp;</h2>
+            <img alt="img" src="img/bg/circle-left.png"/>
+            <div class="brand-area pt-10 pb-10" style="background:#3f271e"></div>
         </div>
-      </div>
-    </section>
-    <!-- inner-blog-end -->
-  </div>
-
+        <!-- inner-blog-->
+        <div class="container">
+            <div class="row">
+                <!--左侧论坛区-->
+                <div class="col-lg-8 forum">
+                    <div class="circle-left mb-10">
+                        <img alt="img" src="img/bg/circle-left.png"/>
+                        <h4 style="display: inline-block">咖啡论坛，与世界各地的朋友谈论您感兴趣的咖啡话题</h4>
+                    </div>
+                    <div id="forumList">
+                        <!--帖子-->
+                        <!--              <div class="media" id="forumListItem">-->
+                        <!--                  <img id="profilePhoto" class="align-self-start mr-3" alt="...">-->
+                        <!--                  <div class="media-body">-->
+                        <!--                      <span class="name" onclick="goPerson(this)">-->
+                        <!--                      发帖人昵称-->
+                        <!--                      </span>-->
+                        <!--                      <h4 class="forumTitle">-->
+                        <!--                        帖子的标题-->
+                        <!--                      </h4>-->
+                        <!--                      <p class="forumContent">帖子的简介内容</p>-->
+                        <!--                      <div>-->
+                        <!--                       <span class="time">发帖时间:2023/1/1 12:00:00</span>-->
+                        <!--                       <span class="replies">回帖数：3</span>-->
+                        <!--                       <button class="btn" type="button">-->
+                        <!--                         <i class="far fa-comment" ></i>-->
+                        <!--                       </button>-->
+                        <!--                       <button class="btn" type="button">-->
+                        <!--                         <i class="far fa-share"/></i>-->
+                        <!--                       </button>-->
+                        <!--                      </div>-->
+                        <!--                  </div>-->
+                        <!--              </div>-->
+                    </div>
+                    <!--bootstrap 分页组件 后续用elementui替换-->
+                    <nav aria-label="Page navigation example" class="text-center paging">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a aria-label="Previous" class="page-link" href="#">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a aria-label="Next" class="page-link" href="#">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- #右侧乱七八糟信息区 -->
+                <div class="col-sm-12 col-md-12 col-lg-4">
+                    <div class="forumSearch">
+                        <h4 class="forumSearch-title">查找：</h4>
+                        <form action="http://wordpress.zcube.in/finco/" class="search-form" method="get" role="search">
+                            <label>
+                                <input class="search-field" name="s" placeholder="请输入关键词" type="search" value="">
+                            </label>
+                            <input class="search-submit" type="submit" value="search">
+                        </form>
+                    </div>
+                    <div class="forumTopic">
+                        <h4 class="forumTopic-title">热议话题</h4>
+                        <ul>
+                            <li class="forumTopicItem">
+                                <a href="#"># 同济大学军训晚会暴雨</a>
+                            </li>
+                            <li class="forumTopicItem">
+                                <a href="#"># 同济大学军训晚会暴雨</a>
+                            </li>
+                            <li class="forumTopicItem">
+                                <a href="#"># 同济大学军训晚会暴雨</a>
+                            </li>
+                            <li class="forumTopicItem">
+                                <a href="#"># 同济大学军训晚会暴雨</a>
+                            </li>
+                            <li class="forumTopicItem">
+                                <a href="#"># 同济大学军训晚会暴雨</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- inner-blog-end -->
+    </div>
 </main>
 
+<!--<div class="brand-area pt-40 pb-40" style="background:#3f271e">-->
+<!--</div>-->
+<!-- newslater-area -->
+<!--<section class="newslater-area p-relative pt-120 pb-120">-->
+<!--    <div class="animations-01"><img alt="contact-bg-an-05" src="img/bg/an-img-07.png"></div>-->
+<!--    <div class="container">-->
+<!--        <div class="row justify-content-center align-items-center text-center">-->
+<!--            <div class="col-xl-9 col-lg-9">-->
+<!--                <div class="section-title center-align mb-40 text-center wow fadeInDown animated"-->
+<!--                     data-animation="fadeInDown" data-delay=".4s">-->
+<!--                    <h5><span class="circle-left"><img alt="img" src="img/bg/circle-left.png"></span> 加入我们</h5>-->
+<!--                    <h2>-->
+<!--                        在CoffeeVerse,畅游咖啡世界！-->
+<!--                    </h2>-->
+<!--                    <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<!-- newslater-aread-end -->
 
+<!-- main-area-end -->
 
+<!-- footer -->
+<footer class="footer-bg footer-p">
+    <div class="footer-top  pt-90 pb-40"
+         style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
+        <div class="container">
+            <div class="row justify-content-between">
 
-<div class="brand-area pt-40 pb-40" style="background:#3f271e">
-</div>
-            <!-- newslater-area -->
-            <section class="newslater-area p-relative pt-120 pb-120">
-              <div class="animations-01"><img src="img/bg/an-img-07.png" alt="contact-bg-an-05"></div>
-              <div class="container">
-                  <div class="row justify-content-center align-items-center text-center">
-                      <div class="col-xl-9 col-lg-9">
-                          <div class="section-title center-align mb-40 text-center wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
-                               <h5><span class="circle-left"><img src="img/bg/circle-left.png" alt="img"></span> 加入我们</h5>
-                              <h2>
-                                  在CoffeeVerse,畅游咖啡世界！
-                              </h2>
-                              <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
-                          </div>
-                      </div>
-                     
-                  </div>
-                 
-              </div>
-          </section>
-          <!-- newslater-aread-end -->
-      </main>
-      <!-- main-area-end -->
-
-       <!-- footer -->
-      <footer class="footer-bg footer-p">
-       <div class="footer-top  pt-90 pb-40" style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
-              <div class="container">
-                  <div class="row justify-content-between">
-                      
-                        <div class="col-xl-4 col-lg-4 col-sm-6">
-                          <div class="footer-widget mb-30">
-                              <div class="f-widget-title mb-30">
-                                 <img src="img/首页/logo.png" alt="img">
-                              </div>
-                              <div class="f-contact">
-                                  <ul>
-                                  <li>
-                                      <i class="icon fal fa-phone"></i>
-                                      <span>1800-121-3637<br>+91-7052-101-786</span>
-                                  </li>
-                                 <li><i class="icon fal fa-envelope"></i>
-                                      <span>
+                <div class="col-xl-4 col-lg-4 col-sm-6">
+                    <div class="footer-widget mb-30">
+                        <div class="f-widget-title mb-30">
+                            <img alt="img" src="img/首页/logo.png">
+                        </div>
+                        <div class="f-contact">
+                            <ul>
+                                <li>
+                                    <i class="icon fal fa-phone"></i>
+                                    <span>1800-121-3637<br>+91-7052-101-786</span>
+                                </li>
+                                <li><i class="icon fal fa-envelope"></i>
+                                    <span>
                                           <a href="mailto:info@example.com">info@example.com</a>
                                      <br>
                                      <a href="mailto:help@example.com">help@example.com</a>
                                      </span>
-                                  </li>
-                                  <li>
-                                      <i class="icon fal fa-map-marker-check"></i>
-                                      <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
-                                  </li>
-                                  
-                              </ul>
-                                  
-                                  </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-2 col-lg-2 col-sm-6">
-                          <div class="footer-widget mb-30">
-                              <div class="f-widget-title">
-                                  <h2>相关链接</h2>
-                              </div>
-                              <div class="footer-link">
-                                  <ul>      
-                                    <li><a href="首页.html">首页</a></li>                                  
-                                    <li><a href="资讯板块.html">资讯</a></li>
-                                    <li><a href="知识板块.html"> 知识 </a></li>
-                                    <li><a href="forum.html"> 社区</a></li>
-                                    <li><a href="shop.html">地图</a></li>
-                                    <li><a href="Person.html">个人中心</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div> 
-          <div class="col-xl-2 col-lg-2 col-sm-6">
-                          <div class="footer-widget mb-30">
-                              <div class="f-widget-title">
-                                  <h2>素材来源</h2>
-                              </div>
-                              <div class="footer-link">
-                                  <ul>      
-                                      <li><a href="index.html">哔哩哔哩</a></li>                                  
-                                      <li><a href="index.html">百度</a></li>
-                                      <li><a href="about.html">Youtube</a></li>
-                                      <li><a href="services.html"> ... </a></li>
-                                      <li><a href="contact.html"> ...</a></li>
-                                      <li><a href="blog.html">...</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div> 
-                      <div class="col-xl-2 col-lg-2 col-sm-6">
-                          
-                              <!-- <div class="col-md-20">
-                                      <div class="signature">
-                                          <img src="img/brand/星巴克.jpg" alt="img">  
-                                      </div> -->
-                          
-                               
-                          </div> 
-                          </div>
-                      </div> 
-                  
-                                                   
-                  </div>
-              </div>
-          </div>
-          <div class="copyright-wrap">
-              <div class="container">
-                  <div class="row align-items-center">
-                      <div class="col-lg-6">                         
-                         Copyright &copy; CoffeeVerse 2023 . All rights reserved.         
-                      </div>
-                      <div class="col-lg-6 text-right text-xl-right">                       
-                         <div class="footer-social">                                    
-                                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                  <a href="#"><i class="fab fa-twitter"></i></a>
-                                  <a href="#"><i class="fab fa-instagram"></i></a>
-                                  <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
-                              </div>        
-                      </div>
-                      
-                  </div>
-              </div>
-          </div>
-      </footer>
-      <!-- footer-end -->
+                                </li>
+                                <li>
+                                    <i class="icon fal fa-map-marker-check"></i>
+                                    <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-sm-6">
+                    <div class="footer-widget mb-30">
+                        <div class="f-widget-title">
+                            <h2>相关链接</h2>
+                        </div>
+                        <div class="footer-link">
+                            <ul>
+                                <li><a href="首页.html">首页</a></li>
+                                <li><a href="资讯板块.html">资讯</a></li>
+                                <li><a href="知识板块.html"> 知识 </a></li>
+                                <li><a href="forum.html"> 社区</a></li>
+                                <li><a href="shop.html">地图</a></li>
+                                <li><a href="Person.html">个人中心</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-sm-6">
+                    <div class="footer-widget mb-30">
+                        <div class="f-widget-title">
+                            <h2>素材来源</h2>
+                        </div>
+                        <div class="footer-link">
+                            <ul>
+                                <li><a href="index.html">哔哩哔哩</a></li>
+                                <li><a href="index.html">百度</a></li>
+                                <li><a href="about.html">Youtube</a></li>
+                                <li><a href="services.html"> ... </a></li>
+                                <li><a href="contact.html"> ...</a></li>
+                                <li><a href="blog.html">...</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-sm-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    Copyright &copy; CoffeeVerse 2023 . All rights reserved.
+                </div>
+                <div class="col-lg-6 text-right text-xl-right">
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer-end -->
 
 <!-- JS here -->
 <script src="js/jquery-3.7.0.min.js"></script>
 <script src="js/ajax-form.js"></script>
-<!--modernizr是用来检查浏览器的版本是否适配html5和css3的，不知道有什么具体作用，但先留着-->
-<script src="js/modernizr-3.5.0.min.js"></script>
-<!--popper是用来实现JS定位的，例如提示框定位，目前还不太会用，先留着，介绍链接：https://blog.csdn.net/jhzhahuaiyu/article/details/90213582-->
-<script src="js/popper.min.js"></script>
 <!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
 <script src="js/plug-in/slick.min.js"></script>
 <script src="js/plug-in/paroller.js"></script>
@@ -447,7 +306,9 @@
 <script src="js/plug-in/jquery.magnific-popup.min.js"></script>
 <script src="js/element-in-view.js"></script>
 <script src="js/main.js"></script>
-<script src="BootStrap/js/bootstrap.bundle.js"></script>
-<script src="BootStrap/js/bootstrap.js"> </script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script src="js/blockJS/forum.js"></script>
+<script src="js/blockJS/login.js"></script>
 </body>
 </html>

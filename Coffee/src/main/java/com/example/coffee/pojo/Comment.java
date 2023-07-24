@@ -48,6 +48,8 @@ public class Comment implements Serializable {
     @TableField("picture_url")
     private String pictureUrl;
 
+    @TableField("a_url")
+    private String aUrl;
     /**
      * 创建时间
      */

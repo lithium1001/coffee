@@ -19,4 +19,6 @@ public class CommentVO {
     private Date createTime;
 
     private String pictureUrl;
+
+    private String aUrl;
 }
