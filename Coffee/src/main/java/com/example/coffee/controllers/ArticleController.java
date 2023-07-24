@@ -28,7 +28,7 @@ public class ArticleController {
     @Autowired
     private IArticleService articleService;
     @GetMapping("/articles")
-    public Result articlepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order, @RequestParam(defaultValue = "all") String filter){
+    public Result articlepage(@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="5")int pageSize, @RequestParam(defaultValue = "id") String refer, @RequestParam(defaultValue = "desc") String order, @RequestParam(defaultValue = "all") String filter){
         Page<Article> page = new Page<>(pageNum,pageSize);
         QueryWrapper<Article> query = new QueryWrapper<>();
         if(filter.equals("all")) {;
