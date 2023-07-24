@@ -156,10 +156,10 @@ label {
 .prompt{
     font-size: 13px;
 }
-.prompt i{
-    color: transparent;
-}
 #prompt_checkpass{
+    display: none;
+}
+#prompt_register{
     display: none;
 }
 #sign_checkpass{

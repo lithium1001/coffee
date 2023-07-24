@@ -39,8 +39,7 @@ var a=true;
 var b=true;
 var c=true;
 //昵称长度检验
-$("#sign_username").blur(namelen())
-function namelen(){
+$("#sign_username").blur(function(){
     var username = document.getElementById("sign_username").value;
     if(username.length>15||username.length<2){
         $("#prompt_username i").attr("style","color:#e11d07")
@@ -54,11 +53,10 @@ function namelen(){
         $("#prompt_username i").addClass(" fa-check-circle")
         a=true;
     }
-}
+});
 
 //密码长度检验
-$("#sign_checkpass").blur(passlen(),twicecheck())
-function passlen(){
+$("#sign_pass").blur(function(){
     var password = document.getElementById("sign_pass").value;
     if(password.length>20||password.length<6){
         $("#prompt_pass i").attr("style","color:#e11d07")
@@ -72,52 +70,48 @@ function passlen(){
         $("#prompt_pass i").addClass(" fa-check-circle")
         b=true;
     }
-}
+})
 //两次密码验证
-$("#sign_checkpass").blur(twicecheck())
-function twicecheck(){
+$("#sign_checkpass,#sign_pass").blur(function(){
     var password = document.getElementById("sign_pass").value;
     var checkpassword = document.getElementById("sign_checkpass").value;
     if(password!==checkpassword){
-        alert("两次密码不一致")
         $("#prompt_checkpass").attr("style","display:block")
-        $("#prompt_checkpass i").attr("style","color:#e11d07")
         c=false
     }
     else{
+        $("#prompt_checkpass").attr("style","display:none")
         c=true
     }
-}
+});
 $("#button_register").click(function(){
     var username = document.getElementById("sign_username").value;
     var password = document.getElementById("sign_pass").value;
     var checkpassword = document.getElementById("sign_checkpass").value;
     var email = document.getElementById("sign_email").value;
-    namelen();
-    passlen();
-    twicecheck();
     if((a&&b&&c)!=true)
     {
         return;
+        alert("不满足条件")
     }
     alert("通过")
     $.ajax({
         type: "post",
         url: "http://localhost:8080/user/register",
-        dataType: "json",
-        data: {
-            name:username,
-            pass:password,
-            checkpass:checkpassword,
-            email:email
+        data:{
+            "name":username,
+            "pass":password,
+            "email":email
         },
+        contentType : "application/json",
+        dataType: "json",
         success: function (data) {
             if(data.code==200){
                 alert('注册成功！'+data.user.username);
             }
             else if(data.code==-1){
-                $("#prompt_register").attr("display","block")
-                text(data.message)
+                $("#prompt_register").attr("style","display:block")
+                $("#prompt_register span").text(data.message)
             }},
         error: function () {
             alert('出现问题')
