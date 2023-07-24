@@ -11,7 +11,7 @@
         插件（和js配套）:magnific-popu动态弹出图片的插件;slick图片轮播的插件；meanmenu响应式导航插件；
         其他：default 基础样式表；responsive 响应式样式-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet" >
+    <link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="fontawesome/css/all.min.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -20,10 +20,10 @@
     <link href="css/responsive.css" rel="stylesheet">
 
     <!--地图-->
-    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main1119.css" />
+    <link href="https://cache.amap.com/lbs/static/main1119.css" rel="stylesheet"/>
     <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
     <script src="https://webapi.amap.com/maps?v=1.4.8&key=c63790e173e5c52c26b68bed8ecc18ea"></script>
-    <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script src="https://cache.amap.com/lbs/static/addToolbar.js" type="text/javascript"></script>
 
     <!--  没用到的-->
     <link href="css/animate.min.css" rel="stylesheet">
@@ -75,11 +75,10 @@
                 <div class="col-xl-2 col-lg-2 text-right d-none d-lg-block text-right text-xl-right ">
                     <!-- Button trigger modal -->
                     <div class="login-btn">
-                        <button type="button" class="btn" data-toggle="modal"  data-target="#loginModal">
+                        <button class="btn" data-target="#loginModal" data-toggle="modal" type="button">
                             登录/注册
                         </button>
                     </div>
-                    <!-- Modal -->
                 </div>
             </div>
         </div>
@@ -88,174 +87,42 @@
 <!-- header-end -->
 
 <!--地图区域-->
-<<<<<<< HEAD
-<div>
-    <div class="background p-relative pt-130 pb-30" style="background:#ffffff">
-        <h2 align="center">
-            <span class="circle-left">
-                <img alt="img" src="img/bg/circle-left.png"/>
-            </span>地图专区
-            <span class="circle-left">
-                <img alt="img" src="img/bg/circle-left.png"/>
-            </span>
-        </h2>
-=======
 <div class="p-relative pt-120 pb-20">
     <div class="background text-center mb-30" style="background:#ffffff">
-        <img src="img/bg/circle-left.png" alt="img"/>
+        <img alt="img" src="img/bg/circle-left.png"/>
         <h2 style="display: inline-block">&nbsp;SHOP&MAP&nbsp;</h2>
-        <img src="img/bg/circle-left.png" alt="img"/>
->>>>>>> qianduan2
+        <img alt="img" src="img/bg/circle-left.png"/>
         <div class="brand-area pt-10 pb-10" style="background:#3f271e"></div>
     </div>
     <div class="container">
         <div class="row justify-content-center">
             <!--地图筛选以及选择区-->
             <div class="col-lg-8">
-<<<<<<< HEAD
-                <h4>
-                    <span class="circle-left">
-                        <img alt="img" src="img/bg/circle-left.png"/>
-                    </span>
-                    咖啡地图，了解您附近的独立咖啡店
-                </h4>
                 <!--下拉菜单选择-->
-                <div class="choosing text-center margin-left: 30px;">
-                    <select id="selectArea" class="form-control form-control-placeholder">
-                        <option value="-1" style="color: #CCCCCC;" disabled selected hidden>choosing the area</option>
-                        <option value="0" style="color: black;">杨浦区</option>
-                        <option value="1" style="color: black;">黄浦区</option>
-                        <option value="2" style="color: black;">嘉定区</option>
-                        <option value="3" style="color: black;">宝山区</option>
-                        <option value="4" style="color: black;">静安区</option>
-                    </select>
+                <!--                <div class="choosing text-center margin-left: 30px;">-->
+                <!--                    <select id="selectArea" class="form-control form-control-placeholder">-->
+                <!--                        <option value="-1" style="color: #CCCCCC;" disabled selected hidden>choosing the area</option>-->
+                <!--                        <option value="0" style="color: black;">杨浦区</option>-->
+                <!--                        <option value="1" style="color: black;">黄浦区</option>-->
+                <!--                        <option value="2" style="color: black;">嘉定区</option>-->
+                <!--                        <option value="3" style="color: black;">宝山区</option>-->
+                <!--                        <option value="4" style="color: black;">静安区</option>-->
+                <!--                    </select>-->
 
-                    <select id="selectType" class="form-control form-control-placeholder">
-                        <option value="-1" disabled selected hidden>choosing the shop type</option>
-                        <option value="0" style="color: black;">标准店</option>
-                        <option value="1" style="color: black;">快取店</option>
-                    </select>
-
-                    <!--
-                    <span>区域：</span>
-                    <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            type="button">
-                        choosing the area
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">杨浦区</li>
-                        <li class="dropdown-item">黄浦区</li>
-                        <li class="dropdown-item">嘉定区</li>
-                        <li class="dropdown-item">宝山区</li>
-                        <li class="dropdown-item">静安区</li>
-                        <li class="dropdown-item">青浦区</li>
-                        <li class="dropdown-item">徐汇区</li>
-                        <li class="dropdown-item">长宁区</li>
-                        <li class="dropdown-item">普陀区</li>
-                        <li class="dropdown-item">虹口区</li>
-                        <li class="dropdown-item">浦东新区</li>
-                        <li class="dropdown-item">闵行区</li>
-                        <li class="dropdown-item">金山区</li>
-                        <li class="dropdown-item">松江区</li>
-                        <li class="dropdown-item">奉贤区</li>
-                        <li class="dropdown-item">崇明区</li>
-                    </ul>
-                </div>
-                <div>
-                    <span>店铺类型：</span>
-                    <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            type="button">
-                        choosing the type
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-item">标准店</li>
-                        <li class="dropdown-item">快取店</li>
-                    </ul>-->
-                </div>
-                <!--地图显示-->
-                <div id="mapContainer" class="mapDisplay ">
-                    <script>
-                        var map = new AMap.Map('mapContainer', {
-                            resizeEnable: true,
-                            zoom: 11,
-                            center: [121.215252, 31.286054]
-                        });
-
-                        //初始化定位
-                        map.plugin('AMap.Geolocation', function () {
-                            geolocation = new AMap.Geolocation({
-                                enableHighAccuracy: true,//是否使用高精度定位，默认:true
-                                timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-                                maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-                                convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-                                showButton: true,        //显示定位按钮，默认：true
-                                buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-                                buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-                                showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-                                showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-                                panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-                                zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-                            });
-                            map.addControl(geolocation);
-                            geolocation.getCurrentPosition();
-                            AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-                            AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
-                        });
-                        function onComplete(obj){
-                            var res = '经纬度：' + obj.position +
-                                '\n精度范围：' + obj.accuracy +
-                                '米\n定位结果的来源：' + obj.location_type +
-                                '\n状态信息：' + obj.info +
-                                '\n地址：' + obj.formattedAddress +
-                                '\n地址信息：' + JSON.stringify(obj.addressComponent, null, 4);
-                            console.log("当前位置信息"+res);
-
-                        }
-
-                        function onError(obj) {
-                            alert(obj.info + ',,,,' + obj.message);
-                            console.log(obj);
-                        }
-
-                        // 高德地图查询周边
-                        function aMapSearchNearBy(centerPoint, city) {
-                            AMap.service(["AMap.PlaceSearch"], function() {
-                                var placeSearch = new AMap.PlaceSearch({
-                                    pageSize: 20,    // 每页10条
-                                    pageIndex: 1,    // 获取第一页
-                                    city: city      // 指定城市名(如果你获取不到城市名称，这个参数也可以不传，注释掉)
-                                });
-
-                                // 第一个参数是关键字，这里传入的空表示不需要根据关键字过滤
-                                // 第二个参数是经纬度，数组类型
-                                // 第三个参数是半径，周边的范围
-                                // 第四个参数为回调函数
-                                placeSearch.searchNearBy('', centerPoint, 200, function(status, result) {
-                                    if(result.info === 'OK') {
-                                        console.log(result);
-                                        var locationList = result.poiList.pois; // 周边地标建筑列表
-                                        // 生成地址列表html　　　　　　　　　 createLocationHtml(locationList);
-                                    } else {
-                                        console.log('获取位置信息失败!');
-                                    }
-                                });
-                            });
-                        }
-                        aMapSearchNearBy([118.76431,31.9844], '');
-
-                    </script>
-
-
-                    <!--<img src="img/mapDisplay.png"/>-->
-=======
+                <!--                    <select id="selectType" class="form-control form-control-placeholder">-->
+                <!--                        <option value="-1" disabled selected hidden>choosing the shop type</option>-->
+                <!--                        <option value="0" style="color: black;">标准店</option>-->
+                <!--                        <option value="1" style="color: black;">快取店</option>-->
+                <!--                    </select>-->
                 <div class="circle-left">
-                    <img src="img/bg/circle-left.png" alt="img"/>
+                    <img alt="img" src="img/bg/circle-left.png"/>
                     <h4 style="display: inline-block">咖啡地图，了解您附近的咖啡店</h4>
                 </div>
                 <!--下拉菜单选择-->
                 <div class="choosing text-center margin-left: 30px;">
                     <span>地区：</span>
-                    <select class="selectpicker multiple" id="sel-district" data-live-search="true" multiple title="请选择地区">
+                    <select class="selectpicker multiple" data-live-search="true" id="sel-district" multiple
+                            title="请选择地区">
                         <option>浦东新区</option>
                         <option>徐汇</option>
                         <option>长宁</option>
@@ -278,344 +145,344 @@
                         <option>快取店</option>
                         <option>标准店</option>
                     </select>
-                    <button onclick="selectByTag()" type="button" class="btn btn1">筛选</button>
-                    <button onclick="clearSelect()" type="button" class="btn btn1">清空</button>
+                    <button class="btn btn1" onclick="selectByTag()" type="button">筛选</button>
+                    <button class="btn btn1" onclick="clearSelect()" type="button">清空</button>
                 </div>
                 <!--地图显示-->
-                <div class="mapDisplay">
-                    <img src="img/mapdisplay.png" alt="地图"/>
->>>>>>> qianduan2
-                </div>
+                <div class="mapDisplay " id="mapContainer"></div>
             </div>
             <div class="col-lg-4">
-                <!-- 搜索-->
-                <div class="shopSearch">
-                    <h4 class="shopSearch-title">店铺查找：</h4>
-                    <form action="http://wordpress.zcube.in/finco/" class="search-form" method="get" role="search">
-                        <label>
-                            <input class="search-field" name="s" placeholder="请输入关键词" type="search" value="">
-                        </label>
-                        <input class="search-submit" type="submit" value="search">
-                    </form>
-                </div>
-                <!--选中的店铺的信息展示 bootstrap组件修改-->
-                <div class="card">
-                    <a href="#">
-                        <img src="img/gallery/protfolio-img02.png" alt=""/>
-                        <div class="card-body">
-                            <h5 class="card-title">店铺名称</h5>
-                            <p class="card-text">店铺地址</p>
-                            <p class="card-text">营业时间</p>
-                        </div>
-                    </a>
+                    <!-- 搜索-->
+                    <div class="shopSearch">
+                        <h4 class="shopSearch-title">店铺查找：</h4>
+                        <form action="http://wordpress.zcube.in/finco/" class="search-form" method="get" role="search">
+                            <label>
+                                <input class="search-field" name="s" placeholder="请输入关键词" type="search" value="">
+                            </label>
+                            <input class="search-submit" type="submit" value="search">
+                        </form>
+                    </div>
+                    <!--选中的店铺的信息展示 bootstrap组件修改-->
+                    <div class="card">
+                        <a href="#">
+                            <img alt="" src="img/gallery/protfolio-img02.png"/>
+                            <div class="card-body">
+                                <h5 class="card-title">店铺名称</h5>
+                                <p class="card-text">店铺地址</p>
+                                <p class="card-text">营业时间</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!--店铺罗列区域-->
-<div>
-    <!-- 店铺排序以及筛选区-->
-    <div class="storeArrangement">
-        <div class="container row ">
-            <div class="col-xl-4 col-lg-4 text-center">
-                <h4>Coffee around you</h4>
+    <!--店铺罗列区域-->
+    <div>
+        <!-- 店铺排序以及筛选区-->
+        <div class="storeArrangement">
+            <div class="container row ">
+                <div class="col-xl-4 col-lg-4 text-center">
+                    <h4>Coffee around you</h4>
+                </div>
+                <div class="col-xl-8 col-lg-8">
+                    <div class="text-right">
+                        <button class="btn" onclick="sortByRating()" type="button">
+                            按评分排序
+                            <i class="far fa-arrow-alt-down"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="col-xl-8 col-lg-8">
-                <div class="text-right">
-                    <button onclick="sortByRating()" class="btn" type="button">
-                        按评分排序
-                        <i class="far fa-arrow-alt-down"></i>
+        </div>
+        <div class="shopList">
+            <!--        <div class="media shopListItem">-->
+            <!--            <img id='shopPicture' class="align-self-center" src="img/gallery/protfolio-img01.png"/>-->
+            <!--            <div class="shopInfo">-->
+            <!--                <h4 id="shopName">店铺名称</h4>-->
+            <!--                <div class="shopMark align-self-center" style="height: 30px">-->
+            <!--                    <span id="rating">店铺评分：4.5分 &nbsp;</span>-->
+            <!--                    <span>-->
+            <!--      <i class="fas fa-star"/></i>-->
+            <!--                        <i class="fas fa-star"/></i>-->
+            <!--                        <i class="fas fa-star"/></i>-->
+            <!--                        <i class="fas fa-star"/></i>-->
+            <!--                        <i class="fad fa-star-half-alt"/></i>-->
+            <!--      </span>-->
+            <!--                    <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span>-->
+            <!--                    <button class="btn " type="button">-->
+            <!--                        收藏 <i class="far fa-heart"/></i>-->
+            <!--                    </button>-->
+            <!--                    <span style="margin-right: 10px">&nbsp;</span>-->
+            <!--                    &lt;!&ndash;收藏按钮 待实现动态&ndash;&gt;-->
+            <!--                    <button class="btn " type="button">-->
+            <!--                        转发 <i class="far fa-share"/></i>-->
+            <!--                    </button>-->
+            <!--                </div>-->
+            <!--                <p id="location">店铺地址</p>-->
+            <!--                <p id="opentime">营业时间</p>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--bootstrap 分页组件 后续用elementui替换-->
+        </div>
+        <!--    <nav aria-label="Page navigation example" class="text-center paging">-->
+        <!--        <ul class="pagination">-->
+        <!--            <li class="page-item">-->
+        <!--                <a aria-label="Previous" class="page-link" href="#">-->
+        <!--                    <span aria-hidden="true">&laquo;</span>-->
+        <!--                </a>-->
+        <!--            </li>-->
+        <!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+        <!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+        <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+        <!--            <li class="page-item">-->
+        <!--                <a aria-label="Next" class="page-link" href="#">-->
+        <!--                    <span aria-hidden="true">&raquo;</span>-->
+        <!--                </a>-->
+        <!--            </li>-->
+        <!--        </ul>-->
+        <!--    </nav>-->
+    </div>
+
+    <!--登录注册-->
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="far fa-coffee-pot"></i>
+                        登陆&nbsp;welcome to coffeeverse
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_login">
+                        <div class="form-group">
+                            <label class="control-label">账号：</label>
+                            <input class="form-control" id="login_username" type="text">
+                        </div>
+                        <div class="pb-1">
+                            <label class="control-label">密码：</label>
+                            <input class="form-control" id="login_password" type="text">
+                        </div>
+                    </form>
+                    <div class="prompt" id="prompt_login">
+                        <i class="far fa-exclamation-circle"></i>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button class="btn" data-dismiss="modal" data-target="#signModal" data-toggle="modal" type="button">
+                        注册
+                    </button>
+                    <button class="btn" id="button_login" style="margin-left: 20px" type="button">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="signModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="far fa-coffee-pot"></i>
+                        注册&nbsp;welcome to coffeeverse
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_sign">
+                        <div class="form-group">
+                            <label class="control-label">昵称：</label>
+                            <input class="form-control" id="sign_username" type="text">
+                            <div class="prompt" id="prompt_username">
+                                <i class="far fa-exclamation-circle"></i>
+                                <span>&nbsp;昵称长度应在2~15之间</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">密码：</label>
+                            <input class="form-control" id="sign_pass" type="password">
+                            <div class="prompt" id="prompt_pass">
+                                <i class="far fa-exclamation-circle"></i>
+                                <span>密码长度应在6~20之间</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">请再次输入密码：</label>
+                            <input class="form-control" id="sign_checkpass" type="password">
+                            <div class="prompt" id="prompt_checkpass">
+                                <i class="far fa-exclamation-circle"></i>
+                                <span>两次密码不一致</span>
+                            </div>
+                        </div>
+                        <div class="pb-1">
+                            <label class="control-label">邮箱：</label>
+                            <input class="form-control" id="sign_email" type="text">
+                        </div>
+                    </form>
+                    <div class="prompt" id="prompt_register">
+                        <i class="far fa-exclamation-circle"></i>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button class="btn" id="button_register" type="button">提交注册</button>
+                    <button class="btn" data-dismiss="modal" data-target="#loginModal" data-toggle="modal" style="margin-left: 20px"
+                            type="button">返回登录
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="shopList">
-<!--        <div class="media shopListItem">-->
-<!--            <img id='shopPicture' class="align-self-center" src="img/gallery/protfolio-img01.png"/>-->
-<!--            <div class="shopInfo">-->
-<!--                <h4 id="shopName">店铺名称</h4>-->
-<!--                <div class="shopMark align-self-center" style="height: 30px">-->
-<!--                    <span id="rating">店铺评分：4.5分 &nbsp;</span>-->
-<!--                    <span>-->
-<!--      <i class="fas fa-star"/></i>-->
-<!--                        <i class="fas fa-star"/></i>-->
-<!--                        <i class="fas fa-star"/></i>-->
-<!--                        <i class="fas fa-star"/></i>-->
-<!--                        <i class="fad fa-star-half-alt"/></i>-->
-<!--      </span>-->
-<!--                    <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span>-->
-<!--                    <button class="btn " type="button">-->
-<!--                        收藏 <i class="far fa-heart"/></i>-->
-<!--                    </button>-->
-<!--                    <span style="margin-right: 10px">&nbsp;</span>-->
-<!--                    &lt;!&ndash;收藏按钮 待实现动态&ndash;&gt;-->
-<!--                    <button class="btn " type="button">-->
-<!--                        转发 <i class="far fa-share"/></i>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <p id="location">店铺地址</p>-->
-<!--                <p id="opentime">营业时间</p>-->
-<!--            </div>-->
-<!--        </div>-->
-        <!--bootstrap 分页组件 后续用elementui替换-->
+
+    <div class="brand-area pt-40 pb-40" style="background:#3f271e">
     </div>
-<!--    <nav aria-label="Page navigation example" class="text-center paging">-->
-<!--        <ul class="pagination">-->
-<!--            <li class="page-item">-->
-<!--                <a aria-label="Previous" class="page-link" href="#">-->
-<!--                    <span aria-hidden="true">&laquo;</span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--            <li class="page-item">-->
-<!--                <a aria-label="Next" class="page-link" href="#">-->
-<!--                    <span aria-hidden="true">&raquo;</span>-->
-<!--                </a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </nav>-->
-</div>
 
-<!--登录注册-->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    <i class="far fa-coffee-pot"></i>
-                    登陆&nbsp;welcome to coffeeverse
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="form_login">
-                    <div class="form-group">
-                        <label class="control-label">账号：</label>
-                        <input class="form-control" id="login_username" type="text">
-                    </div>
-                    <div class="pb-1">
-                        <label class="control-label">密码：</label>
-                        <input class="form-control" id="login_password" type="text">
-                    </div>
-                </form>
-                <div class="prompt">
-                    <i class="far fa-exclamation-circle"></i>
-                    <span id="login_prompt"></span>
-                </div>
-            </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn" data-dismiss="modal" data-toggle="modal"  data-target="#signModal">注册</button>
-                <button type="button" class="btn" id="button_login" style="margin-left: 20px">登录</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="signModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="far fa-coffee-pot"></i>
-                    注册&nbsp;welcome to coffeeverse
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="form_sign">
-                    <div class="form-group">
-                        <label class="control-label">昵称：</label>
-                        <input class="form-control" id="sign_username" type="text">
-                        <div class="prompt" id="prompt_username">
-                            <i class="far fa-exclamation-circle"></i>
-                            <span>&nbsp;昵称长度应在2~15之间</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">密码：</label>
-                        <input class="form-control" id="sign_pass" type="password">
-                        <div class="prompt" id="prompt_pass">
-                            <i class="far fa-exclamation-circle"></i>
-                            <span>密码长度应在6~20之间</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">请再次输入密码：</label>
-                        <input class="form-control" id="sign_checkpass" type="password">
-                        <div class="prompt" id="prompt_checkpass">
-                            <i class="far fa-exclamation-circle"></i>
-                            <span>两次密码不一致</span>
-                        </div>
-                    </div>
-                    <div class="pb-1">
-                        <label class="control-label">邮箱：</label>
-                        <input class="form-control" id="sign_email" type="text">
-                    </div>
-                </form>
-                <div class="prompt" id="prompt_register">
-                    <i class="far fa-exclamation-circle"></i>
-                    <span id="sign_prompt"></span>
-                </div>
-            </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn" id="button_register">提交注册</button>
-                <button type="button" class="btn" style="margin-left: 20px" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">返回登录</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="brand-area pt-40 pb-40" style="background:#3f271e">
-</div>
-
-<!-- newslater-area -->
-<section class="newslater-area p-relative pt-120 pb-120">
-    <div class="animations-01"><img alt="contact-bg-an-05" src="img/bg/an-img-07.png"></div>
-    <div class="container">
-        <div class="row justify-content-center align-items-center text-center">
-            <div class="col-xl-9 col-lg-9">
-                <div class="section-title center-align mb-40 text-center wow fadeInDown animated"
-                     data-animation="fadeInDown" data-delay=".4s">
-                    <h5><span class="circle-left"><img alt="img" src="img/bg/circle-left.png"></span> 加入我们</h5>
-                    <h2>
-                        在CoffeeVerse,畅游咖啡世界！
-                    </h2>
-                    <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-<!-- newslater-aread-end -->
-
-
-<!-- footer -->
-<footer class="footer-bg footer-p">
-    <div class="footer-top  pt-90 pb-40"
-         style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
+    <!-- newslater-area -->
+    <section class="newslater-area p-relative pt-120 pb-120">
+        <div class="animations-01"><img alt="contact-bg-an-05" src="img/bg/an-img-07.png"></div>
         <div class="container">
-            <div class="row justify-content-between">
+            <div class="row justify-content-center align-items-center text-center">
+                <div class="col-xl-9 col-lg-9">
+                    <div class="section-title center-align mb-40 text-center wow fadeInDown animated"
+                         data-animation="fadeInDown" data-delay=".4s">
+                        <h5><span class="circle-left"><img alt="img" src="img/bg/circle-left.png"></span> 加入我们</h5>
+                        <h2>
+                            在CoffeeVerse,畅游咖啡世界！
+                        </h2>
+                        <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
+                    </div>
+                </div>
 
-                <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <div class="footer-widget mb-30">
-                        <div class="f-widget-title mb-30">
-                            <img alt="img" src="img/首页/logo.png">
-                        </div>
-                        <div class="f-contact">
-                            <ul>
-                                <li>
-                                    <i class="icon fal fa-phone"></i>
-                                    <span>1800-121-3637<br>+91-7052-101-786</span>
-                                </li>
-                                <li><i class="icon fal fa-envelope"></i>
-                                    <span>
+            </div>
+
+        </div>
+    </section>
+    <!-- newslater-aread-end -->
+
+    <!-- footer -->
+    <footer class="footer-bg footer-p">
+        <div class="footer-top  pt-90 pb-40"
+             style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
+            <div class="container">
+                <div class="row justify-content-between">
+
+                    <div class="col-xl-4 col-lg-4 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title mb-30">
+                                <img alt="img" src="img/首页/logo.png">
+                            </div>
+                            <div class="f-contact">
+                                <ul>
+                                    <li>
+                                        <i class="icon fal fa-phone"></i>
+                                        <span>1800-121-3637<br>+91-7052-101-786</span>
+                                    </li>
+                                    <li><i class="icon fal fa-envelope"></i>
+                                        <span>
                                           <a href="mailto:info@example.com">info@example.com</a>
                                      <br>
                                      <a href="mailto:help@example.com">help@example.com</a>
                                      </span>
-                                </li>
-                                <li>
-                                    <i class="icon fal fa-map-marker-check"></i>
-                                    <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
-                                </li>
+                                    </li>
+                                    <li>
+                                        <i class="icon fal fa-map-marker-check"></i>
+                                        <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
+                                    </li>
 
-                            </ul>
+                                </ul>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-sm-6">
-                    <div class="footer-widget mb-30">
-                        <div class="f-widget-title">
-                            <h2>相关链接</h2>
-                        </div>
-                        <div class="footer-link">
-                            <ul>
-                                <li><a href="首页.html">首页</a></li>
-                                <li><a href="资讯板块.html">资讯</a></li>
-                                <li><a href="知识板块.html"> 知识 </a></li>
-                                <li><a href="forum.html"> 社区</a></li>
-                                <li><a href="shop.html">地图</a></li>
-                                <li><a href="Person.html">个人中心</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-sm-6">
-                    <div class="footer-widget mb-30">
-                        <div class="f-widget-title">
-                            <h2>素材来源</h2>
-                        </div>
-                        <div class="footer-link">
-                            <ul>
-                                <li><a href="index.html">哔哩哔哩</a></li>
-                                <li><a href="index.html">百度</a></li>
-                                <li><a href="about.html">Youtube</a></li>
-                                <li><a href="services.html"> ... </a></li>
-                                <li><a href="contact.html"> ...</a></li>
-                                <li><a href="blog.html">...</a></li>
-                            </ul>
+                    <div class="col-xl-2 col-lg-2 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>相关链接</h2>
+                            </div>
+                            <div class="footer-link">
+                                <ul>
+                                    <li><a href="首页.html">首页</a></li>
+                                    <li><a href="资讯板块.html">资讯</a></li>
+                                    <li><a href="知识板块.html"> 知识 </a></li>
+                                    <li><a href="forum.html"> 社区</a></li>
+                                    <li><a href="shop.html">地图</a></li>
+                                    <li><a href="Person.html">个人中心</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-sm-6">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="copyright-wrap">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    Copyright &copy; CoffeeVerse 2023 . All rights reserved.
-                </div>
-                <div class="col-lg-6 text-right text-xl-right">
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                    <div class="col-xl-2 col-lg-2 col-sm-6">
+                        <div class="footer-widget mb-30">
+                            <div class="f-widget-title">
+                                <h2>素材来源</h2>
+                            </div>
+                            <div class="footer-link">
+                                <ul>
+                                    <li><a href="index.html">哔哩哔哩</a></li>
+                                    <li><a href="index.html">百度</a></li>
+                                    <li><a href="about.html">Youtube</a></li>
+                                    <li><a href="services.html"> ... </a></li>
+                                    <li><a href="contact.html"> ...</a></li>
+                                    <li><a href="blog.html">...</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-sm-6">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- footer-end -->
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        Copyright &copy; CoffeeVerse 2023 . All rights reserved.
+                    </div>
+                    <div class="col-lg-6 text-right text-xl-right">
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
 
-<!-- JS here -->
-<script src="js/jquery-3.7.0.min.js"></script>
-<script src="js/ajax-form.js"></script>
-<!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
-<script src="js/plug-in/slick.min.js"></script>
-<script src="js/plug-in/paroller.js"></script>
-<script src="js/plug-in/wow.min.js"></script>
-<script src="js/plug-in/js_isotope.pkgd.min.js"></script>
-<script src="js/plug-in/imagesloaded.min.js"></script>
-<script src="js/plug-in/parallax.min.js"></script>
-<script src="js/plug-in/jquery.waypoints.min.js"></script>
-<script src="js/plug-in/jquery.counterup.min.js"></script>
-<script src="js/plug-in/jquery.scrollUp.min.js"></script>
-<script src="js/plug-in/jquery.meanmenu.min.js"></script>
-<script src="js/plug-in/parallax-scroll.js"></script>
-<script src="js/plug-in/jquery.magnific-popup.min.js"></script>
-<script src="js/element-in-view.js"></script>
-<script src="js/main.js"></script>
-<script src="bootstrap/js/bootstrap.bundle.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
-<script src="bootstrap/js/bootstrap-select.min.js"></script>
-<script src="js/blockJS/shop.js"></script>
-<script src="js/blockJS/login.js"></script>
+    <!-- JS here -->
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
+    <script src="js/plug-in/slick.min.js"></script>
+    <script src="js/plug-in/paroller.js"></script>
+    <script src="js/plug-in/wow.min.js"></script>
+    <script src="js/plug-in/js_isotope.pkgd.min.js"></script>
+    <script src="js/plug-in/imagesloaded.min.js"></script>
+    <script src="js/plug-in/parallax.min.js"></script>
+    <script src="js/plug-in/jquery.waypoints.min.js"></script>
+    <script src="js/plug-in/jquery.counterup.min.js"></script>
+    <script src="js/plug-in/jquery.scrollUp.min.js"></script>
+    <script src="js/plug-in/jquery.meanmenu.min.js"></script>
+    <script src="js/plug-in/parallax-scroll.js"></script>
+    <script src="js/plug-in/jquery.magnific-popup.min.js"></script>
+    <script src="js/element-in-view.js"></script>
+    <script src="js/main.js"></script>
+    <script src="bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap-select.min.js"></script>
+    <script src="js/blockJS/shop.js"></script>
+    <script src="js/blockJS/login.js"></script>
+
 </body>
 </html>

@@ -156,10 +156,7 @@ label {
 .prompt{
     font-size: 13px;
 }
-#prompt_checkpass{
-    display: none;
-}
-#prompt_register{
+#prompt_checkpas,#prompt_register,#prompt_login{
     display: none;
 }
 #sign_checkpass{

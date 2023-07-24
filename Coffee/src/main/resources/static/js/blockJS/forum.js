@@ -5,7 +5,6 @@ $(function () {
         url: "http://localhost:8080/post/list",
         dataType: "json",
         success: function (forumlist) {
-            alert("chenggong");
             // updateForumInfo(forumlist);
             var rows = [];
             $.each(forumlist.data.records, function (i, a) {
@@ -15,7 +14,7 @@ $(function () {
                     + a.userId + '">'
                     + a.username
                     + '</span> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
-                    +a.postId+ '">'
+                    + a.postId+ '">'
                     + a.title
                     + '</h4> <p class="forumContent">'
                     // +a.   看具体后面有没有content
@@ -42,12 +41,13 @@ $(function () {
 // 页面跳转到个人主页
 function goPerson(a) {
     userId = $(a).attr("hashId");
-    alert(userId);
+    alert('个人主页跳转'+ userId);
     window.location.href = "Person.html?userId" + userId;
 }
 // 页面跳转到详细页面
 function goForum(a) {
-    alert('论坛页面跳转 postId');
-    postId = $(a).attr("hashId");
-    window.location.href = "forum-detail.html?postId" + postId;
+    var postId = $(a).attr("hashId");
+    alert('论坛页面跳转'+ postId);
+    window.localStorage.setItem("post",postId)
+    window.location.href = "http://localhost:8080/forum-detail.html";
 }
