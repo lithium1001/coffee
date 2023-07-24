@@ -16,11 +16,13 @@ $("#button_login").click(function(){
             if(data.code==200){
                 alert("登陆成功！");
                 window.localStorage.setItem("token",data.token)
+                window.localStorage.setItem("myname",username)
                 $("#prompt_login").attr("style","display:block")
                 $("#prompt_login i").attr("style","color:limegreen")
                 $("#prompt_login i").removeClass(" fa-exclamation-circle")
                 $("#prompt_login i").addClass(" fa-check-circle")
                 $("#prompt_login span").text(data.message)
+                location.reload()
                 $('#loginModal').modal('hide')
             }
             else if(data.code==-1){
@@ -128,3 +130,39 @@ $("#button_register").click(function(){
     })
 });
 
+
+//导航栏切换
+$(function () {
+    var token = window.localStorage.getItem("token");
+    $(".dropdown").mouseover(function () {
+        $(this).addClass("open");
+    });
+    $(".dropdown").mouseleave(function () {
+        $(this).removeClass("open");
+    })
+    if(token==null){
+        $(".person").attr("style","display:none")
+        $(".login-btn").attr("style","display:block")
+    }else{
+        $(".person").attr("style","display:block")
+        $(".login-btn").attr("style","display:none")
+        $("#myname").text("你好，"+window.localStorage.getItem("myname"))
+        var avatarurl=window.localStorage.getItem("myavatar")
+        if(avatarurl==null){
+            $("#myavatar").attr("src","img/team/team01.jpg")
+        }
+        else {
+            $("#myavatar").attr("src",avatarurl)
+        }
+    }
+})
+
+//跳转个人页面
+$("#toPerson").click(function (){
+    window.location.href = "http://localhost:8080/Person.html";
+})
+
+$("#byebye").click(function (){
+    window.localStorage.clear();
+    location.reload()
+})

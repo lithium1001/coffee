@@ -72,7 +72,7 @@ aMapSearchNearBy([118.76431,31.9844], '');
 $(function () {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shopdetail",
+        url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
         success: function (shoplist) {
             // alert('没有问题');
@@ -117,7 +117,7 @@ function sortByRating() {
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
         data: {
-
+            sort:true
         },
         success: function (shoplist) {
             updateShopInfo(shoplist);
@@ -134,8 +134,8 @@ function selectByTag() {
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
         data: {
-            district: $("#sel-district").val(),
-            tag: $("#sel-tag").val()
+            district: $("#sel-district").find("option:selected").text(),
+            tag: $("#sel-tag").find("option:selected").text()
         },
         success: function (shoplist) {
             updateShopInfo(shoplist);
@@ -147,8 +147,6 @@ function selectByTag() {
 }
 // 清空选择,ok
 function clearSelect() {
-    // alert($("#sel-district").find("option:selected").text())
-    // alert($("#sel-tag").find("option:selected").text())
     $("select").selectpicker('val',['noneSelectedText']);
     $("select").selectpicker('refresh');
 }

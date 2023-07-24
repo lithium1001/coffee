@@ -42,12 +42,13 @@ $(function () {
 function goPerson(a) {
     userId = $(a).attr("hashId");
     alert('个人主页跳转'+ userId);
-    window.location.href = "Person.html?userId" + userId;
+    window.sessionStorage.setItem("userId",postId)
+    window.location.href = "http://localhost:8080/Person.html";
 }
 // 页面跳转到详细页面
 function goForum(a) {
     var postId = $(a).attr("hashId");
     alert('论坛页面跳转'+ postId);
-    window.localStorage.setItem("post",postId)
+    window.sessionStorage.setItem("postId",postId)
     window.location.href = "http://localhost:8080/forum-detail.html";
 }

@@ -40,7 +40,7 @@
 <header class="header-nav">
     <div class="sticky-nav" id="header-sticky">
         <div class="container">
-            <div class="row align-items-centerjustify-content-center login-center">
+            <div class="row align-items-center justify-content-center login-center">
                 <!--logo-->
                 <div class="col-xl-2 col-lg-2">
                     <div class="logo">
@@ -79,6 +79,24 @@
                             登录/注册
                         </button>
                     </div>
+                    <div class="person pull-right">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 60px">
+                                    <img id="myavatar" alt="" class="img-circle" src=""/>
+                                    <span id="myname" style="color: #FFFFFF;font-size: 16px"></span>
+                                </a>
+                                <div class="dropdown-menu" style="background: #FFFFFF;width: 250px;overflow: hidden">
+                                        <div class="text-center dd" id="toPerson">
+                                            <i class="fa fa-user"></i> 个人中心
+                                        </div>
+                                        <div class="text-center dd" id="byebye">
+                                            <i class="fa fa-sign-out"></i> 退出登陆界面
+                                        </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,22 +116,6 @@
         <div class="row justify-content-center">
             <!--地图筛选以及选择区-->
             <div class="col-lg-8">
-                <!--下拉菜单选择-->
-                <!--                <div class="choosing text-center margin-left: 30px;">-->
-                <!--                    <select id="selectArea" class="form-control form-control-placeholder">-->
-                <!--                        <option value="-1" style="color: #CCCCCC;" disabled selected hidden>choosing the area</option>-->
-                <!--                        <option value="0" style="color: black;">杨浦区</option>-->
-                <!--                        <option value="1" style="color: black;">黄浦区</option>-->
-                <!--                        <option value="2" style="color: black;">嘉定区</option>-->
-                <!--                        <option value="3" style="color: black;">宝山区</option>-->
-                <!--                        <option value="4" style="color: black;">静安区</option>-->
-                <!--                    </select>-->
-
-                <!--                    <select id="selectType" class="form-control form-control-placeholder">-->
-                <!--                        <option value="-1" disabled selected hidden>choosing the shop type</option>-->
-                <!--                        <option value="0" style="color: black;">标准店</option>-->
-                <!--                        <option value="1" style="color: black;">快取店</option>-->
-                <!--                    </select>-->
                 <div class="circle-left">
                     <img alt="img" src="img/bg/circle-left.png"/>
                     <h4 style="display: inline-block">咖啡地图，了解您附近的咖啡店</h4>
@@ -121,7 +123,7 @@
                 <!--下拉菜单选择-->
                 <div class="choosing text-center margin-left: 30px;">
                     <span>地区：</span>
-                    <select class="selectpicker multiple" data-live-search="true" id="sel-district" multiple
+                    <select class="selectpicker" data-live-search="true" id="sel-district" multiple
                             title="请选择地区">
                         <option>浦东新区</option>
                         <option>徐汇</option>

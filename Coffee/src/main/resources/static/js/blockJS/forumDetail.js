@@ -1,6 +1,6 @@
 $(function () {
     //获取传参
-    var postId = window.localStorage.getItem("post")
+    var postId = window.sessionStorage.getItem("postId")
     $.ajax({
         type: "get",
         url: "http://localhost:8080/post/detail",

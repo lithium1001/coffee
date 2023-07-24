@@ -5,10 +5,10 @@ $(function () {
     alert(shopName);
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shoplist",
+        url: "http://localhost:8080/coffee-shop/shopdetail",
         dataType: "json",
         data: {
-            shop: shopName
+            shopname: shopName
         },
         success: function (shopInfo) {
             alert('没有问题');
