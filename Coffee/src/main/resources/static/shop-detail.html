@@ -10,19 +10,19 @@
         第三方库:animate是动态效果库，链接https://animate.style；fontawesome是图标库，链接https://fontawesome.com.cn/；dripicons也是图标库,我这边没有用到,感觉能够被fontawesome替换;
         插件（和js配套）:magnific-popu动态弹出图片的插件;slick图片轮播的插件；meanmenu响应式导航插件；
         其他：default 基础样式表；responsive 响应式样式-->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/basicStyle.css">
-    <link rel="stylesheet" href="css/blockStyle(forum&shop&person)/shopDetailStyle.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/blockStyle(forum&shop&person)/basicStyle.css" rel="stylesheet">
+    <link href="css/blockStyle(forum&shop&person)/shopDetailStyle.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
     <!--  没用到的-->
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/dripicons.css">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="css/meanmenu.css">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/magnific-popup.css" rel="stylesheet">
+    <link href="css/dripicons.css" rel="stylesheet">
+    <link href="css/slick.css" rel="stylesheet">
+    <link href="css/meanmenu.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                 <!--logo-->
                 <div class="col-xl-2 col-lg-2">
                     <div class="logo">
-                        <a href="index.html"><img alt="logo" src="img/logo/logo.png"></a>
+                        <a href="首页.html"><img alt="logo" src="img/logo/logo.png"></a>
                     </div>
                 </div>
                 <!--不同块面-->
@@ -52,10 +52,10 @@
                                 <a href="知识板块.html">知识</a>
                             </li>
                             <li class="has-sub">
-                              <a href="shop.html">地图</a>
+                                <a href="shop.html">地图</a>
                             </li>
                             <li class="has-sub">
-                              <a href="forum.html">社区</a>
+                                <a href="forum.html">社区</a>
                             </li>
                             <li class="has-sub">
                                 <a onclick="window.scrollTo(0, document.body.scrollHeight); return false;">联系我们</a>
@@ -78,25 +78,22 @@
 <main class="shopMain">
     <!--  店铺导航信息-->
     <div class="shopNav">
-      <span>
         <img alt="img" height="35px" src="img/icon/fe-icon01.png" width="35px">&nbsp;&nbsp;
-        <a href="#" targrt="_self">首页</a> >&gt;
-        <a href="#" targrt="_self">咖啡地图</a> &gt; xxxx
-      </span>
+        <a href="首页.html" targrt="_self">首页</a> >&gt;
+        <a href="shop.html" targrt="_self">咖啡地图</a> &gt;
+        <span class="shopName"></span>
     </div>
     <!--店铺信息 -->
     <div class="shopInfo">
-        <h3>店铺名称</h3>
+        <h3 class="shopName">店铺名称</h3>
         <div class="shopMark">
             <!--评分显示 待实现动态 待实现评分功能-->
-            <span>4.5分 &nbsp;</span>
-            <span>
-      <i class="fas fa-star"/></i>
-                <i class="fas fa-star"/></i>
-                <i class="fas fa-star"/></i>
-                <i class="fas fa-star"/></i>
-                <i class="fad fa-star-half-alt"/></i>
-      </span>
+            <span id="rating">4.5分 &nbsp;</span>
+            <i class="fas fa-star"/></i>
+            <i class="fas fa-star"/></i>
+            <i class="fas fa-star"/></i>
+            <i class="fas fa-star"/></i>
+            <i class="fad fa-star-half-alt"/></i>
             <span style="margin-right: 530px">&nbsp;</span>
             <!--点赞按钮 待实现动态-->
             <button class="btn " type="button">
@@ -117,19 +114,19 @@
                              data-delay=".2s" style="visibility: visible; animation-name: fadeInUp;">
                             <i class="far fa-map"></i>
                             <h5>店铺地址</h5>
-                            <p>四平路1239号</p>
+                            <p id="location">四平路1239号</p>
                         </div>
                         <div class="basicInfoBlock wow fadeInUp  animated" data-animation="fadeInDown animated"
                              data-delay=".2s" style="visibility: visible; animation-name: fadeInUp;">
                             <i class="far fa-clock"></i>
                             <h5>营业时间</h5>
-                            <p>Monday to Friday 09:00 to 18:30</p>
+                            <p id="opentime">Monday to Friday 09:00 to 18:30</p>
                         </div>
                         <div class="basicInfoBlock wow fadeInUp  animated" data-animation="fadeInDown animated"
                              data-delay=".2s" style="visibility: visible; animation-name: fadeInUp;">
                             <i class="far fa-envelope-open"></i>
                             <h5>联系方式</h5>
-                            <p>12138；<a href="#">support@example.com</a><br><a href="#">info@example.com</a></p>
+                            <p id="phone">phone;support@example.com</p>
                         </div>
                     </div>
                 </div>
@@ -140,9 +137,13 @@
                             <ol class="carousel-indicators">
                                 <li class="active" data-slide-to="0" data-target="#carouselExampleIndicators"></li>
                                 <li data-slide-to="1" data-target="#carouselExampleIndicators"></li>
+                                <li data-slide-to="2" data-target="#carouselExampleIndicators"></li>
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
+                                    <img id="pictureUrl" class="d-block w-100" src="">
+                                </div>
+                                <div class="carousel-item">
                                     <img class="d-block w-100" src="img/slider/slider_bg.png">
                                 </div>
                                 <div class="carousel-item">
@@ -165,8 +166,9 @@
             </div>
         </div>
         <div class="detailInfo">
-            <p>
-                这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍</p>
+            <p id="description">
+                这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍这里的店铺的介绍
+            </p>
         </div>
     </div>
 
@@ -174,132 +176,119 @@
 <!-- main-area-end -->
 <div class="brand-area pt-40 pb-40" style="background:#3f271e">
 </div>
-            <!-- newslater-area -->
-            <section class="newslater-area p-relative pt-120 pb-120">
-              <div class="animations-01"><img src="img/bg/an-img-07.png" alt="contact-bg-an-05"></div>
-              <div class="container">
-                  <div class="row justify-content-center align-items-center text-center">
-                      <div class="col-xl-9 col-lg-9">
-                          <div class="section-title center-align mb-40 text-center wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
-                               <h5><span class="circle-left"><img src="img/bg/circle-left.png" alt="img"></span> 加入我们</h5>
-                              <h2>
-                                  在CoffeeVerse,畅游咖啡世界！
-                              </h2>
-                              <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
-                          </div>
-                      </div>
-                     
-                  </div>
-                 
-              </div>
-          </section>
-          <!-- newslater-aread-end -->
-      </main>
-      <!-- main-area-end -->
-       <!-- footer -->
-      <footer class="footer-bg footer-p">
-       <div class="footer-top  pt-90 pb-40" style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
-              <div class="container">
-                  <div class="row justify-content-between">
-                      
-                        <div class="col-xl-4 col-lg-4 col-sm-6">
-                          <div class="footer-widget mb-30">
-                              <div class="f-widget-title mb-30">
-                                 <img src="img/首页/logo.png" alt="img">
-                              </div>
-                              <div class="f-contact">
-                                  <ul>
-                                  <li>
-                                      <i class="icon fal fa-phone"></i>
-                                      <span>1800-121-3637<br>+91-7052-101-786</span>
-                                  </li>
-                                 <li><i class="icon fal fa-envelope"></i>
-                                      <span>
+
+<!-- newslater-area -->
+<section class="newslater-area p-relative pt-120 pb-120">
+    <div class="animations-01"><img alt="contact-bg-an-05" src="img/bg/an-img-07.png"></div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center text-center">
+            <div class="col-xl-9 col-lg-9">
+                <div class="section-title center-align mb-40 text-center wow fadeInDown animated"
+                     data-animation="fadeInDown" data-delay=".4s">
+                    <h5><span class="circle-left"><img alt="img" src="img/bg/circle-left.png"></span> 加入我们</h5>
+                    <h2>
+                        在CoffeeVerse,畅游咖啡世界！
+                    </h2>
+                    <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- newslater-aread-end -->
+</main>
+<!-- main-area-end -->
+<!-- footer -->
+<footer class="footer-bg footer-p">
+    <div class="footer-top  pt-90 pb-40"
+         style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-xl-4 col-lg-4 col-sm-6">
+                    <div class="footer-widget mb-30">
+                        <div class="f-widget-title mb-30">
+                            <img alt="img" src="img/首页/logo.png">
+                        </div>
+                        <div class="f-contact">
+                            <ul>
+                                <li>
+                                    <i class="icon fal fa-phone"></i>
+                                    <span>1800-121-3637<br>+91-7052-101-786</span>
+                                </li>
+                                <li><i class="icon fal fa-envelope"></i>
+                                    <span>
                                           <a href="mailto:info@example.com">info@example.com</a>
                                      <br>
                                      <a href="mailto:help@example.com">help@example.com</a>
                                      </span>
-                                  </li>
-                                  <li>
-                                      <i class="icon fal fa-map-marker-check"></i>
-                                      <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
-                                  </li>
-                                  
-                              </ul>
-                                  
-                                  </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-2 col-lg-2 col-sm-6">
-                          <div class="footer-widget mb-30">
-                              <div class="f-widget-title">
-                                  <h2>相关链接</h2>
-                              </div>
-                              <div class="footer-link">
-                                  <ul>      
-                                    <li><a href="首页.html">首页</a></li>                                  
-                                    <li><a href="资讯板块.html">资讯</a></li>
-                                    <li><a href="知识板块.html"> 知识 </a></li>
-                                    <li><a href="forum.html"> 社区</a></li>
-                                    <li><a href="shop.html">地图</a></li>
-                                    <li><a href="Person.html">个人中心</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div> 
-          <div class="col-xl-2 col-lg-2 col-sm-6">
-                          <div class="footer-widget mb-30">
-                              <div class="f-widget-title">
-                                  <h2>素材来源</h2>
-                              </div>
-                              <div class="footer-link">
-                                  <ul>      
-                                      <li><a href="index.html">哔哩哔哩</a></li>                                  
-                                      <li><a href="index.html">百度</a></li>
-                                      <li><a href="about.html">Youtube</a></li>
-                                      <li><a href="services.html"> ... </a></li>
-                                      <li><a href="contact.html"> ...</a></li>
-                                      <li><a href="blog.html">...</a></li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div> 
-                      <div class="col-xl-2 col-lg-2 col-sm-6">
-                          
-                              <!-- <div class="col-md-20">
-                                      <div class="signature">
-                                          <img src="img/brand/星巴克.jpg" alt="img">  
-                                      </div> -->
-                          
-                               
-                          </div> 
-                          </div>
-                      </div> 
-                  
-                                                   
-                  </div>
-              </div>
-          </div>
-          <div class="copyright-wrap">
-              <div class="container">
-                  <div class="row align-items-center">
-                      <div class="col-lg-6">                         
-                         Copyright &copy; CoffeeVerse 2023 . All rights reserved.         
-                      </div>
-                      <div class="col-lg-6 text-right text-xl-right">                       
-                         <div class="footer-social">                                    
-                                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                  <a href="#"><i class="fab fa-twitter"></i></a>
-                                  <a href="#"><i class="fab fa-instagram"></i></a>
-                                  <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
-                              </div>        
-                      </div>
-                      
-                  </div>
-              </div>
-          </div>
-      </footer>
-      <!-- footer-end -->
+                                </li>
+                                <li>
+                                    <i class="icon fal fa-map-marker-check"></i>
+                                    <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-sm-6">
+                    <div class="footer-widget mb-30">
+                        <div class="f-widget-title">
+                            <h2>相关链接</h2>
+                        </div>
+                        <div class="footer-link">
+                            <ul>
+                                <li><a href="首页.html">首页</a></li>
+                                <li><a href="资讯板块.html">资讯</a></li>
+                                <li><a href="知识板块.html"> 知识 </a></li>
+                                <li><a href="forum.html"> 社区</a></li>
+                                <li><a href="shop.html">地图</a></li>
+                                <li><a href="Person.html">个人中心</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-sm-6">
+                    <div class="footer-widget mb-30">
+                        <div class="f-widget-title">
+                            <h2>素材来源</h2>
+                        </div>
+                        <div class="footer-link">
+                            <ul>
+                                <li><a href="index.html">哔哩哔哩</a></li>
+                                <li><a href="index.html">百度</a></li>
+                                <li><a href="about.html">Youtube</a></li>
+                                <li><a href="services.html"> ... </a></li>
+                                <li><a href="contact.html"> ...</a></li>
+                                <li><a href="blog.html">...</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-sm-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    Copyright &copy; CoffeeVerse 2023 . All rights reserved.
+                </div>
+                <div class="col-lg-6 text-right text-xl-right">
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer-end -->
 <!-- JS here -->
 <script src="js/jquery-3.7.0.min.js"></script>
 <script src="js/ajax-form.js"></script>
@@ -327,5 +316,7 @@
 
 <script src="BootStrap/js/bootstrap.bundle.js"></script>
 <script src="BootStrap/js/bootstrap.js"></script>
+
+<!--<script src="js/globalVariable.js"></script>-->
 </body>
 </html>

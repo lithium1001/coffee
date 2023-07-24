@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <title>CoffeeVerse</title>
+  <meta content="" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="fontawesome/css/all.min.css" rel="stylesheet">
+  <link href="css/default.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/blockStyle(forum&shop&person)/basicStyle.css" rel="stylesheet">
+  <link href="css/blockStyle(forum&shop&person)/forumDetailStyle.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+  <!--  没用到的-->
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link href="css/magnific-popup.css" rel="stylesheet">
+  <link href="css/dripicons.css" rel="stylesheet">
+  <link href="css/slick.css" rel="stylesheet">
+  <link href="css/meanmenu.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!--导航栏 header -->
+<header class="header-nav">
+  <div class="sticky-nav" id="header-sticky">
+    <div class="container">
+      <div class="row align-items-centerjustify-content-center login-center">
+        <!--logo-->
+        <div class="col-xl-2 col-lg-2">
+          <div class="logo">
+            <a href="index.html"><img alt="logo" src="img/logo/logo.png"></a>
+          </div>
+        </div>
+        <!--不同块面-->
+        <div class="col-xl-8 col-lg-8">
+          <div class="main-menu text-right text-xl-right">
+            <ul>
+              <li class="has-sub">
+                <a href="首页.html">首页</a>
+              </li>
+              <li class="has-sub">
+                <a href="资讯板块.html">资讯</a>
+              </li>
+              <li>
+                <a href="知识板块.html">知识</a>
+              </li>
+              <li class="has-sub">
+                <a href="shop.html">地图</a>
+              </li>
+              <li class="has-sub">
+                <a href="forum.html">社区</a>
+              </li>
+              <li class="has-sub">
+                <a onclick="window.scrollTo(0, document.body.scrollHeight); return false;">联系我们</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 text-right d-none d-lg-block text-right text-xl-right ">
+          <div class="login-btn">
+            <a class="btn" href="contact.html">登录/注册</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- header-end -->
+<div class="brand-area pt-120">
+  <div class="text-center" style="background:#ffffff">
+    <img alt="img" src="img/bg/circle-left.png"/>
+    <h2 style="display: inline-block">&nbsp;爱好者社区&nbsp;</h2>
+    <img alt="img" src="img/bg/circle-left.png"/>
+    <div class="brand-area pt-10 pb-10" style="background:#3f271e"></div>
+  </div>
+</div>
+<!-- 主体 main -->
+
+<main class="pt-15">
+    <div class="container" >
+      <div class="circle-left forumtop">
+        <img alt="img" src="img/bg/circle-left.png"/>
+        <h4 id="forumtitle">帖子title</h4>
+        <button class="btn answer pull-right" type="button">
+          <i class="far fa-comment" >回复</i>
+        </button>
+        <button class="btn collection pull-right" type="button">
+          <i class="far fa-comment" >收藏</i>
+        </button>
+        <button class="btn share pull-right" type="button">
+          <i class="far fa-comment" >转发</i>
+        </button>
+      </div>
+      <div class="row">
+        <!--左侧论坛区-->
+        <div class="col-sm-8 col-md-8 col-lg-8 forum">
+          <div id="reviewlist">
+            <div class="media forumfloor">
+              <div class="col-lg-3 text-center userInfo">
+                <img class="align-self-center avatar" src=""/>
+                <h6 class="username">用户昵称</h6>
+              </div>
+              <div class="col-lg-9 pt-15">
+                <p class="forumContent"></p>
+                <img class='forumpicture' class="align-self-center" src=""/>
+              </div>
+              <div class="other">
+                <span class="floorNum">1楼&nbsp;</span>
+                <span class="time">发帖时间：2023/1/1 12:00:00</span>
+              </div>
+
+            </div>
+          </div>
+          <!-- 发表评论面板 -->
+          <div class="review">
+            <form class="panel-body" id="reviewAdd">
+              <h6 class="panel-title">留下您的回帖：</h6>
+              <textarea class="form-control" name="content"></textarea>
+              <button type="submit" class="btn pull-right">发表评论</button>
+            </form>
+          </div>
+        </div>
+        <!-- #右侧乱七八糟信息区 -->
+        <div class="col-sm-4 col-md-4 col-lg-34">
+          <div class="forumSearch">
+            <h4 class="forumSearch-title">查找：</h4>
+            <form action="http://wordpress.zcube.in/finco/" class="search-form" method="get" role="search">
+              <label>
+                <input class="search-field" name="s" placeholder="请输入关键词" type="search" value="">
+              </label>
+              <input class="search-submit" type="submit" value="search">
+            </form>
+          </div>
+          <div class="forumTopic">
+            <h4 class="forumTopic-title">热议话题</h4>
+            <ul>
+              <li class="forumTopicItem">
+                <a href="#"># 同济大学军训晚会暴雨</a>
+              </li>
+              <li class="forumTopicItem">
+                <a href="#"># 同济大学军训晚会暴雨</a>
+              </li>
+              <li class="forumTopicItem">
+                <a href="#"># 同济大学军训晚会暴雨</a>
+              </li>
+              <li class="forumTopicItem">
+                <a href="#"># 同济大学军训晚会暴雨</a>
+              </li>
+              <li class="forumTopicItem">
+                <a href="#"># 同济大学军训晚会暴雨</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <!-- inner-blog-end -->
+  </div>
+</main>
+
+<div class="brand-area pt-40 pb-40" style="background:#3f271e">
+</div>
+<!-- newslater-area -->
+<section class="newslater-area p-relative pt-120 pb-120">
+  <div class="animations-01"><img alt="contact-bg-an-05" src="img/bg/an-img-07.png"></div>
+  <div class="container">
+    <div class="row justify-content-center align-items-center text-center">
+      <div class="col-xl-9 col-lg-9">
+        <div class="section-title center-align mb-40 text-center wow fadeInDown animated"
+             data-animation="fadeInDown" data-delay=".4s">
+          <h5><span class="circle-left"><img alt="img" src="img/bg/circle-left.png"></span> 加入我们</h5>
+          <h2>
+            在CoffeeVerse,畅游咖啡世界！
+          </h2>
+          <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- newslater-aread-end -->
+</main>
+<!-- main-area-end -->
+
+<!-- footer -->
+<footer class="footer-bg footer-p">
+  <div class="footer-top  pt-90 pb-40"
+       style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <div class="col-xl-4 col-lg-4 col-sm-6">
+          <div class="footer-widget mb-30">
+            <div class="f-widget-title mb-30">
+              <img alt="img" src="img/首页/logo.png">
+            </div>
+            <div class="f-contact">
+              <ul>
+                <li>
+                  <i class="icon fal fa-phone"></i>
+                  <span>1800-121-3637<br>+91-7052-101-786</span>
+                </li>
+                <li><i class="icon fal fa-envelope"></i>
+                  <span>
+                                          <a href="mailto:info@example.com">info@example.com</a>
+                                     <br>
+                                     <a href="mailto:help@example.com">help@example.com</a>
+                                     </span>
+                </li>
+                <li>
+                  <i class="icon fal fa-map-marker-check"></i>
+                  <span>1247/Plot No. 39, 15th Phase,<br> LHB Colony, Kanpur</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-sm-6">
+          <div class="footer-widget mb-30">
+            <div class="f-widget-title">
+              <h2>相关链接</h2>
+            </div>
+            <div class="footer-link">
+              <ul>
+                <li><a href="首页.html">首页</a></li>
+                <li><a href="资讯板块.html">资讯</a></li>
+                <li><a href="知识板块.html"> 知识 </a></li>
+                <li><a href="forum.html"> 社区</a></li>
+                <li><a href="shop.html">地图</a></li>
+                <li><a href="Person.html">个人中心</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-sm-6">
+          <div class="footer-widget mb-30">
+            <div class="f-widget-title">
+              <h2>素材来源</h2>
+            </div>
+            <div class="footer-link">
+              <ul>
+                <li><a href="index.html">哔哩哔哩</a></li>
+                <li><a href="index.html">百度</a></li>
+                <li><a href="about.html">Youtube</a></li>
+                <li><a href="services.html"> ... </a></li>
+                <li><a href="contact.html"> ...</a></li>
+                <li><a href="blog.html">...</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-sm-6">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="copyright-wrap">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          Copyright &copy; CoffeeVerse 2023 . All rights reserved.
+        </div>
+        <div class="col-lg-6 text-right text-xl-right">
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer-end -->
+
+<!-- JS here -->
+<script src="js/jquery-3.7.0.min.js"></script>
+<script src="js/ajax-form.js"></script>
+<!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
+<script src="js/plug-in/slick.min.js"></script>
+<script src="js/plug-in/paroller.js"></script>
+<script src="js/plug-in/wow.min.js"></script>
+<script src="js/plug-in/js_isotope.pkgd.min.js"></script>
+<script src="js/plug-in/imagesloaded.min.js"></script>
+<script src="js/plug-in/parallax.min.js"></script>
+<script src="js/plug-in/jquery.waypoints.min.js"></script>
+<script src="js/plug-in/jquery.counterup.min.js"></script>
+<script src="js/plug-in/jquery.scrollUp.min.js"></script>
+<script src="js/plug-in/jquery.meanmenu.min.js"></script>
+<script src="js/plug-in/parallax-scroll.js"></script>
+<script src="js/plug-in/jquery.magnific-popup.min.js"></script>
+<script src="js/element-in-view.js"></script>
+<script src="js/main.js"></script>
+<script src="bootstrap/js/bootstrap.bundle.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+
+</body>
+</html>
