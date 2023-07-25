@@ -1,39 +1,41 @@
-//测试提交，对接程序删除即可
-var storage=window.localStorage
+//登陆
 $("#button_login").click(function(){
     var username = document.getElementById("login_username").value;
     var password = document.getElementById("login_password").value;
-    if(username != null){
-        if(password != null){
-            $.ajax({
-                type: "post",
-                url: "http://localhost:8080/user/login",
-                dataType: "json",
-                data: {
-                    username:username,
-                    password:password
-                },
-                success: function (data) {
-                    if(data.code==200){
-                        alert('登录成功！');
-                        storage.token=data.token
-                    }
-                    else if(data.code==-1){
-                        $("#login_prompt").text="账号密码错误"
-                    }
-                },
-                error: function () {
-                    alert('出现问题')
-                }
-            })
-        }
-        else{
-            $("#login_prompt").text("密码不可为空")
-        }
+    var info= {
+        "username":username,
+        "password":password
     }
-    else{
-        $("#login_prompt").text("用户名不可为空")
-    }
+    $.ajax({
+        type: "post",
+        url: "http://localhost:8080/user/login",
+        data: JSON.stringify(info),
+        contentType : "application/json",
+        dataType: "json",
+        success: function (data) {
+            if(data.code==200){
+                alert("登陆成功！");
+                window.localStorage.setItem("token",data.token)
+                window.localStorage.setItem("myname",username)
+                $("#prompt_login").attr("style","display:block")
+                $("#prompt_login i").attr("style","color:limegreen")
+                $("#prompt_login i").removeClass(" fa-exclamation-circle")
+                $("#prompt_login i").addClass(" fa-check-circle")
+                $("#prompt_login span").text(data.message)
+                location.reload()
+                $('#loginModal').modal('hide')
+            }
+            else if(data.code==-1){
+                $("#prompt_login").attr("style","display:block")
+                $("#prompt_login i").attr("style","color:#e11d07")
+                $("#prompt_login i").removeClass(" fa-check-circle")
+                $("#prompt_login i").addClass(" fa-exclamation-circle")
+                $("#prompt_login span").text(data.message)
+            }},
+        error: function () {
+            alert('出现问题')
+        }
+    })
 });
 var a=true;
 var b=true;
@@ -94,23 +96,32 @@ $("#button_register").click(function(){
         return;
         alert("不满足条件")
     }
-    alert("通过")
+    var info= {
+        "name":username,
+        "pass":password,
+        "email":email
+    }
     $.ajax({
         type: "post",
         url: "http://localhost:8080/user/register",
-        data:{
-            "name":username,
-            "pass":password,
-            "email":email
-        },
+        data: JSON.stringify(info),
         contentType : "application/json",
         dataType: "json",
         success: function (data) {
             if(data.code==200){
-                alert('注册成功！'+data.user.username);
+                alert("注册成功！");
+                $("#prompt_register").attr("style","display:block")
+                $("#prompt_register i").attr("style","color:limegreen")
+                $("#prompt_register i").removeClass(" fa-exclamation-circle")
+                $("#prompt_register i").addClass(" fa-check-circle")
+                $("#prompt_register span").text(data.message)
+                $('#signModal').modal('hide')
             }
             else if(data.code==-1){
                 $("#prompt_register").attr("style","display:block")
+                $("#prompt_register i").attr("style","color:#e11d07")
+                $("#prompt_register i").removeClass(" fa-check-circle")
+                $("#prompt_register i").addClass(" fa-exclamation-circle")
                 $("#prompt_register span").text(data.message)
             }},
         error: function () {
@@ -118,3 +129,40 @@ $("#button_register").click(function(){
         }
     })
 });
+
+
+//导航栏切换
+$(function () {
+    var token = window.localStorage.getItem("token");
+    $(".dropdown").mouseover(function () {
+        $(this).addClass("open");
+    });
+    $(".dropdown").mouseleave(function () {
+        $(this).removeClass("open");
+    })
+    if(token==null){
+        $(".person").attr("style","display:none")
+        $(".login-btn").attr("style","display:block")
+    }else{
+        $(".person").attr("style","display:block")
+        $(".login-btn").attr("style","display:none")
+        $("#myname").text("你好，"+window.localStorage.getItem("myname"))
+        var avatarurl=window.localStorage.getItem("myavatar")
+        if(avatarurl==null){
+            $("#myavatar").attr("src","img/team/team01.jpg")
+        }
+        else {
+            $("#myavatar").attr("src",avatarurl)
+        }
+    }
+})
+
+//跳转个人页面
+$("#toPerson").click(function (){
+    window.location.href = "http://localhost:8080/Person.html";
+})
+
+$("#byebye").click(function (){
+    window.localStorage.clear();
+    location.reload()
+})

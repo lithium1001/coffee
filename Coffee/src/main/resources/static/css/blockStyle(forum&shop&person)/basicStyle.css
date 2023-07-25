@@ -118,20 +118,24 @@ label {
 
 .main-menu ul li {
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 5px;
     position: relative;
     color: #fff;
-    padding: 20px 0;
+    padding: 15px 10px;
     font-weight:700;
-    position: relative;
     font-size: 18px;
     font-family: 'Caudex', serif;
 }
 .main-menu ul li a{
     color: #fff;
 }
-.main-menu ul li:hover > a {
-    color: rgba(230, 211, 204, 1);
+.main-menu ul li:hover {
+    background-color: #F3EAE1FF;
+    color: #6f3727;
+}
+.main-menu ul li:hover >a{
+    background-color: #F3EAE1FF;
+    color: #6f3727;
 }
 .main-menu ul li a::after {
     margin-left: 10px;
@@ -156,14 +160,22 @@ label {
 .prompt{
     font-size: 13px;
 }
-#prompt_checkpass{
-    display: none;
-}
-#prompt_register{
+#prompt_checkpas,#prompt_register,#prompt_login{
     display: none;
 }
 #sign_checkpass{
     width: 66%;
+}
+.person img{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+}
+.dd{
+    padding: 15px;
+    margin: 5px 10px;
+    background: #f6f5f5;
+    color: #323534;
 }
 .modal-header{
     border-bottom: 1px solid rgba(230, 211, 204, 1);

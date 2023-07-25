@@ -1,21 +1,15 @@
 $(function () {
     //获取传参
-    var tem = decodeURI(location.search);
-    if (tem.indexOf("?") != -1) {
-        tem = tem.substr(1);
-        tem = tem.split("=");
-        var forumID = tem[1];
-    }
-    //按照传参初始化主楼
+    var postId = window.sessionStorage.getItem("postId")
     $.ajax({
         type: "get",
         url: "http://localhost:8080/post/detail",
         dataType: "json",
         data: {
-            id: forumID
+            id: postId
         },
         success: function (forumInfo) {
-            alert('初始化没有问题,forumID');
+            alert('初始化没有问题'+postId);
             $("#forumtitle").text(forumInfo.data.topic.title);
             $(".forumpicture").attr("src", forumInfo.data.topic.pictureUrl);
             // alert($forumpicture(".pictureUrl").attr("src"));
@@ -31,13 +25,13 @@ $(function () {
     //按照传参初始化评论列表
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/comment/get_comment",
+        url: "http://localhost:8080/comment/get_comments",
         dataType: "json",
         data: {
-            postid: forumID
+            postid: postId
         },
         success: function (reviewInfo) {
-            alert('初始化评论列表没有问题,forumID');
+            alert('初始化评论列表没有问题'+postId);
             updateReview(reviewInfo)
         },
         error: function () {
