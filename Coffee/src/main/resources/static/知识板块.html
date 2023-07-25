@@ -58,6 +58,163 @@
             right: 20px;
             transform: translate(200%, -50%);
         }
+            .prompt{
+                font-size: 13px;
+            }
+            #prompt_checkpas,#prompt_register,#prompt_login{
+                display: none;
+            }
+            #sign_checkpass{
+                width: 66%;
+            }
+            .person img{
+                width:50px;
+                height:50px;
+                border-radius: 50%;
+            }
+            .dd{
+                padding: 15px;
+                margin: 5px 10px;
+                background: #f6f5f5;
+                color: #323534;
+            }
+            .modal-header{
+                border-bottom: 1px solid rgba(230, 211, 204, 1);
+            }
+            .modal-title{
+                color: #6f3727;
+            }
+            .modal-footer{
+                display: block;
+                padding: 5px;
+                border-top: 1px solid rgba(230, 211, 204, 1);
+            }
+            .modal-footer .btn{
+                border:2px solid rgba(230, 211, 204, 1);
+                color: #3f271e;
+                padding: 6px 15px;
+                border-radius: 5px;
+            }
+            .modal-content{
+                width: 90%;
+                padding: 0 15px;
+                background-color: #f7f5f1;
+            }
+            .modal-content label{
+                font-size: 15px;
+                color: #3f271e;
+            }
+            .modal-footer .btn:hover {
+                color: #fff;
+                background: rgba(230, 211, 204, 1);
+            }
+            .form-control{
+                display: inline-block;
+                width: 85%;
+            }
+            /*footer*/
+            .footer{
+                background-color: #3f271e;
+                background-image: url(img/bg/footer-bg.png);
+                padding-top: 50px;
+            }
+
+            .f-widget-title h2  {
+                font-size: 24px;
+                margin-bottom: 0px;
+                position: relative;
+                padding-bottom: 10px;
+                color: #fff;
+            }
+            .f-widget-title h2::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 1px;
+                width: 50px;
+            }
+            .f-widget-title img {
+                width: 146px;
+            }
+            .footer-widget td {
+                padding: 5px;
+                text-align: center;
+            }
+            .footer-link ul li {
+                margin-bottom: 10px;
+            }
+            .footer-link ul li a {
+                color: #fff1f0;
+            }
+            .footer-link ul li a:hover {
+                color: #fff;
+            }
+            .footer-widget table {
+                width: 100%;
+                padding: 10px;
+                background: #f5f5f5;
+            }
+            .footer-widget th {
+                background: #e4e4e4;
+                padding: 10px 5px;
+                text-align: center;
+                color: #101010;
+            }
+            .f-contact i {
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                line-height: 40px;
+                color: #412720 !important;
+                text-align: center;
+                border-radius: 50%;
+                float: left;
+            }
+            .f-contact a{
+                color:#fffc  !important;
+            }
+            .f-contact a:hover{
+                color: #fffc!important;
+            }
+            .f-contact span{
+                color:#fffc ;
+            }
+            .f-contact h3 {
+                color: #fff;
+                font-size: 24px;
+            }
+            .f-contact .icon {
+                float: left;
+                margin-top: 7px;
+                margin-right: 15px;
+                width: 40px;
+            }
+
+            .f-contact li {
+                float: left;
+                margin-bottom: 15px !important;
+                width: 100%;
+            }
+            .f-contact li:last-child{
+                margin-bottom: 0px !important;
+            }
+            .login-btn .btn {
+                background: #6f3727;
+                font-size: 16px;
+                text-transform: uppercase;
+                color: #fff;
+                padding: 15px 10px;
+                margin: 0px 0px;
+                position: relative;
+                border-radius: 4px;
+            }
+
+            .login-btn .btn:hover {
+                color: #fff;
+                background: #aa725a;
+            }
+
         </style>
     </head>
     <body>
@@ -69,11 +226,11 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="img/首页/logo.png" alt="logo"></a>
+                                    <a><img src="img/首页/logo.png" alt="logo"></a>
                                 </div>
                             </div>
                            <div class="col-xl-8 col-lg-8">
-                              
+
                                 <div class="main-menu text-right text-xl-right">
                                     <nav id="mobile-menu">
                                         <ul>
@@ -81,36 +238,56 @@
                                                 <a href="首页.html">首页</a>
                                             </li>
 
-                                            <li class="has-sub"> 
+                                            <li class="has-sub">
                                                 <a href="资讯板块.html">资讯</a>
                                             </li>
-                                
-                                            <li><a href="知识板块.html">知识</a></li>     
+
+                                            <li><a href="知识板块.html">知识</a></li>
                                             <li class="has-sub">
                                                 <a href="shop.html">地图</a>
                                             <li class="has-sub">
                                                 <a href="forum.html">社区</a> </li>
                                                 </li>
-                                            <li class="has-sub"> 
+                                            <li class="has-sub">
                                                 <a onclick="window.scrollTo(0, document.body.scrollHeight); return false;">联系我们</a>
-                                            </li>                              
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>   
+                            </div>
                              <div class="col-xl-2 col-lg-2 text-right d-none d-lg-block mt-15 mb-15 text-right text-xl-right">
                                <div class="login">
                                     <ul>
                                         <li>
-                                            <div class="second-header-btn">
-                                               <a href="contact.html" class="btn">登录/注册</a>
+                                            <div class="login-btn">
+                                                <a class="btn" data-target="#loginModal" data-toggle="modal" type="button">
+                                                    登录/注册
+                                                </a>
+                                            </div>
+                                            <div class="person pull-right">
+                                                <ul class="nav navbar-nav">
+                                                    <li class="dropdown">
+                                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 60px">
+                                                            <img id="myavatar" alt="" class="img-circle" src=""/>
+                                                            <span id="myname" style="color: #FFFFFF;font-size: 16px"></span>
+                                                        </a>
+                                                        <div class="dropdown-menu" style="background: #FFFFFF;width: 250px;overflow: hidden">
+                                                            <div class="text-center dd" id="toPerson">
+                                                                <i class="fa fa-user"></i> 个人中心
+                                                            </div>
+                                                            <div class="text-center dd" id="byebye">
+                                                                <i class="fa fa-sign-out"></i> 退出登陆界面
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </li>
                                     </ul>
-                                
+
                                 </div>
                             </div>
-                            
+
                                 <div class="col-12">
                                     <div class="mobile-menu"></div>
                                 </div>
@@ -120,6 +297,101 @@
             </div>
         </header>
         <!-- header-end -->
+          <!--登录注册-->
+          <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="loginModal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                              <i class="far fa-coffee-pot"></i>
+                              登陆&nbsp;welcome to coffeeverse
+                          </h5>
+                          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form id="form_login">
+                              <div class="form-group">
+                                  <label class="control-label">账号：</label>
+                                  <input class="form-control" id="login_username" type="text">
+                              </div>
+                              <div class="pb-1">
+                                  <label class="control-label">密码：</label>
+                                  <input class="form-control" id="login_password" type="text">
+                              </div>
+                          </form>
+                          <div class="prompt" id="prompt_login">
+                              <i class="far fa-exclamation-circle"></i>
+                              <span></span>
+                          </div>
+                      </div>
+                      <div class="modal-footer text-center">
+                          <button class="btn" data-dismiss="modal" data-target="#signModal" data-toggle="modal" type="button">
+                              注册
+                          </button>
+                          <button class="btn" id="button_login" style="margin-left: 20px" type="button">登录</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="signModal" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title">
+                              <i class="far fa-coffee-pot"></i>
+                              注册&nbsp;welcome to coffeeverse
+                          </h5>
+                          <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <form id="form_sign">
+                              <div class="form-group">
+                                  <label class="control-label">昵称：</label>
+                                  <input class="form-control" id="sign_username" type="text">
+                                  <div class="prompt" id="prompt_username">
+                                      <i class="far fa-exclamation-circle"></i>
+                                      <span>&nbsp;昵称长度应在2~15之间</span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label">密码：</label>
+                                  <input class="form-control" id="sign_pass" type="password">
+                                  <div class="prompt" id="prompt_pass">
+                                      <i class="far fa-exclamation-circle"></i>
+                                      <span>密码长度应在6~20之间</span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label class="control-label">请再次输入密码：</label>
+                                  <input class="form-control" id="sign_checkpass" type="password">
+                                  <div class="prompt" id="prompt_checkpass">
+                                      <i class="far fa-exclamation-circle"></i>
+                                      <span>两次密码不一致</span>
+                                  </div>
+                              </div>
+                              <div class="pb-1">
+                                  <label class="control-label">邮箱：</label>
+                                  <input class="form-control" id="sign_email" type="text">
+                              </div>
+                          </form>
+                          <div class="prompt" id="prompt_register">
+                              <i class="far fa-exclamation-circle"></i>
+                              <span></span>
+                          </div>
+                      </div>
+                      <div class="modal-footer text-center">
+                          <button class="btn" id="button_register" type="button">提交注册</button>
+                          <button class="btn" data-dismiss="modal" data-target="#loginModal" data-toggle="modal" style="margin-left: 20px"
+                                  type="button">返回登录
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
         <main>
             <section id="service-details2" class="pt-80 pb-80 p-relative" style="background-color: #fff9f2">
                 <div class="brand-area pt-50 pb-50" style="background:#ffffff">
@@ -493,6 +765,7 @@
         <script src="js/main.js"></script>
         <script src="BootStrap/js/bootstrap.bundle.js"></script>
         <script src="BootStrap/js/bootstrap.js"> </script>
+          <script src="js/blockJS/login.js"></script>
         <script>
             function showTextBox(boxNumber) {
                 var textBox = document.getElementById("text-box-" + boxNumber);
