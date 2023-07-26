@@ -16,9 +16,4 @@ public class ProfileVO {
      */
     private String avatarUrl;
 
-    /**
-     * 文章数
-     */
-    private Integer topicCount;
-
 }
