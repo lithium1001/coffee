@@ -66,8 +66,6 @@ function aMapSearchNearBy(centerPoint, city) {
 aMapSearchNearBy([118.76431,31.9844], '');
 
 
-
-
 // 初始化shop界面
 $(function () {
     $.ajax({
@@ -76,18 +74,19 @@ $(function () {
         dataType: "json",
         success: function (shoplist) {
             // alert('没有问题');
-            updateShopInfo(shoplist);
+            updateShopInfo(shoplist.data.records);
         },
         error: function () {
             alert('出现问题')
         }
     })
 });
+
 // 添加店铺信息
 function updateShopInfo(shoplist){
     $(".shopList").empty()
     var rows = [];
-    $.each(shoplist.data.records, function (i, a) {
+    $.each(shoplist, function (i, a) {
         rows.push('<div class="media shopListItem"><img class="align-self-center" src="'
             + a.pictureUrl
             + '"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)" hashId="'
@@ -102,6 +101,7 @@ function updateShopInfo(shoplist){
     })
     $(".shopList").append(rows.join(''));
 }
+
 // 页面跳转 ok
 function goShop(a) {
     shopName = $(a).text();
@@ -110,43 +110,119 @@ function goShop(a) {
     window.location.href = "http://localhost:8080/shop-detail.html";
 }
 
-//按照评分排序
-function sortByRating() {
-    $.ajax({
-        type: "get",
-        url: "http://localhost:8080/coffee-shop/shoplist",
-        dataType: "json",
-        data: {
-            sort:true
-        },
-        success: function (shoplist) {
-            updateShopInfo(shoplist);
-        },
-        error: function () {
-            alert('筛选出现问题')
-        }
-    })
-}
-// 筛选结果
-function selectByTag() {
-    $.ajax({
-        type: "get",
-        url: "http://localhost:8080/coffee-shop/shoplist",
-        dataType: "json",
-        data: {
-            district: $("#sel-district").find("option:selected").text(),
-            tag: $("#sel-tag").find("option:selected").text()
-        },
-        success: function (shoplist) {
-            updateShopInfo(shoplist);
-        },
-        error: function () {
-            alert('筛选出现问题')
-        }
-    })
-}
+var sortS=false
+var tagS=null
+var districtS=null
+
+//按照评分赋值
+$("#sortbtn").click(function (){
+    var sortbtn=document.getElementById("sortbtn")
+    var sortnow=sortbtn.classList[1];
+    sortS = sortnow != "no";
+    // console.log(sortS);
+    $("#sortbtn").toggleClass("yes");
+    $("#sortbtn").toggleClass("no");
+    selectShop()
+})
+
 // 清空选择,ok
 function clearSelect() {
     $("select").selectpicker('val',['noneSelectedText']);
     $("select").selectpicker('refresh');
+    selectByTag()
+}
+
+//按照筛选赋值
+function selectByTag() {
+    districtS= $("#sel-district").find("option:selected").text()
+    tagS= $("#sel-tag").find("option:selected").text()
+    selectShop()
+}
+
+//实际筛选，待后端更新
+function selectShop() {
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/coffee-shop/shoplist",
+        dataType: "json",
+        data: {
+            sort:sortS,
+            district:districtS,
+            tag:tagS
+        },
+        success: function (shoplist) {
+            updateShopInfo(shoplist.data.records);
+        },
+        error: function () {
+            alert('筛选出现问题')
+        }
+    })
+}
+
+// 清空选择,ok
+function clearSelect() {
+    $("select").selectpicker('val',['noneSelectedText']);
+    $("select").selectpicker('refresh');
+}
+
+
+//自动联想&回车触发搜索
+$(".search-field").keyup(function (e){
+    var searchKey=$(".search-field").val()
+    // console.log(searchKey)
+    if(searchKey==""||searchKey==" "){
+        return
+    }
+    if(e.keyCode=="13"){
+        search()
+    }
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/coffee-shop/searchshop",
+        dataType: "json",
+        data: {
+            keyword:searchKey
+        },
+        success: function (searchValue) {
+            $("#valueList").empty()
+            if(searchValue.data!=[]){
+                $("#valueList").attr("style","display:block")
+                var rows = [];
+                $.each(searchValue.data, function (i, a) {
+                    rows.push('<div class="valueListItem" onclick="setInput(this)">' + a.name + '</div>')
+                })
+                $("#valueList").append(rows.join(''));
+            }
+        },
+        error: function () {
+            alert('筛选出现问题')
+        }
+    })
+})
+
+//点击自动联想选项进行搜索
+function setInput(a){
+    // console.log($(a).text())
+    $(".search-field").val($(a).text())
+    $("#valueList").attr("style","display:none")
+    search()
+}
+
+//搜索
+function search(){
+    var searchKey=$(".search-field").val()
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/coffee-shop/searchshop",
+        dataType: "json",
+        data: {
+            keyword:searchKey
+        },
+        success: function (searchResult) {
+            updateShopInfo(searchResult.data)
+        },
+        error: function () {
+            alert('搜索出现问题')
+        }
+    })
 }
