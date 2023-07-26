@@ -38,7 +38,7 @@ var center = map.getCenter();
 //var centerText = '当前中心点坐标：' + center.getLng() + ',' + center.getLat();
 //document.getElementById('centerCoord').innerHTML = centerText;
 //document.getElementById('tips').innerHTML = '成功添加三个点标记，其中有两个在当前地图视野外！';
-/*
+
 var setFitViewBtn = document.getElementById('setFitView');
 // 添加事件监听, 使地图自适应显示到合适的范围
 setFitViewBtn.onclick = function() {
@@ -47,10 +47,10 @@ setFitViewBtn.onclick = function() {
     // 第三个参数设置上左下右的空白
     map.setFitView(null, false, [150, 60, 100, 60]);
     var newCenter = map.getCenter();
-    document.getElementById('centerCoord').innerHTML = '当前中心点坐标：' + newCenter.toString();
-    document.getElementById('tips').innerHTML = '通过setFitView，地图自适应显示到合适的范围内,点标记已全部显示在视野中！';
+    //document.getElementById('centerCoord').innerHTML = '当前中心点坐标：' + newCenter.toString();
+    //document.getElementById('tips').innerHTML = '通过setFitView，地图自适应显示到合适的范围内,点标记已全部显示在视野中！';
 };
- */
+
 /*
 //初始化定位
 AMap.plugin('AMap.Geolocation', function() {

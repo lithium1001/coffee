@@ -53,12 +53,12 @@ public class ShopController {
                 shopList = shopService.list(query);
                 log.info("11");
 
-                if (!Objects.equals(district, "")){
+                if (!Objects.equals(district, "") && district != null){
                     shopList.removeIf(shop -> !Objects.equals(shop.getDistrict(), district));
                     log.info("111");
                 }
 
-                if (!Objects.equals(tag, "")){
+                if (!Objects.equals(tag, "") && tag != null){
                     shopList.removeIf(shop -> !Objects.equals(shop.getTag(), tag));
                     log.info("112");
                 }
@@ -68,10 +68,10 @@ public class ShopController {
             }else {
 
                 log.info("12");
-                if (!Objects.equals(district, "")){
+                if (!Objects.equals(district, "") && district != null){
 
                     log.info("121");
-                    if (!Objects.equals(tag, "")){
+                    if (!Objects.equals(tag, "") && tag != null){
                         query.eq("district", district).equals(query.eq("tag", tag));
                     }else {
                         query.eq("district", district);
