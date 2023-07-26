@@ -7,6 +7,17 @@ var map = new AMap.Map('mapContainer', {
     resizeEnable: true,
     zoom: 11,
     center: [121.47, 31.23]  //上海市中心点的经纬度
+    /*
+    layers:[
+        new AMap.TileLayer.RoadNet({
+            zIndex:20
+        }),
+        new AMap.TileLayer({
+            zIndex:6,
+            opacity:1,
+            getTileUrl:'https://t{1,2,3,4}.tianditu.gov.cn/DataServer?T=ter_w&x=[x]&y=[y]&l=[z]'
+        })]
+     */
 });
 
 map.clearMap();  // 清除地图覆盖物
@@ -121,14 +132,84 @@ function aMapSearchNearBy(centerPoint) {
 }
 //aMapSearchNearBy([121.215252, 31.286054]);
 */
-// 实例化点标记
-function addMarker() {
-    marker = new AMap.Marker({
-        icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
-        position: [116.406315, 39.908775],
-        offset: new AMap.Pixel(-13, -30)
-    });
-    marker.setMap(map);
+//点聚合
+var cluster, markers = [];
+
+for (var i = 0; i < points.length; i += 1) {
+    markers.push(new AMap.Marker({
+        position: points[i]['lnglat'],
+        content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
+        offset: new AMap.Pixel(-15, -15)
+    }))
+}
+
+var count = markers.length;
+var _renderClusterMarker = function (context) {
+    var factor = Math.pow(context.count / count, 1 / 18);
+    var div = document.createElement('div');
+    var Hue = 180 - factor * 180;
+    var bgColor = 'hsla(' + Hue + ',100%,50%,0.7)';
+    var fontColor = 'hsla(' + Hue + ',100%,20%,1)';
+    var borderColor = 'hsla(' + Hue + ',100%,40%,1)';
+    var shadowColor = 'hsla(' + Hue + ',100%,50%,1)';
+    div.style.backgroundColor = bgColor;
+    var size = Math.round(30 + Math.pow(context.count / count, 1 / 5) * 20);
+    div.style.width = div.style.height = size + 'px';
+    div.style.border = 'solid 1px ' + borderColor;
+    div.style.borderRadius = size / 2 + 'px';
+    div.style.boxShadow = '0 0 1px ' + shadowColor;
+    div.innerHTML = context.count;
+    div.style.lineHeight = size + 'px';
+    div.style.color = fontColor;
+    div.style.fontSize = '14px';
+    div.style.textAlign = 'center';
+    context.marker.setOffset(new AMap.Pixel(-size / 2, -size / 2));
+    context.marker.setContent(div)
+};
+
+addCluster(2);
+
+function addCluster(tag) {
+    if (cluster) {
+        cluster.setMap(null);
+    }
+    cluster = new AMap.MarkerClusterer(map, markers, {gridSize: 80});
+    /*
+    if (tag == 2) {//完全自定义
+        cluster = new AMap.MarkerClusterer(map, markers, {
+            gridSize: 80,
+            renderClusterMarker: _renderClusterMarker
+        });
+    } else if (tag == 1) {//自定义图标
+        var sts = [{
+            url: "https://a.amap.com/jsapi_demos/static/images/blue.png",
+            size: new AMap.Size(32, 32),
+            offset: new AMap.Pixel(-16, -16)
+        }, {
+            url: "https://a.amap.com/jsapi_demos/static/images/green.png",
+            size: new AMap.Size(32, 32),
+            offset: new AMap.Pixel(-16, -16)
+        }, {
+            url: "https://a.amap.com/jsapi_demos/static/images/orange.png",
+            size: new AMap.Size(36, 36),
+            offset: new AMap.Pixel(-18, -18)
+        }, {
+            url: "https://a.amap.com/jsapi_demos/static/images/red.png",
+            size: new AMap.Size(48, 48),
+            offset: new AMap.Pixel(-24, -24)
+        }, {
+            url: "https://a.amap.com/jsapi_demos/static/images/darkRed.png",
+            size: new AMap.Size(48, 48),
+            offset: new AMap.Pixel(-24, -24)
+        }];
+        cluster = new AMap.MarkerClusterer(map, markers, {
+            styles: sts,
+            gridSize: 80
+        });
+    } else {//默认样式
+        cluster = new AMap.MarkerClusterer(map, markers, {gridSize: 80});
+    }
+     */
 }
 
 // 初始化shop界面
@@ -291,3 +372,77 @@ function search(){
         }
     })
 }
+
+//地图标记点信息
+var layer = new AMap.LabelsLayer({
+    zooms: [3, 20],
+    zIndex: 1000,
+    // 开启标注避让，默认为开启，v1.4.15 新增属性
+    collision: true,
+    // 开启标注淡入动画，默认为开启，v1.4.15 新增属性
+    animation: true,
+});
+
+map.add(layer);
+
+var markers = [];
+
+for (var i = 0; i < LabelsData.length; i++) {
+    var curData = LabelsData[i];
+    curData.extData = {
+        index: i
+    };
+
+    var labelMarker = new AMap.LabelMarker(curData);
+
+    markers.push(labelMarker);
+
+    layer.add(labelMarker);
+}
+
+map.setFitView();
+
+//标记点击事件
+//需要在添加marker标记时就绑定
+function addMarker() {
+    map.clearMap();
+    var marker = new AMap.Marker({
+        map: map,
+        position: [116.481181, 39.989792]
+    });
+    //鼠标点击marker绑定事件
+    AMap.event.addListener(marker, 'click', function () {
+        //infoWindow.open(map, marker.getPosition());
+    });
+}
+
+//地区遮罩
+/*
+new AMap.DistrictSearch({
+    extensions:'all',
+    subdistrict:0
+}).search('上海市',function(status,result){
+    // 外多边形坐标数组和内多边形坐标数组
+    var outer = [
+        new AMap.LngLat(-360,90,true),
+        new AMap.LngLat(-360,-90,true),
+        new AMap.LngLat(360,-90,true),
+        new AMap.LngLat(360,90,true),
+    ];
+    var holes = result.districtList[0].boundaries
+
+    var pathArray = [
+        outer
+    ];
+    pathArray.push.apply(pathArray,holes)
+    var polygon = new AMap.Polygon( {
+        pathL:pathArray,
+        strokeColor: '#00eeff',
+        strokeWeight: 1,
+        fillColor: '#71B3ff',
+        fillOpacity: 0.5
+    });
+    polygon.setPath(pathArray);
+    map.add(polygon)
+})
+ */
