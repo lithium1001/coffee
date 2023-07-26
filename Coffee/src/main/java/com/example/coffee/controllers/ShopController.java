@@ -41,7 +41,7 @@ public class ShopController {
 
         response.setHeader("Access-Control-Allow-Origin","*");
         Page<Shop> page = new Page<>(pageNum, pageSize);
-        if (sort || district != null || tag != null){
+        if (sort || !Objects.equals(district, "") || !Objects.equals(tag, "")){
             //需要先查询符合条件的所有记录
             QueryWrapper<Shop> query = new QueryWrapper<Shop>();
             List<Shop> shopList;
@@ -53,12 +53,12 @@ public class ShopController {
                 shopList = shopService.list(query);
                 log.info("11");
 
-                if (district != null){
+                if (!Objects.equals(district, "")){
                     shopList.removeIf(shop -> !Objects.equals(shop.getDistrict(), district));
                     log.info("111");
                 }
 
-                if (tag != null){
+                if (!Objects.equals(tag, "")){
                     shopList.removeIf(shop -> !Objects.equals(shop.getTag(), tag));
                     log.info("112");
                 }
@@ -68,10 +68,10 @@ public class ShopController {
             }else {
 
                 log.info("12");
-                if (district != null){
+                if (!Objects.equals(district, "")){
 
                     log.info("121");
-                    if (tag != null){
+                    if (!Objects.equals(tag, "")){
                         query.eq("district", district).equals(query.eq("tag", tag));
                     }else {
                         query.eq("district", district);
@@ -143,8 +143,8 @@ public class ShopController {
         return ShopResult.success(shopVoList);
     }
 
-    @GetMapping("/shopdetail/{name}")  //用户点击shoplist中（或搜索栏中）某一店铺，显示其具体信息
-    public ShopResult shopdetail(@PathVariable String name) {
+    @GetMapping("/shopdetail")  //用户点击shoplist中（或搜索栏中）某一店铺，显示其具体信息
+    public ShopResult shopdetail(@RequestParam String name) {
         log.info("shopdetail, shopName={}", name);
 
         QueryWrapper query = new QueryWrapper<Shop>();
