@@ -52,6 +52,163 @@
             background-color: #fff9f2;
             border-color: #3f271e;
         }
+        .prompt{
+            font-size: 13px;
+        }
+        #prompt_checkpas,#prompt_register,#prompt_login{
+            display: none;
+        }
+        #sign_checkpass{
+            width: 66%;
+        }
+        .person img{
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+        }
+        .dd{
+            padding: 15px;
+            margin: 5px 10px;
+            background: #f6f5f5;
+            color: #323534;
+        }
+        .modal-header{
+            border-bottom: 1px solid rgba(230, 211, 204, 1);
+        }
+        .modal-title{
+            color: #6f3727;
+        }
+        .modal-footer{
+            display: block;
+            padding: 5px;
+            border-top: 1px solid rgba(230, 211, 204, 1);
+        }
+        .modal-footer .btn{
+            border:2px solid rgba(230, 211, 204, 1);
+            color: #3f271e;
+            padding: 6px 15px;
+            border-radius: 5px;
+        }
+        .modal-content{
+            width: 90%;
+            padding: 0 15px;
+            background-color: #f7f5f1;
+        }
+        .modal-content label{
+            font-size: 15px;
+            color: #3f271e;
+        }
+        .modal-footer .btn:hover {
+            color: #fff;
+            background: rgba(230, 211, 204, 1);
+        }
+        .form-control{
+            display: inline-block;
+            width: 85%;
+        }
+        /*footer*/
+        .footer{
+            background-color: #3f271e;
+            background-image: url(img/bg/footer-bg.png);
+            padding-top: 50px;
+        }
+
+        .f-widget-title h2  {
+            font-size: 24px;
+            margin-bottom: 0px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #fff;
+        }
+        .f-widget-title h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 50px;
+        }
+        .f-widget-title img {
+            width: 146px;
+        }
+        .footer-widget td {
+            padding: 5px;
+            text-align: center;
+        }
+        .footer-link ul li {
+            margin-bottom: 10px;
+        }
+        .footer-link ul li a {
+            color: #fff1f0;
+        }
+        .footer-link ul li a:hover {
+            color: #fff;
+        }
+        .footer-widget table {
+            width: 100%;
+            padding: 10px;
+            background: #f5f5f5;
+        }
+        .footer-widget th {
+            background: #e4e4e4;
+            padding: 10px 5px;
+            text-align: center;
+            color: #101010;
+        }
+        .f-contact i {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            line-height: 40px;
+            color: #412720 !important;
+            text-align: center;
+            border-radius: 50%;
+            float: left;
+        }
+        .f-contact a{
+            color:#fffc  !important;
+        }
+        .f-contact a:hover{
+            color: #fffc!important;
+        }
+        .f-contact span{
+            color:#fffc ;
+        }
+        .f-contact h3 {
+            color: #fff;
+            font-size: 24px;
+        }
+        .f-contact .icon {
+            float: left;
+            margin-top: 7px;
+            margin-right: 15px;
+            width: 40px;
+        }
+
+        .f-contact li {
+            float: left;
+            margin-bottom: 15px !important;
+            width: 100%;
+        }
+        .f-contact li:last-child{
+            margin-bottom: 0px !important;
+        }
+        .login-btn .btn {
+            background: #6f3727;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: #fff;
+            padding: 15px 15px;
+            margin:0px 0px;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .login-btn .btn:hover {
+            color: #fff;
+            background: #aa725a;
+        }
+
     </style>
 </head>
 <body>
@@ -64,7 +221,7 @@
                     <div class="header-cta">
                         <ul>
                             <li>
-                                <span>在CoffeeVerse，解锁咖啡的无限世界。</span>
+                                <span>品味世界咖啡，发现咖啡乐趣</span>
                             </li>
 
                         </ul>
@@ -73,8 +230,8 @@
                 <div class="col-lg-4 col-md-4 d-none d-lg-block text-right">
                     <div class="header-social">
                                 <span>
-                                    
-                                   
+
+
                                    </span>
                         <!--  /social media icon redux -->
                     </div>
@@ -83,7 +240,7 @@
                     <div class="header-social">
                                         <span>
                                             <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#" title="LinkedIn"><i class="fab fa-instagram"></i></a>               
+                                            <a href="#" title="LinkedIn"><i class="fab fa-instagram"></i></a>
                                             <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                                             <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
                                            </span>
@@ -136,8 +293,28 @@
                         <div class="login">
                             <ul>
                                 <li>
-                                    <div class="second-header-btn">
-                                        <a href="CoffeeVerse/Person.html" class="btn">登录/注册</a>
+                                    <div class="login-btn">
+                                        <a class="btn" data-target="#loginModal" data-toggle="modal" type="button">
+                                            登录/注册
+                                        </a>
+                                    </div>
+                                    <div class="person pull-right">
+                                        <ul class="nav navbar-nav">
+                                            <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 60px">
+                                                    <img id="myavatar" alt="" class="img-circle" src=""/>
+                                                    <span id="myname" style="color: #FFFFFF;font-size: 16px"></span>
+                                                </a>
+                                                <div class="dropdown-menu" style="background: #FFFFFF;width: 250px;overflow: hidden">
+                                                    <div class="text-center dd" id="toPerson">
+                                                        <i class="fa fa-user"></i> 个人中心
+                                                    </div>
+                                                    <div class="text-center dd" id="byebye">
+                                                        <i class="fa fa-sign-out"></i> 退出登陆界面
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
@@ -154,6 +331,101 @@
     </div>
 </header>
 <!-- header-end -->
+<!--登录注册-->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <i class="far fa-coffee-pot"></i>
+                    登陆&nbsp;welcome to coffeeverse
+                </h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form_login">
+                    <div class="form-group">
+                        <label class="control-label">账号：</label>
+                        <input class="form-control" id="login_username" type="text">
+                    </div>
+                    <div class="pb-1">
+                        <label class="control-label">密码：</label>
+                        <input class="form-control" id="login_password" type="text">
+                    </div>
+                </form>
+                <div class="prompt" id="prompt_login">
+                    <i class="far fa-exclamation-circle"></i>
+                    <span></span>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button class="btn" data-dismiss="modal" data-target="#signModal" data-toggle="modal" type="button">
+                    注册
+                </button>
+                <button class="btn" id="button_login" style="margin-left: 20px" type="button">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="signModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="far fa-coffee-pot"></i>
+                    注册&nbsp;welcome to coffeeverse
+                </h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form_sign">
+                    <div class="form-group">
+                        <label class="control-label">昵称：</label>
+                        <input class="form-control" id="sign_username" type="text">
+                        <div class="prompt" id="prompt_username">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>&nbsp;昵称长度应在2~15之间</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码：</label>
+                        <input class="form-control" id="sign_pass" type="password">
+                        <div class="prompt" id="prompt_pass">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>密码长度应在6~20之间</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">请再次输入密码：</label>
+                        <input class="form-control" id="sign_checkpass" type="password">
+                        <div class="prompt" id="prompt_checkpass">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>两次密码不一致</span>
+                        </div>
+                    </div>
+                    <div class="pb-1">
+                        <label class="control-label">邮箱：</label>
+                        <input class="form-control" id="sign_email" type="text">
+                    </div>
+                </form>
+                <div class="prompt" id="prompt_register">
+                    <i class="far fa-exclamation-circle"></i>
+                    <span></span>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button class="btn" id="button_register" type="button">提交注册</button>
+                <button class="btn" data-dismiss="modal" data-target="#loginModal" data-toggle="modal" style="margin-left: 20px"
+                        type="button">返回登录
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- main-area -->
 <section class="newslater-area p-relative pt-170 pb-170" style="background-color: #f7f5f1;">
     <div class="animations-01"><img src="img/bg/an-img-07.png" alt="contact-bg-an-05"></div>
@@ -355,28 +627,31 @@
                     <div class="skills-content s-about-content mt-20">
                         <div class="skills">
                             <div class="skill mb-30">
-                                <div class="skill-name">Qulity Production</div>
+                                <div class="skill-name">瑞幸</div>
                                 <div class="skill-bar">
                                     <div class="skill-per" id="80"></div>
                                 </div>
                             </div>
                             <div class="skill mb-30">
-                                <div class="skill-name">Maintenance Services</div>
+                                <div class="skill-name">星巴克</div>
                                 <div class="skill-bar">
                                     <div class="skill-per" id="90"></div>
                                 </div>
                             </div>
                             <div class="skill mb-30">
-                                <div class="skill-name">Product Managment</div>
+                                <div class="skill-name">太平洋咖啡</div>
                                 <div class="skill-bar">
                                     <div class="skill-per" id="70"></div>
                                 </div>
                             </div>
 
+
                         </div>
 
-
                     </div>
+                    <h4 style="text-align: right;"> <a href="shop.html"><span style="color: white; border: 3px solid white; padding: 8px 8px; border-radius: 50px;">进入地图<i class="fal fa-long-arrow-right"></i></span></a>
+                    </h4>
+
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
@@ -405,78 +680,15 @@
 
             </div>
             <div class="col-lg-12">
-                <div class="testimonial-active">
-                    <div class="single-testimonial">
-                        <div class="testi-author">
-                            <img src="img/testimonial/testi_avatar.png" alt="img">
-                            <div class="ta-info">
-                                <h6>Jina Nilson</h6>
-                                <span>Client</span>
-                            </div>
-                        </div>
-                        <div class="review-icon">
-                            <img src="img/testimonial/review-icon.png" alt="img">
-                        </div>
-                        <p>“Phasellus aliquam quis lorem amet dapibus feugiat vitae purus vitae efficitur. Vestibulum
-                            sed elit id orci rhoncus ultricies. Morbi vitae semper consequat ipsum semper quam”.</p>
+                <div class="testimonial-active" id="forumList">
+<!--                    <div class="single-testimonial" >-->
+<!--                        <div class="testi-author" >-->
+<!--                            <div class="qt-img">-->
+<!--                                <img src="img/testimonial/qt-icon.png" alt="img">-->
+<!--                            </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                        <div class="qt-img">
-                            <img src="img/testimonial/qt-icon.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="single-testimonial">
-                        <div class="testi-author">
-                            <img src="img/testimonial/testi_avatar_02.png" alt="img">
-                            <div class="ta-info">
-                                <h6>Braitly Dcosta</h6>
-                                <span>Client</span>
-                            </div>
-                        </div>
-                        <div class="review-icon">
-                            <img src="img/testimonial/review-icon.png" alt="img">
-                        </div>
-                        <p>“Phasellus aliquam quis lorem amet dapibus feugiat vitae purus vitae efficitur. Vestibulum
-                            sed elit id orci rhoncus ultricies. Morbi vitae semper consequat ipsum semper quam”.</p>
-
-                        <div class="qt-img">
-                            <img src="img/testimonial/qt-icon.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="single-testimonial">
-                        <div class="testi-author">
-                            <img src="img/testimonial/testi_avatar.png" alt="img">
-                            <div class="ta-info">
-                                <h6>Jina Nilson</h6>
-                                <span>Client</span>
-                            </div>
-                        </div>
-                        <div class="review-icon">
-                            <img src="img/testimonial/review-icon.png" alt="img">
-                        </div>
-                        <p>“Phasellus aliquam quis lorem amet dapibus feugiat vitae purus vitae efficitur. Vestibulum
-                            sed elit id orci rhoncus ultricies. Morbi vitae semper consequat ipsum semper quam”.</p>
-
-                        <div class="qt-img">
-                            <img src="img/testimonial/qt-icon.png" alt="img">
-                        </div>
-                    </div>
-                    <div class="single-testimonial">
-                        <div class="testi-author">
-                            <img src="img/testimonial/testi_avatar_02.png" alt="img">
-                            <div class="ta-info">
-                                <h6>Braitly Dcosta</h6>
-                                <span>Client</span>
-                            </div>
-                        </div>
-                        <div class="review-icon">
-                            <img src="img/testimonial/review-icon.png" alt="img">
-                        </div>
-                        <p>“Phasellus aliquam quis lorem amet dapibus feugiat vitae purus vitae efficitur. Vestibulum
-                            sed elit id orci rhoncus ultricies. Morbi vitae semper consequat ipsum semper quam”.</p>
-
-                        <div class="qt-img">
-                            <img src="img/testimonial/qt-icon.png" alt="img">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -540,7 +752,7 @@
 
                                 <li>
                                     <i class="icon fal fa-map-marker-check"></i>
-                                    <span>地址<br>上海市杨浦区1239号，同济大学</span>
+                                    <span>地址<br>上海市杨浦区四平路1239号，同济大学</span>
                                 </li>
 
                             </ul>
@@ -642,5 +854,7 @@
 <script src="BootStrap/js/bootstrap.js"></script>
 <script src="js/资讯.js"></script>
 <script src="js/搜索.js"></script>
+<script src="js/blockJS/login.js"></script>
+<script src="js/首页社区加载.js"></script>
 </body>
 </html>
