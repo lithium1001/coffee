@@ -28,6 +28,28 @@
     border: 3px solid #76452f;
     margin: 0px auto;
 }
+.mapbtn{
+    height: 1px;
+    position: relative;
+}
+.mapbtn input{
+    position: absolute;
+    top: -50px ;
+    left: 577px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #76452f;
+    color: #76452f;
+    font-size: 15px;
+    padding: 6px 8px;
+}
+
+.mapbtn input:hover{
+    left: 576px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid #76452f;
+    font-size: 16px;
+    font-weight: 500;
+}
 .shopSearch{
     width: 100%;
     padding: 20px;
@@ -127,11 +149,18 @@
 }
 .shopList{
     width: 900px;
-    margin:10px auto;
+    margin:0px auto 10px;
 }
 .shopListItem{
     height: 150px;
     border-bottom: 2px solid #EEEEEE;
+}
+.shopName :hover{
+    cursor: pointer;
+}
+.shopName{
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 .shopListItem img{
     top: 2px;
@@ -147,7 +176,12 @@
     padding-left: 10px;
     margin-left: 10px;
 }
+.shopMark{
+    height: 35px;
+    line-height: 35px;
+}
 .shopInfo p{
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 .paging{

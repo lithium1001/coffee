@@ -1,14 +1,14 @@
 //按照传参初始化
 $(function () {
     // var tem=location.search.split('?');
-    var shopName=window.sessionStorage.getItem("shopname");
-    alert(shopName);
+    var nameS=window.sessionStorage.getItem("shopname");
+    alert(nameS);
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shopdetail",
         dataType: "json",
         data: {
-            shopname: shopName
+            name: nameS
         },
         success: function (shopInfo) {
             alert('没有问题');

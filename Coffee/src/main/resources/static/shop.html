@@ -153,19 +153,19 @@
                     <button class="btn btn1" onclick="clearSelect()" type="button">清空</button>
                 </div>
                 <!--地图显示-->
+
                 <div class="mapDisplay " id="mapContainer">
                     <!--
-                    <div class="input-card">
-                        <h4>地图自适应</h4>
-                        <input id="setFitView" type="button" class="btn" value="地图自适应显示" />
-                    </div>
+
                     <div class="info">
                         <div id="centerCoord"></div>
                         <div id="tips"></div>
                     </div>
                     -->
                 </div>
-
+                <div class="mapbtn" style="float: left">
+                    <input id="setFitView" type="button" class="btn" value="地图自适应显示" />
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="shopSearch">
@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <!--选中的店铺的信息展示 bootstrap组件修改-->
-                <div class="card">
+                <div class="card" id="shopcard">
                     <a href="#">
                         <img alt="" src="img/gallery/protfolio-img02.png"/>
                         <div class="card-body">
@@ -213,33 +213,7 @@
         </div>
     </div>
     <div class="shopList">
-        <!--        <div class="media shopListItem">-->
-        <!--            <img id='shopPicture' class="align-self-center" src="img/gallery/protfolio-img01.png"/>-->
-        <!--            <div class="shopInfo">-->
-        <!--                <h4 id="shopName">店铺名称</h4>-->
-        <!--                <div class="shopMark align-self-center" style="height: 30px">-->
-        <!--                    <span id="rating">店铺评分：4.5分 &nbsp;</span>-->
-        <!--                    <span>-->
-        <!--      <i class="fas fa-star"/></i>-->
-        <!--                        <i class="fas fa-star"/></i>-->
-        <!--                        <i class="fas fa-star"/></i>-->
-        <!--                        <i class="fas fa-star"/></i>-->
-        <!--                        <i class="fad fa-star-half-alt"/></i>-->
-        <!--      </span>-->
-        <!--                    <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span>-->
-        <!--                    <button class="btn " type="button">-->
-        <!--                        收藏 <i class="far fa-heart"/></i>-->
-        <!--                    </button>-->
-        <!--                    <span style="margin-right: 10px">&nbsp;</span>-->
-        <!--                    &lt;!&ndash;收藏按钮 待实现动态&ndash;&gt;-->
-        <!--                    <button class="btn " type="button">-->
-        <!--                        转发 <i class="far fa-share"/></i>-->
-        <!--                    </button>-->
-        <!--                </div>-->
-        <!--                <p id="location">店铺地址</p>-->
-        <!--                <p id="opentime">营业时间</p>-->
-        <!--            </div>-->
-        <!--        </div>-->
+
         <!--bootstrap 分页组件 后续用elementui替换-->
     </div>
     <!--    <nav aria-label="Page navigation example" class="text-center paging">-->
@@ -458,11 +432,8 @@
 
             </div>
         </div>
+    </div>
 
-
-    </div>
-    </div>
-    </div>
     <div class="copyright-wrap">
         <div class="container">
             <div class="row align-items-center">

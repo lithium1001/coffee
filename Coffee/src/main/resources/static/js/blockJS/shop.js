@@ -1,5 +1,5 @@
 window._AMapSecurityConfig = {
-    serviceHost:'http://47.115.230.54/_AMapService'
+    serviceHost: 'http://47.115.230.54/_AMapService'
 };
 
 //创建地图
@@ -24,7 +24,7 @@ var markers = [{
 }];
 
 // 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
-markers.forEach(function(marker) {
+markers.forEach(function (marker) {
     new AMap.Marker({
         map: map,
         icon: marker.icon,
@@ -33,24 +33,36 @@ markers.forEach(function(marker) {
     });
 });
 
+function addMarker() {
+    marker = new AMap.Marker({
+        icon: "/img/坐标.png",
+        position: [116.406315, 39.908775],
+        offset: new AMap.Pixel(-13, -30)
+    });
+    marker.setMap(map);
+}
+
+
 var center = map.getCenter();
 
 //var centerText = '当前中心点坐标：' + center.getLng() + ',' + center.getLat();
 //document.getElementById('centerCoord').innerHTML = centerText;
 //document.getElementById('tips').innerHTML = '成功添加三个点标记，其中有两个在当前地图视野外！';
-/*
-var setFitViewBtn = document.getElementById('setFitView');
+
 // 添加事件监听, 使地图自适应显示到合适的范围
+var setFitViewBtn = document.getElementById('setFitView');
 setFitViewBtn.onclick = function() {
     // 第一个参数为空，表明用图上所有覆盖物 setFitview
     // 第二个参数为false, 非立即执行
     // 第三个参数设置上左下右的空白
     map.setFitView(null, false, [150, 60, 100, 60]);
     var newCenter = map.getCenter();
+};
+/*
     document.getElementById('centerCoord').innerHTML = '当前中心点坐标：' + newCenter.toString();
     document.getElementById('tips').innerHTML = '通过setFitView，地图自适应显示到合适的范围内,点标记已全部显示在视野中！';
-};
- */
+};*/
+
 /*
 //初始化定位
 AMap.plugin('AMap.Geolocation', function() {
@@ -122,14 +134,7 @@ function aMapSearchNearBy(centerPoint) {
 //aMapSearchNearBy([121.215252, 31.286054]);
 */
 // 实例化点标记
-function addMarker() {
-    marker = new AMap.Marker({
-        icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
-        position: [116.406315, 39.908775],
-        offset: new AMap.Pixel(-13, -30)
-    });
-    marker.setMap(map);
-}
+
 
 // 初始化shop界面
 $(function () {
@@ -140,6 +145,14 @@ $(function () {
         success: function (shoplist) {
             // alert('没有问题');
             updateShopInfo(shoplist.data.records);
+            $.each(shoplist.data.records, function (i, a) {
+                marker = new AMap.Marker({
+                    icon: "/img/坐标.png",
+                    position: a.location,
+                    offset: new AMap.Pixel(-13, -30)
+                });
+                marker.setMap(map);
+            })
         },
         error: function () {
             alert('出现问题')
@@ -148,19 +161,18 @@ $(function () {
 });
 
 // 添加店铺信息
-function updateShopInfo(shoplist){
+function updateShopInfo(shoplist) {
     $(".shopList").empty()
     var rows = [];
     $.each(shoplist, function (i, a) {
         rows.push('<div class="media shopListItem"><img class="align-self-center" src="'
             + a.pictureUrl
-            + '"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)" hashId="'
-            + a.shopId + '">'
+            + '"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)">'
             + a.name
-            + '</h4> <div class="shopMark align-self-center" style="height: 30px"> <span id="rating">店铺评分：'
+            + '</h4> <div class="shopMark align-self-center"> <span id="rating">店铺评分：'
             + a.rating
             + '分 &nbsp;</span> <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span> <button class="btn " type="button">收藏 <i class="far fa-heart"></i></button> <span style="margin-right: 10px">&nbsp;</span><button class="btn " type="button">转发 <i class="far fa-share"></i></button></div><p>'
-            + a.location
+            + "上海市"+a.district+a.road+a.number+a.description
             + '</p> <p>'
             + a.opentime + '</p></div></div>')
     })
@@ -169,20 +181,19 @@ function updateShopInfo(shoplist){
 
 // 页面跳转 ok
 function goShop(a) {
-    shopName = $(a).text();
-    //alert(shopName);
-    window.sessionStorage.setItem('shopname',shopName)
+    name = $(a).text();
+    window.sessionStorage.setItem('shopname', name)
     window.location.href = "http://localhost:8080/shop-detail.html";
 }
 
-var sortS=false
-var tagS=null
-var districtS=null
+var sortS = false
+var tagS = null
+var districtS = null
 
-//按照评分赋值
-$("#sortbtn").click(function (){
-    var sortbtn=document.getElementById("sortbtn")
-    var sortnow=sortbtn.classList[1];
+//评分赋值
+$("#sortbtn").click(function () {
+    var sortbtn = document.getElementById("sortbtn")
+    var sortnow = sortbtn.classList[1];
     sortS = sortnow != "no";
     // console.log(sortS);
     $("#sortbtn").toggleClass("yes");
@@ -192,28 +203,37 @@ $("#sortbtn").click(function (){
 
 // 清空选择,ok
 function clearSelect() {
-    $("select").selectpicker('val',['noneSelectedText']);
+    $("select").selectpicker('val', ['noneSelectedText']);
     $("select").selectpicker('refresh');
     selectByTag()
 }
 
+var districtCenter = [[121.53, 31.22], [121.43, 31.18], [121.42, 31.22], [121.40, 31.25], [121.50, 31.27], [121.52, 31.27], [121.48, 31.23], [121.45, 31.23], [121.48, 31.40], [121.38, 31.12], [121.27, 31.38], [121.33, 30.75], [121.22, 31.03], [121.12, 31.15], [121.47, 30.92], [121.40, 31.62]]
+
 //按照筛选赋值
 function selectByTag() {
-    districtS= $("#sel-district").find("option:selected").text()
-    tagS= $("#sel-tag").find("option:selected").text()
+    districtS = $("#sel-district").find("option:selected").text()
+    i = $("#sel-district").find("option:selected").index()
+    if (districtS != null) {
+        //console.log("原" + map.getCenter())
+        map.setCenter(districtCenter[i])
+        map.setZoom(13)
+        //console.log("改" + map.getCenter())
+    }
+    tagS = $("#sel-tag").find("option:selected").text()
     selectShop()
 }
 
-//实际筛选，待后端更新
+//实际筛选
 function selectShop() {
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
         data: {
-            sort:sortS,
-            district:districtS,
-            tag:tagS
+            sort: sortS,
+            district: districtS,
+            tag: tagS
         },
         success: function (shoplist) {
             updateShopInfo(shoplist.data.records);
@@ -224,21 +244,14 @@ function selectShop() {
     })
 }
 
-// 清空选择,ok
-function clearSelect() {
-    $("select").selectpicker('val',['noneSelectedText']);
-    $("select").selectpicker('refresh');
-}
-
-
 //自动联想&回车触发搜索
-$(".search-field").keyup(function (e){
-    var searchKey=$(".search-field").val()
+$(".search-field").keyup(function (e) {
+    var searchKey = $(".search-field").val()
     // console.log(searchKey)
-    if(searchKey==""||searchKey==" "){
+    if (searchKey == "" || searchKey == " ") {
         return
     }
-    if(e.keyCode=="13"){
+    if (e.keyCode == "13") {
         search()
     }
     $.ajax({
@@ -246,12 +259,12 @@ $(".search-field").keyup(function (e){
         url: "http://localhost:8080/coffee-shop/searchshop",
         dataType: "json",
         data: {
-            keyword:searchKey
+            keyword: searchKey
         },
         success: function (searchValue) {
             $("#valueList").empty()
-            if(searchValue.data!=[]){
-                $("#valueList").attr("style","display:block")
+            if (searchValue.data != []) {
+                $("#valueList").attr("style", "display:block")
                 var rows = [];
                 $.each(searchValue.data, function (i, a) {
                     rows.push('<div class="valueListItem" onclick="setInput(this)">' + a.name + '</div>')
@@ -266,25 +279,26 @@ $(".search-field").keyup(function (e){
 })
 
 //点击自动联想选项进行搜索
-function setInput(a){
+function setInput(a) {
     // console.log($(a).text())
     $(".search-field").val($(a).text())
-    $("#valueList").attr("style","display:none")
+    $("#valueList").attr("style", "display:none")
     search()
 }
 
 //搜索
-function search(){
-    var searchKey=$(".search-field").val()
+function search() {
+    var searchKey = $(".search-field").val()
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/searchshop",
         dataType: "json",
         data: {
-            keyword:searchKey
+            keyword: searchKey
         },
         success: function (searchResult) {
             updateShopInfo(searchResult.data)
+            location.hash='shopcard'
         },
         error: function () {
             alert('搜索出现问题')
