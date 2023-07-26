@@ -178,7 +178,9 @@
             color: #fff;
             background: #aa725a;
         }
-
+         .red {
+             color: red;
+         }
     </style>
 </head>
 <body>
@@ -400,11 +402,11 @@
                 </div>
                 <div class="textwidget custom-html-widget">
                     <div class="widget-social">
-                        <a href="#" style="margin-right: 50px;"><i class="fab fa-gratipay"></i>
+                        <a href="#" style="margin-right: 50px;" id="likeButton"><i class="fab fa-gratipay"></i>
                             <p>点赞</p></a>
                         <a href="#" style="margin-right:50px;"><i class=" fas fa-star"></i>
                             <p>收藏</p></a>
-                        <a href="#" style="margin-right:50px;"><i class="fas fa-share"></i>
+                        <a href="#" style="margin-right:50px;"  id="copyButton"><i class="fas fa-share"></i>
                             <p>分享</p></a>
 
                     </div>
@@ -606,5 +608,12 @@
 <script src="js/详情.js"></script>
 <script src="js/new.js"></script>
 <script src="js/blockJS/login.js"></script>
+<script>
+    var likeButton = document.getElementById('likeButton');
+    likeButton.addEventListener('click', function() {
+        var icon = likeButton.querySelector('i');
+        icon.classList.add('red');
+    });
+</script>
 </body>
 </html>
