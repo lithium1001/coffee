@@ -4,6 +4,7 @@ package com.example.coffee.service.Impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.coffee.Jwt.JwtUtil;
+import com.example.coffee.MD5;
 import com.example.coffee.common.Exception.ApiAsserts;
 import com.example.coffee.dto.LoginDTO;
 import com.example.coffee.dto.RegisterDTO;
@@ -41,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         User addUser = User.builder()
                 .username(dto.getName())
-                .password(dto.getPass())
+                .password(MD5.getPwd(dto.getPass()))
                 .email(dto.getEmail())
                 .build();
         baseMapper.insert(addUser);
@@ -57,7 +58,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String token = null;
         try {
             User user = getUserByUsername(dto.getUsername());
-            String Pwd =dto.getPassword();
+            String Pwd =MD5.getPwd(dto.getPassword());
             if(!Pwd.equals(user.getPassword()))
             {
                 throw new Exception("密码错误");
