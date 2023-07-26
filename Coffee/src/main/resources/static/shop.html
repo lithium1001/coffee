@@ -22,7 +22,8 @@
     <!--地图-->
     <link href="https://cache.amap.com/lbs/static/main1119.css" rel="stylesheet"/>
     <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
-    <script src="https://webapi.amap.com/maps?v=1.4.8&key=c63790e173e5c52c26b68bed8ecc18ea"></script>
+    <!--接入高德API的key-->
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c63790e173e5c52c26b68bed8ecc18ea"></script>
     <script src="https://cache.amap.com/lbs/static/addToolbar.js" type="text/javascript"></script>
 
     <!--  没用到的-->
@@ -151,7 +152,19 @@
                     <button class="btn btn1" onclick="clearSelect()" type="button">清空</button>
                 </div>
                 <!--地图显示-->
-                <div class="mapDisplay " id="mapContainer"></div>
+                <div class="mapDisplay " id="mapContainer">
+                    <!--
+                    <div class="input-card">
+                        <h4>地图自适应</h4>
+                        <input id="setFitView" type="button" class="btn" value="地图自适应显示" />
+                    </div>
+                    <div class="info">
+                        <div id="centerCoord"></div>
+                        <div id="tips"></div>
+                    </div>
+                    -->
+                </div>
+
             </div>
             <div class="col-lg-4">
                     <!-- 搜索-->

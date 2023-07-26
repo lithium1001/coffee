@@ -1,51 +1,107 @@
-//地图
+window._AMapSecurityConfig = {
+    serviceHost:'http://47.115.230.54/_AMapService'
+};
+
+//创建地图
 var map = new AMap.Map('mapContainer', {
     resizeEnable: true,
     zoom: 11,
-    center: [121.215252, 31.286054]
+    center: [121.47, 31.23]  //上海市中心点的经纬度
 });
+
+map.clearMap();  // 清除地图覆盖物
+
+//这些markers需要向后端发起请求，调取数据库内容，然后填充，下面只是一些示例
+var markers = [{
+    icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-1.png',
+    position: [121.89, 31.44]
+}, {
+    icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-2.png',
+    position: [121.13, 31.31]
+}, {
+    icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-3.png',
+    position: [121.66, 31.21]
+}];
+
+// 添加一些分布不均的点到地图上,地图上添加三个点标记，作为参照
+markers.forEach(function(marker) {
+    new AMap.Marker({
+        map: map,
+        icon: marker.icon,
+        position: [marker.position[0], marker.position[1]],
+        offset: new AMap.Pixel(-13, -30)
+    });
+});
+
+var center = map.getCenter();
+
+//var centerText = '当前中心点坐标：' + center.getLng() + ',' + center.getLat();
+//document.getElementById('centerCoord').innerHTML = centerText;
+//document.getElementById('tips').innerHTML = '成功添加三个点标记，其中有两个在当前地图视野外！';
+/*
+var setFitViewBtn = document.getElementById('setFitView');
+// 添加事件监听, 使地图自适应显示到合适的范围
+setFitViewBtn.onclick = function() {
+    // 第一个参数为空，表明用图上所有覆盖物 setFitview
+    // 第二个参数为false, 非立即执行
+    // 第三个参数设置上左下右的空白
+    map.setFitView(null, false, [150, 60, 100, 60]);
+    var newCenter = map.getCenter();
+    document.getElementById('centerCoord').innerHTML = '当前中心点坐标：' + newCenter.toString();
+    document.getElementById('tips').innerHTML = '通过setFitView，地图自适应显示到合适的范围内,点标记已全部显示在视野中！';
+};
+ */
+/*
 //初始化定位
-map.plugin('AMap.Geolocation', function () {
-    geolocation = new AMap.Geolocation({
-        enableHighAccuracy: true,//是否使用高精度定位，默认:true
-        timeout: 10000,          //超过10秒后停止定位，默认：无穷大
-        maximumAge: 0,           //定位结果缓存0毫秒，默认：0
-        convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-        showButton: true,        //显示定位按钮，默认：true
-        buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
-        buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-        showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
-        showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
-        panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
-        zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+AMap.plugin('AMap.Geolocation', function() {
+    var geolocation = new AMap.Geolocation({
+        enableHighAccuracy: true,               //是否使用高精度定位
+        timeout: 10,                            //停止定位
+        maximumAge: 0,                          //定位结果缓存
+        convert: true,                          //自动偏移坐标，偏移后的坐标为高德坐标
+        showButton: true,                       //显示定位按钮
+        buttonPosition: 'LB',                   //定位按钮停靠位置
+        buttonOffset: new AMap.Pixel(10, 20),   //定位按钮与设置的停靠位置的偏移量
+        showMarker: true,                       //定位成功后在定位到的位置显示点标记
+        showCircle: true,                       //定位成功后用圆圈表示定位精度范围
+        panToLocation: true,                    //定位成功后将定位到的位置作为地图中心点
+        zoomToAccuracy:true                     //定位成功后调整地图视野范围使定位位置及精度范围视野内可见
     });
     map.addControl(geolocation);
-    geolocation.getCurrentPosition();
-    AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-    AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    geolocation.getCurrentPosition(function(status,result){
+        if(status === 'complete'){
+            onSuc(result)
+        }else{
+            onError(result)
+        }
+    });
 });
-function onComplete(obj){
-    var res = '经纬度：' + obj.position +
-        '\n精度范围：' + obj.accuracy +
-        '米\n定位结果的来源：' + obj.location_type +
-        '\n状态信息：' + obj.info +
-        '\n地址：' + obj.formattedAddress +
-        '\n地址信息：' + JSON.stringify(obj.addressComponent, null, 4);
-    console.log("当前位置信息"+res);
+
+//解析定位结果
+function onSuc(data){
+    var res = 'position:' + data.position +
+        '\naccuracy:' + data.accuracy +
+        'm\nsource:' + data.location_type +
+        '\nstatus:' + data.info +
+        '\nisConverted:' + (data.isConverted ? '是' : '否') +
+        '\naddress:' + data.formattedAddress +
+        '\naddressinfo:' + JSON.stringify(data.addressComponent, null, 4);
+    console.log("当前位置信息：\n" + res);
 }
 
-function onError(obj) {
-    alert(obj.info + ',,,,' + obj.message);
-    console.log(obj);
+//解析定位错误信息
+function onError(data){
+    alert(data.info + " & " + data.message);
+    console.log(data);
 }
 
 // 高德地图查询周边
-function aMapSearchNearBy(centerPoint, city) {
+function aMapSearchNearBy(centerPoint) {
     AMap.service(["AMap.PlaceSearch"], function() {
         var placeSearch = new AMap.PlaceSearch({
-            pageSize: 20,    // 每页10条
-            pageIndex: 1,    // 获取第一页
-            city: city      // 指定城市名(如果你获取不到城市名称，这个参数也可以不传，注释掉)
+            pageSize: 20,
+            pageIndex: 1,
+            city: "上海"
         });
 
         // 第一个参数是关键字，这里传入的空表示不需要根据关键字过滤
@@ -56,15 +112,24 @@ function aMapSearchNearBy(centerPoint, city) {
             if(result.info === 'OK') {
                 console.log(result);
                 var locationList = result.poiList.pois; // 周边地标建筑列表
-                // 生成地址列表html　　　　　　　　　 createLocationHtml(locationList);
+                // 生成地址列表html　　createLocationHtml(locationList);
             } else {
                 console.log('获取位置信息失败!');
             }
         });
     });
 }
-aMapSearchNearBy([118.76431,31.9844], '');
-
+//aMapSearchNearBy([121.215252, 31.286054]);
+*/
+// 实例化点标记
+function addMarker() {
+    marker = new AMap.Marker({
+        icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png",
+        position: [116.406315, 39.908775],
+        offset: new AMap.Pixel(-13, -30)
+    });
+    marker.setMap(map);
+}
 
 
 

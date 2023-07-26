@@ -112,3 +112,7 @@
     border: none;
     font-weight: 500;
 }
+.amap-icon img{
+    width: 25px;
+    height: 34px;
+}
