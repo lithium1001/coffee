@@ -122,7 +122,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.example.coffee.CoffeeApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>

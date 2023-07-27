@@ -6,7 +6,7 @@ searchInput.addEventListener('input', function() {
 
     // 使用 AJAX 请求 JSON 数据
     $.ajax({
-        url: 'http://localhost:8080/CoffeeVerse/articles',
+        url: 'http://47.115.230.54:8080/CoffeeVerse/articles',
         type: 'GET',
         dataType: 'json',
         success: function(jsonData) {

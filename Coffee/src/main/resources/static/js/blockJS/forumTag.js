@@ -3,7 +3,7 @@ var tagname=window.sessionStorage.getItem("tagname")
 $(function () {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/tag"+tagname,
+        url: "http://47.115.230.54:8080/tag"+tagname,
         dataType: "json",
         success: function (forumlist) {
             $("#forumList").empty()

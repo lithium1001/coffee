@@ -139,7 +139,7 @@ function addCluster(tag) {
 $(function () {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shoplist",
+        url: "http://47.115.230.54:8080/coffee-shop/shoplist",
         dataType: "json",
         success: function (shoplist) {
             // alert('没有问题');
@@ -188,7 +188,7 @@ function updateShopInfo(shoplist) {
 function goShop(a) {
     name = $(a).text();
     window.sessionStorage.setItem('shopname', name)
-    window.location.href = "http://localhost:8080/shop-detail.html";
+    window.location.href = "http://47.115.230.54:8080/shop-detail.html";
 }
 
 var sortS = false
@@ -233,7 +233,7 @@ function selectByTag() {
 function selectShop() {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shoplist",
+        url: "http://47.115.230.54:8080/coffee-shop/shoplist",
         dataType: "json",
         data: {
             sort: sortS,
@@ -262,7 +262,7 @@ $(".search-field").keyup(function (e) {
     }
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/searchshop",
+        url: "http://47.115.230.54:8080/coffee-shop/searchshop",
         dataType: "json",
         data: {
             keyword: searchKey
@@ -297,7 +297,7 @@ function search() {
     var searchKey = $(".search-field").val()
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/searchshop",
+        url: "http://47.115.230.54:8080/coffee-shop/searchshop",
         dataType: "json",
         data: {
             keyword: searchKey
@@ -346,7 +346,7 @@ map.setFitView();
 $("#shopcard").click(function () {
     name = $(".card-title").text();
     window.sessionStorage.setItem('shopname', name)
-    window.location.href = "http://localhost:8080/shop-detail.html";
+    window.location.href = "http://47.115.230.54:8080/shop-detail.html";
 })
 
 function addColletion(a){

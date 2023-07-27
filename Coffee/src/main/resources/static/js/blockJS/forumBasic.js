@@ -12,7 +12,7 @@ $(".search-field").keyup(function (e) {
     }
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/search",
+        url: "http://47.115.230.54:8080/search",
         dataType: "json",
         data: {
             keyword: searchKey
@@ -47,7 +47,7 @@ function search() {
     var searchKey = $(".search-field").val()
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/search",
+        url: "http://47.115.230.54:8080/search",
         dataType: "json",
         data: {
             keyword: searchKey
@@ -95,7 +95,7 @@ $("#button_forum").click(function(){
     }
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/post/create",
+        url: "http://47.115.230.54:8080/post/create",
         data: JSON.stringify(info),
         contentType : "application/json",
         dataType: "json",

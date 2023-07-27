@@ -2,7 +2,7 @@
 $(function () {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/list",
+        url: "http://47.115.230.54:8080/post/list",
         dataType: "json",
         success: function (forumlist) {
             $("#forumList").empty()
@@ -42,14 +42,14 @@ function goPerson(a) {
     userId = $(a).attr("hashId");
     alert('个人主页跳转'+ userId);
     window.sessionStorage.setItem("userId",userId)
-    window.location.href = "http://localhost:8080/Person.html";
+    window.location.href = "http://47.115.230.54:8080/Person.html";
 }
 // 页面跳转到详细页面
 function goForum(a) {
     var postId = $(a).attr("hashId");
     alert('论坛页面跳转'+ postId);
     window.sessionStorage.setItem("postId",postId)
-    window.location.href = "http://localhost:8080/forum-detail.html";
+    window.location.href = "http://47.115.230.54:8080/forum-detail.html";
 }
 
 //是否按热度排序
@@ -66,7 +66,7 @@ $("#sortByHot").click(function(){
     }
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/list",
+        url: "http://47.115.230.54:8080/post/list",
         dataType: "json",
         data:{
             tab: sort
@@ -88,5 +88,5 @@ function goTag(){
     tagname = $(a).text();
     alert('tag跳转'+ userId);
     window.sessionStorage.setItem("tagname",tagname)
-    window.location.href = "http://localhost:8080/forumTag.html";
+    window.location.href = "http://47.115.230.54:8080/forumTag.html";
 }

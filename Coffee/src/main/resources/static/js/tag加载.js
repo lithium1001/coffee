@@ -6,7 +6,7 @@ $(document).ready(function () {
     tagTitle.innerText = getQueryString("name");
     if (id === "1") {
         $.ajax({
-            url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=资讯',  // 替换为实际的文本文件路径
+            url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=资讯',  // 替换为实际的文本文件路径
             type: 'GET',
             dataType: 'json',
             success: function (json) {
@@ -21,7 +21,7 @@ $(document).ready(function () {
     } else if (id === "2") {
         console.log(1)
         $.ajax({
-            url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=行业报告',  // 替换为实际的文本文件路径
+            url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=行业报告',  // 替换为实际的文本文件路径
             type: 'GET',
             dataType: 'json',
             success: function (json) {
@@ -36,7 +36,7 @@ $(document).ready(function () {
         });
     } else {
         $.ajax({
-            url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=赛事',  // 替换为实际的文本文件路径
+            url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=赛事',  // 替换为实际的文本文件路径
             type: 'GET',
             dataType: 'json',
             success: function (json) {

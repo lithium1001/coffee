@@ -9,7 +9,7 @@ $(function () {
     alert(nameS);
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shopdetail",
+        url: "http://47.115.230.54:8080/coffee-shop/shopdetail",
         dataType: "json",
         data: {
             name: nameS

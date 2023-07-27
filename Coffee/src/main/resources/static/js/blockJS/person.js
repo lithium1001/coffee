@@ -2,7 +2,7 @@
 $(document).ready(function () {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/user/" + window.localStorage.getItem("myname"),
+        url: "http://47.115.230.54:8080/user/" + window.localStorage.getItem("myname"),
         dataType: "json",
         success: function (personInfo) {
             // alert('没有问题');
@@ -37,7 +37,7 @@ $("#modifyInfo").click(function () {
     }
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/user/update",
+        url: "http://47.115.230.54:8080/user/update",
         data: JSON.stringify(info),
         headers: {
             "Authorization": "Bearer " + window.localStorage.getItem("token")
@@ -65,18 +65,18 @@ $("#avatar").change(function (e) {
 
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/user/avatar",
+        url: "http://47.115.230.54:8080/user/avatar",
         data: formData,
         contentType: false,
         processData: false,
         success: function (res) {
-            $("#avatar_src").val("http://localhost:8080"+res.data.imgUrl)
+            $("#avatar_src").val("http://47.115.230.54:8080"+res.data.imgUrl)
             alert("头像上传成功！")
         }
     })
 })
 $("#logout").click(function () {
     window.localStorage.clear();
-    window.location.href = "http://localhost:8080/首页.html"
+    window.location.href = "http://47.115.230.54:8080/首页.html"
 })
 

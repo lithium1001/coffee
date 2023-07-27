@@ -8,7 +8,7 @@ $("#button_login").click(function () {
     }
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/user/login",
+        url: "http://47.115.230.54:8080/user/login",
         data: JSON.stringify(info),
         contentType: "application/json",
         dataType: "json",
@@ -102,7 +102,7 @@ $("#button_register").click(function () {
     }
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/user/register",
+        url: "http://47.115.230.54:8080/user/register",
         data: JSON.stringify(info),
         contentType: "application/json",
         dataType: "json",
@@ -157,7 +157,7 @@ $(function () {
 
 //跳转个人页面
 $("#toPerson").click(function () {
-    window.location.href = "http://localhost:8080/Person.html";
+    window.location.href = "http://47.115.230.54:8080/Person.html";
 })
 
 $("#byebye").click(function () {

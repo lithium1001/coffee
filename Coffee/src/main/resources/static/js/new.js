@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=all',  // 替换为实际的文本文件路径
+        url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=all',  // 替换为实际的文本文件路径
         type: 'GET',
         dataType: 'json',
         success: function (json) {

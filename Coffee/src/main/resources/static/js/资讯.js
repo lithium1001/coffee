@@ -3,7 +3,7 @@
 $(document).ready(function () {
     // 发起 Ajax 请求
     $.ajax({
-        url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=资讯',  // 替换为实际的文本文件路径
+        url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=资讯',  // 替换为实际的文本文件路径
         type: 'GET',
         dataType: 'json',
         success: function (json) {
@@ -18,7 +18,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=行业报告',  // 替换为实际的文本文件路径
+        url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=行业报告',  // 替换为实际的文本文件路径
         type: 'GET',
         dataType: 'json',
         success: function (json) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
         }
     });
     $.ajax({
-        url: 'http://localhost:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=赛事',  // 替换为实际的文本文件路径
+        url: 'http://47.115.230.54:8080/CoffeeVerse/articles?pageNum=1&pageSize=10&filter=赛事',  // 替换为实际的文本文件路径
         type: 'GET',
         dataType: 'json',
         success: function (json) {

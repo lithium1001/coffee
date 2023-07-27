@@ -2,7 +2,7 @@
 $(function () {
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/list",
+        url: "http://47.115.230.54:8080/post/list",
         dataType: "json",
         success: function (forumlist) {
             // updateForumInfo(forumlist);

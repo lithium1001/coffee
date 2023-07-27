@@ -5,7 +5,7 @@ $(function () {
     //初始化主贴
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/detail",
+        url: "http://47.115.230.54:8080/post/detail",
         dataType: "json",
         data: {
             id: postId
@@ -27,7 +27,7 @@ $(function () {
     //按照传参初始化评论列表
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/comment/get_comments",
+        url: "http://47.115.230.54:8080/comment/get_comments",
         dataType: "json",
         data: {
             postid: postId
@@ -96,7 +96,7 @@ $('#sendReview').click(function (){
     }
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/comment/add_comment",
+        url: "http://47.115.230.54:8080/comment/add_comment",
         data: JSON.stringify(info),
         contentType : "application/json",
         dataType: "json",
@@ -119,7 +119,7 @@ function goPerson(a) {
     userId = $(a).attr("hashId");
     alert('个人主页跳转'+ userId);
     window.sessionStorage.setItem("userId",userId)
-    window.location.href = "http://localhost:8080/Person.html"
+    window.location.href = "http://47.115.230.54:8080/Person.html"
 }
 
 function toAddReview(){
