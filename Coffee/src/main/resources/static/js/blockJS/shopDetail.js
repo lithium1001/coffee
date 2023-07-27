@@ -2,6 +2,10 @@
 $(function () {
     // var tem=location.search.split('?');
     var nameS=window.sessionStorage.getItem("shopname");
+    var tem=location.search.split('?');
+    if(tem[1]!=''&&tem[1]!=null&&tem.length!=0){
+        nameS=tem[1]
+    }
     alert(nameS);
     $.ajax({
         type: "get",
@@ -12,11 +16,11 @@ $(function () {
         },
         success: function (shopInfo) {
             alert('没有问题');
-            var a=shopInfo.data.records[0];
+            var a=shopInfo.data;
             $(".forumtitle").text(a.name);
             $(".pictureUrl").attr("src",a.pictureUrl);
             // alert($(".pictureUrl").attr("src"));
-            $("#location").text("上海市"+a.district+a.road+a.number+a.description);
+            $("#location").text("上海市"+a.district+a.road+a.number);
             $("#phone").text(a.phone);
             $("#rating").text(a.rating);
             $("#opentime").text(a.opentime);

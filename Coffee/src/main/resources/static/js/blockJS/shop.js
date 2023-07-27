@@ -7,17 +7,6 @@ var map = new AMap.Map('mapContainer', {
     resizeEnable: true,
     zoom: 11,
     center: [121.47, 31.23]  //上海市中心点的经纬度
-    /*
-    layers:[
-        new AMap.TileLayer.RoadNet({
-            zIndex:20
-        }),
-        new AMap.TileLayer({
-            zIndex:6,
-            opacity:1,
-            getTileUrl:'https://t{1,2,3,4}.tianditu.gov.cn/DataServer?T=ter_w&x=[x]&y=[y]&l=[z]'
-        })]
-     */
 });
 
 map.clearMap();  // 清除地图覆盖物
@@ -53,17 +42,11 @@ function addMarker() {
     marker.setMap(map);
 }
 
-
 var center = map.getCenter();
-
-//var centerText = '当前中心点坐标：' + center.getLng() + ',' + center.getLat();
-//document.getElementById('centerCoord').innerHTML = centerText;
-//document.getElementById('tips').innerHTML = '成功添加三个点标记，其中有两个在当前地图视野外！';
 
 // 添加事件监听, 使地图自适应显示到合适的范围
 var setFitViewBtn = document.getElementById('setFitView');
-var setFitViewBtn = document.getElementById('setFitView');
-setFitViewBtn.onclick = function() {
+setFitViewBtn.onclick=function(){
     // 第一个参数为空，表明用图上所有覆盖物 setFitview
     // 第二个参数为false, 非立即执行
     // 第三个参数设置上左下右的空白
@@ -71,76 +54,6 @@ setFitViewBtn.onclick = function() {
     var newCenter = map.getCenter();
 };
 
-/*
-//初始化定位
-AMap.plugin('AMap.Geolocation', function() {
-    var geolocation = new AMap.Geolocation({
-        enableHighAccuracy: true,               //是否使用高精度定位
-        timeout: 10,                            //停止定位
-        maximumAge: 0,                          //定位结果缓存
-        convert: true,                          //自动偏移坐标，偏移后的坐标为高德坐标
-        showButton: true,                       //显示定位按钮
-        buttonPosition: 'LB',                   //定位按钮停靠位置
-        buttonOffset: new AMap.Pixel(10, 20),   //定位按钮与设置的停靠位置的偏移量
-        showMarker: true,                       //定位成功后在定位到的位置显示点标记
-        showCircle: true,                       //定位成功后用圆圈表示定位精度范围
-        panToLocation: true,                    //定位成功后将定位到的位置作为地图中心点
-        zoomToAccuracy:true                     //定位成功后调整地图视野范围使定位位置及精度范围视野内可见
-    });
-    map.addControl(geolocation);
-    geolocation.getCurrentPosition(function(status,result){
-        if(status === 'complete'){
-            onSuc(result)
-        }else{
-            onError(result)
-        }
-    });
-});
-
-//解析定位结果
-function onSuc(data){
-    var res = 'position:' + data.position +
-        '\naccuracy:' + data.accuracy +
-        'm\nsource:' + data.location_type +
-        '\nstatus:' + data.info +
-        '\nisConverted:' + (data.isConverted ? '是' : '否') +
-        '\naddress:' + data.formattedAddress +
-        '\naddressinfo:' + JSON.stringify(data.addressComponent, null, 4);
-    console.log("当前位置信息：\n" + res);
-}
-
-//解析定位错误信息
-function onError(data){
-    alert(data.info + " & " + data.message);
-    console.log(data);
-}
-
-// 高德地图查询周边
-function aMapSearchNearBy(centerPoint) {
-    AMap.service(["AMap.PlaceSearch"], function() {
-        var placeSearch = new AMap.PlaceSearch({
-            pageSize: 20,
-            pageIndex: 1,
-            city: "上海"
-        });
-
-        // 第一个参数是关键字，这里传入的空表示不需要根据关键字过滤
-        // 第二个参数是经纬度，数组类型
-        // 第三个参数是半径，周边的范围
-        // 第四个参数为回调函数
-        placeSearch.searchNearBy('', centerPoint, 200, function(status, result) {
-            if(result.info === 'OK') {
-                console.log(result);
-                var locationList = result.poiList.pois; // 周边地标建筑列表
-                // 生成地址列表html　　createLocationHtml(locationList);
-            } else {
-                console.log('获取位置信息失败!');
-            }
-        });
-    });
-}
-//aMapSearchNearBy([121.215252, 31.286054]);
-*/
 
 //点聚合
 /*var cluster, markers = [];
@@ -219,8 +132,8 @@ function addCluster(tag) {
     } else {//默认样式
         cluster = new AMap.MarkerClusterer(map, markers, {gridSize: 80});
     }
-     */
-}
+
+} */
 
 // 初始化shop界面
 $(function () {
@@ -238,6 +151,12 @@ $(function () {
                     offset: new AMap.Pixel(-13, -30)
                 });
                 marker.setMap(map);
+                AMap.event.addListener(marker, 'click', function () {
+                    $(".card-title").text(a.name)
+                    $("#card-location").text("上海市"+a.district+a.road+a.number)
+                    $("#card-time").text(a.opentime)
+                    $("#card-picture").attr("src",a.pictureUrl)
+                });
             })
         },
         error: function () {
@@ -257,8 +176,8 @@ function updateShopInfo(shoplist) {
             + a.name
             + '</h4> <div class="shopMark align-self-center"> <span id="rating">店铺评分：'
             + a.rating
-            + '分 &nbsp;</span> <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span> <button class="btn " type="button">收藏 <i class="far fa-heart"></i></button> <span style="margin-right: 10px">&nbsp;</span><button class="btn " type="button">转发 <i class="far fa-share"></i></button></div><p>'
-            + "上海市"+a.district+a.road+a.number+a.description
+            + '分 &nbsp;</span> <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span> <button class="btn" type="button" onclick="addColletion(this)">收藏 <i class="far fa-heart"></i></button> <span style="margin-right: 10px">&nbsp;</span><button class="btn " type="button">转发 <i class="far fa-share"></i></button></div><p>'
+            + "上海市"+a.district+a.road+a.number
             + '</p> <p>'
             + a.opentime + '</p></div></div>')
     })
@@ -393,7 +312,7 @@ function search() {
 }
 
 //地图标记点信息
-var layer = new AMap.LabelsLayer({
+/*var layer = new AMap.LabelsLayer({
     zooms: [3, 20],
     zIndex: 1000,
     // 开启标注避让，默认为开启，v1.4.15 新增属性
@@ -421,47 +340,15 @@ for (var i = 0; i < LabelsData.length; i++) {
 
 map.setFitView();
 
-//标记点击事件
-//需要在添加marker标记时就绑定
-function addMarker() {
-    map.clearMap();
-    var marker = new AMap.Marker({
-        map: map,
-        position: [116.481181, 39.989792]
-    });
-    //鼠标点击marker绑定事件
-    AMap.event.addListener(marker, 'click', function () {
-        //infoWindow.open(map, marker.getPosition());
-    });
-}
+*/
 
-//地区遮罩
-/*
-new AMap.DistrictSearch({
-    extensions:'all',
-    subdistrict:0
-}).search('上海市',function(status,result){
-    // 外多边形坐标数组和内多边形坐标数组
-    var outer = [
-        new AMap.LngLat(-360,90,true),
-        new AMap.LngLat(-360,-90,true),
-        new AMap.LngLat(360,-90,true),
-        new AMap.LngLat(360,90,true),
-    ];
-    var holes = result.districtList[0].boundaries
-
-    var pathArray = [
-        outer
-    ];
-    pathArray.push.apply(pathArray,holes)
-    var polygon = new AMap.Polygon( {
-        pathL:pathArray,
-        strokeColor: '#00eeff',
-        strokeWeight: 1,
-        fillColor: '#71B3ff',
-        fillOpacity: 0.5
-    });
-    polygon.setPath(pathArray);
-    map.add(polygon)
+$("#shopcard").click(function () {
+    name = $(".card-title").text();
+    window.sessionStorage.setItem('shopname', name)
+    window.location.href = "http://localhost:8080/shop-detail.html";
 })
- */
+
+function addColletion(a){
+    
+
+}

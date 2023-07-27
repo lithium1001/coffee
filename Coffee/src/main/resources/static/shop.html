@@ -6,10 +6,6 @@
     <title>CoffeeVerse-解锁咖啡的无限世界</title>
     <meta content="" name="description">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <!--框架: 我另外导入了bootstrap框架,版本号4.6.2,选了v4没选v5;
-        第三方库:animate是动态效果库，链接https://animate.style；fontawesome是图标库，链接https://fontawesome.com.cn/；dripicons也是图标库,我这边没有用到,感觉能够被fontawesome替换;
-        插件（和js配套）:magnific-popu动态弹出图片的插件;slick图片轮播的插件；meanmenu响应式导航插件；
-        其他：default 基础样式表；responsive 响应式样式-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="fontawesome/css/all.min.css" rel="stylesheet">
@@ -171,14 +167,12 @@
                 </div>
                 <!--选中的店铺的信息展示 bootstrap组件修改-->
                 <div class="card" id="shopcard">
-                    <a href="#">
-                        <img alt="" src="img/gallery/protfolio-img02.png"/>
-                        <div class="card-body">
+                    <img alt="" src="img/gallery/protfolio-img02.png" id="card-picture"/>
+                    <div class="card-body">
                             <h5 class="card-title">店铺名称</h5>
-                            <p class="card-text">店铺地址</p>
-                            <p class="card-text">营业时间</p>
-                        </div>
-                    </a>
+                            <p class="card-text" id="card-location">店铺地址</p>
+                            <p class="card-text" id="card-time">营业时间</p>
+                    </div>
                 </div>
             </div>
         </div>
