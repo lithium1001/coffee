@@ -15,5 +15,17 @@ mybatis-plus:
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
+    # qiniu
+    qiniu:
+      url: ryg646frj.hn-bkt.clouddn.com
+
+      accessKey: bucVkkzhyf6CoOQMCZPXwyOgecD2BTr8d5kHwwMR
+
+      accessSecretKey: R1zBGVud6j-6pv1UA_P9ROgT9iiWpannb_XrXzcj
+
+      bucket: imageserver111
+
+
+
 coffee:
   profile: D:/coffee/uploadPath

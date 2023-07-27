@@ -13,6 +13,7 @@ import com.example.coffee.pojo.Post;
 import com.example.coffee.pojo.User;
 import com.example.coffee.service.PostService;
 import com.example.coffee.service.UserService;
+import com.example.coffee.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.util.Assert;
@@ -112,6 +113,9 @@ public class UserController {
         iUmsUserService.updateById(cUser);
         Map<String, Object> map = new HashMap<>();
         map.put("imgUrl",avatar);
+       /* public Result uploadMultiFileToQiniu(@RequestPart("files") MultipartFile[] files){
+            return uploadService.uploadFileToQiniu(files);
+        }*/
         return ApiResult.success(map);
     }
 }
