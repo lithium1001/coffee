@@ -1,6 +1,6 @@
 .forum{
     font-family: 宋体;
-    padding: 20px;
+    padding: 0px 20px 10px;
 }
 
 .personalInfo img{
@@ -32,34 +32,17 @@
     line-height:1.3rem;
     font-size: 14px;
 }
-.forumSearch{
-    width: 100%;
-    padding: 25px;
-    margin-top: 75px;
-    background: #f7f5f1;
-    height: auto;
+
+.forumtop .no{
+    color: rgb(33, 37, 41);
+    background-color: transparent;
 }
-.forumTopic{
-    width: 100%;
-    padding: 25px;
-    margin-top: 30px;
-    background: #f7f5f1;
-    height: auto;
+
+.forumtop .yes{
+    color: #FFFFFF;
+    background-color: #c7a092;
 }
-.forumSearch-title{
-    font-size: 18px;
-    line-height: 1;
-    text-align:left;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-.forumTopic-title{
-    margin-bottom: 10px;
-}
-.forumTopicItem{
-    border-bottom: 2px solid #EEEEEE;
-    line-height: 40px;
-}
+
 .paging{
     margin-top: 20px;
     margin-bottom: 10px;

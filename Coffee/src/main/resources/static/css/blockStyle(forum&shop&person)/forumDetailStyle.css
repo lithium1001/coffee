@@ -20,11 +20,7 @@ main{
     margin: 0;
     line-height: 38px;
 }
-.btn{
-    margin-right:5px;
-    padding: 3px 10px;
-    border: 1px solid #EEEEEE;
-}
+
 .userInfo{
     background-color: #f7f5f1;
     margin-bottom: -10000px;
@@ -48,40 +44,14 @@ main{
     bottom: 5px;
     right: 15px;
 }
-.forumSearch{
-    width: 100%;
-    padding: 25px;
-    margin-top: 5px;
-    background: #f7f5f1;
-    height: auto;
-}
-.forumTopic{
-    width: 100%;
-    padding: 25px;
-    margin-top: 30px;
-    background: #f7f5f1;
-    height: auto;
-}
-.forumSearch-title{
-    font-size: 18px;
-    line-height: 1;
-    text-align:left;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-.forumTopic-title{
-    margin-bottom: 10px;
-}
-.forumTopicItem{
-    border-bottom: 2px solid #EEEEEE;
-    line-height: 40px;
-}
-.review{
+
+#review{
     border-top: 3px solid #f7f5f1;
     margin-top: 20px;
     padding: 10px 20px;
 }
-.review .btn{
+
+#review .btn{
     margin-top: 10px;
     background-color: #f7f5f1;
 }

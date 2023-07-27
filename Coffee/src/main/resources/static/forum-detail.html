@@ -12,6 +12,7 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/blockStyle(forum&shop&person)/basicStyle.css" rel="stylesheet">
   <link href="css/blockStyle(forum&shop&person)/forumDetailStyle.css" rel="stylesheet">
+  <link href="css/blockStyle(forum&shop&person)/forumBasicStyle.css" rel="stylesheet">
   <link href="css/responsive.css" rel="stylesheet">
   <!--  没用到的-->
   <link href="css/animate.min.css" rel="stylesheet">
@@ -199,20 +200,14 @@
 <!-- 主体 main -->
 <main class="pt-15">
     <div class="container" >
-      <div class="circle-left forumtop">
+      <div class="forumtop">
         <img alt="img" src="img/bg/circle-left.png"/>
         <h4 id="forumtitle">帖子title</h4>
-        <button class="btn answer pull-right" type="button">
-          <i class="far fa-comment" >回复</i>
-        </button>
-        <button class="btn collection pull-right" type="button">
-          <i class="far fa-comment" >收藏</i>
-        </button>
-        <button class="btn share pull-right" type="button">
-          <i class="far fa-comment" >转发</i>
+        <button class="btn answer pull-right" onclick="toAddReview()">
+          <i class="far fa-comment" >我要回帖</i>
         </button>
       </div>
-      <div class="row">
+      <div class="row" style="width: 100%">
         <!--左侧论坛区-->
         <div class="col-sm-8 col-md-8 col-lg-8 forum">
           <div id="reviewlist">
@@ -229,47 +224,37 @@
                 <span class="floorNum">1楼&nbsp;</span>
                 <span class="time">发帖时间：2023/1/1 12:00:00</span>
               </div>
-
             </div>
           </div>
           <!-- 发表评论面板 -->
-          <div class="review">
-            <form class="panel-body" id="reviewAdd">
+          <div id="review">
+            <form class="panel-body">
               <h6 class="panel-title">留下您的回帖：</h6>
-              <textarea class="form-control" name="content"></textarea>
-              <button type="submit" class="btn pull-right">发表评论</button>
+              <textarea class="form-control" id="reviewAdd"></textarea>
+              <div class="prompt" id="prompt_content" style="display: none">
+                <i class="far fa-exclamation-circle"></i>
+                <span>标题以及内容不可为空</span>
+              </div>
+              <button type="button" class="btn pull-right" id="sendReview">发表评论</button>
             </form>
           </div>
         </div>
-        <!-- #右侧乱七八糟信息区 -->
-        <div class="col-sm-4 col-md-4 col-lg-34">
+        <div class="col-sm-4 col-md-4 col-lg-4">
           <div class="forumSearch">
             <h4 class="forumSearch-title">查找：</h4>
-            <form action="http://wordpress.zcube.in/finco/" class="search-form" method="get" role="search">
-              <label>
-                <input class="search-field" name="s" placeholder="请输入关键词" type="search" value="">
-              </label>
-              <input class="search-submit" type="submit" value="search">
+            <form action="" class="search-form" method="get" role="search">
+              <input class="search-field" placeholder="请输入关键词" type="text">
+              <input class="search-submit text-center" value="Search" onclick="search()">
             </form>
+            <div id="valueList">
+            </div>
           </div>
           <div class="forumTopic">
-            <h4 class="forumTopic-title">热议话题</h4>
+            <h5 class="forumTopic-title" id="hottag">热议话题tag</h5>
             <ul>
-              <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-              <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-              <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-              <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
-              <li class="forumTopicItem">
-                <a href="#"># 同济大学军训晚会暴雨</a>
-              </li>
+              <li class="forumTopicItem" onclick="goTag(this)">a</li>
+              <li class="forumTopicItem" onclick="goTag(this)">b</li>
+              <li class="forumTopicItem" onclick="goTag(this)">c</li>
             </ul>
           </div>
         </div>
@@ -295,13 +280,11 @@
           <p>解锁咖啡的无限世界丨一切尽在CoffeeVerse</p>
         </div>
       </div>
-
     </div>
-
   </div>
 </section>
 <!-- newslater-aread-end -->
-</main>
+
 <!-- main-area-end -->
 
 <!-- footer -->
@@ -310,7 +293,6 @@
        style="background-color: #76452f; background-image: url(img/bg/footer-bg.png);">
     <div class="container">
       <div class="row justify-content-between">
-
         <div class="col-xl-4 col-lg-4 col-sm-6">
           <div class="footer-widget mb-30">
             <div class="f-widget-title mb-30">
@@ -429,5 +411,6 @@
 
 <script src="js/blockJS/forumDetail.js"></script>
 <script src="js/blockJS/login.js"></script>
+<script src="js/blockJS/forumBasic.js"></script>
 </body>
 </html>

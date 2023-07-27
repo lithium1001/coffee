@@ -19,7 +19,7 @@
     color: #FFF5F4;
 }
 .choosing .btn1:hover{
-    background-color:#faeadd;
+    background-color: #F8F2EAFF;
     color: #76452f;
 }
 .mapDisplay{
@@ -27,6 +27,28 @@
     height: 425px;
     border: 3px solid #76452f;
     margin: 0px auto;
+}
+.mapbtn{
+    height: 1px;
+    position: relative;
+}
+.mapbtn input{
+    position: absolute;
+    top: -50px ;
+    left: 577px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #76452f;
+    color: #76452f;
+    font-size: 15px;
+    padding: 6px 8px;
+}
+
+.mapbtn input:hover{
+    left: 576px;
+    background-color: rgba(255, 255, 255, 1);
+    border: 2px solid #76452f;
+    font-size: 16px;
+    font-weight: 500;
 }
 .shopSearch{
     width: 100%;
@@ -46,6 +68,44 @@
 }
 .shopSearch .search-form{
     width: 100%;
+    font-size: 15px;
+}
+.shopSearch .search-form .search-field{
+    width: 230px;
+    height: 100%;
+    padding: 10px 15px;
+}
+.shopSearch .search-form .search-submit{
+    height: 100%;
+    width: 80px;
+}
+.shopSearch .search-form .search-submit:hover{
+    background-color:#F8F2EAFF;
+    border: 1px solid #76452f;
+    color: #76452f;
+    font-weight: bold
+}
+#valueList{
+    width:306px;
+    border: 1px solid #76452f;
+    border-top: 0;
+    display: none;
+}
+.valueListItem{
+    width:100%;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 15px;
+    border-bottom: 2px solid #f7f5f1;
+    font-size: 14px;
+}
+.valueListItem:hover{
+    cursor: pointer;
+    background-color: #f7f5f1;
+    color: #76452f;
+    margin: 2px 0 0 2px;
+    font-weight: bold;
+    width:99%
 }
 .card{
     border: 2px solid #f7f5f1 !important;
@@ -69,16 +129,38 @@
     height: 50px;
     padding: 5px;
 }
-.storeArrangement .btn{
-    border-right: 2px solid #EEEEEE;
+#sortbtn{
+    border-right: 2px solid #faeadd;
+    border-left: 2px solid #faeadd;
+}
+#sortbtn .no{
+    color: #76452f;
+    background-color: transparent;
+}
+#sortbtn .no i{
+    display: none;
+}
+#sortbtn .yes{
+    color: #FFFFFF;
+    background-color: #c7a092;
+}
+#sortbtn .yes i{
+    display: inline;
 }
 .shopList{
     width: 900px;
-    margin:10px auto;
+    margin:0px auto 10px;
 }
 .shopListItem{
     height: 150px;
     border-bottom: 2px solid #EEEEEE;
+}
+.shopName :hover{
+    cursor: pointer;
+}
+.shopName{
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 .shopListItem img{
     top: 2px;
@@ -94,7 +176,12 @@
     padding-left: 10px;
     margin-left: 10px;
 }
+.shopMark{
+    height: 35px;
+    line-height: 35px;
+}
 .shopInfo p{
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 .paging{
@@ -111,4 +198,8 @@
     font-size: 14px;
     border: none;
     font-weight: 500;
+}
+.amap-icon img{
+    width: 25px;
+    height: 34px;
 }
