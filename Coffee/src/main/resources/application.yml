@@ -15,3 +15,5 @@ mybatis-plus:
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
+coffee:
+  profile: D:/coffee/uploadPath

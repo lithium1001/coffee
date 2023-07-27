@@ -7,6 +7,7 @@ import com.example.coffee.pojo.User;
 import com.example.coffee.vo.ProfileVO;
 
 public interface UserService extends IService<User> {
+
     User executeRegister(RegisterDTO dto);
     /**
      * 获取用户信息
@@ -30,4 +31,6 @@ public interface UserService extends IService<User> {
      * @return
      */
     ProfileVO getUserProfile(String id);
+
+    void updateUserAvatar(User User, String avatar);
 }

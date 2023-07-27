@@ -18,9 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -78,4 +76,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return profile;
     }
 
+    @Override
+    public void updateUserAvatar(User User, String avatar){
+        User.setAvatarUrl(avatar);
+    }
 }
