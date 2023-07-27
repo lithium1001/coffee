@@ -84,3 +84,35 @@
     text-align: center;
     border: 0;
 }
+#forum{
+    padding: 15px;
+}
+#forumListItem{
+    padding: 10px;
+    border: 2px solid #f7f5f1;
+}
+#forumListItem .forumTitle{
+    display: inline-block;
+}
+#forumListItem .btn{
+    padding: 5px 10px;
+    background-color: #f7f5f1;
+    border: 2px solid #f7f5f1;
+    font-size: 15px;
+}
+#forumListItem .btn:hover{
+    background-color: #c7a092;
+    color:#f7f5f1;
+    border: 2px solid #f7f5f1;
+}
+#forumListItem p{
+    margin: 5px 0;
+    line-height:1.3rem;
+    font-size: 14px;
+}
+#forumListItem span{
+    color: #444444;
+    margin-right: 20px;
+    line-height:1.3rem;
+    font-size: 14px;
+}

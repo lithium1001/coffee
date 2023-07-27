@@ -1,5 +1,6 @@
 //初始化列表
 $(function () {
+    $('[data-toggle="popover"]').popover()
     $.ajax({
         type: "get",
         url: "http://localhost:8080/post/list",
@@ -16,7 +17,6 @@ $(function () {
 
 // 添加forum信息
 function updateForumInfo(forumlist) {
-    $('[data-toggle="popover"]').popover()
     var rows = [];
     $.each(forumlist, function (i, a) {
         rows.push('<div class="media" id="forumListItem"><img class="avatar align-self-start mr-3" alt="..." src="'

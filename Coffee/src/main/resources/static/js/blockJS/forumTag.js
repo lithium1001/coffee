@@ -1,6 +1,7 @@
 var tagname=window.sessionStorage.getItem("tagname")
 //初始化列表
 $(function () {
+    $('[data-toggle="popover"]').popover()
     $("#forumtitle").text("热议Tag："+tagname)
     $.ajax({
         type: "get",
@@ -19,7 +20,6 @@ $(function () {
 
 // 添加forum信息
 function updateForumInfo(forumlist) {
-    $('[data-toggle="popover"]').popover()
     var rows = [];
     $.each(forumlist, function (i, a) {
         rows.push('<div class="media" id="forumListItem"><img class="avatar align-self-start mr-3" alt="..." src="'
