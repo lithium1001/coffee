@@ -52,12 +52,10 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ApiResult<Map<String, String>> login(@Valid @RequestBody LoginDTO dto) {
-        String token = iUmsUserService.executeLogin(dto);
-        if (ObjectUtils.isEmpty(token)) {
+        Map<String, String> map = iUmsUserService.executeLogin(dto);
+        if (ObjectUtils.isEmpty(map.get("token"))) {
             return ApiResult.failed("账号密码错误");
         }
-        Map<String, String> map = new HashMap<>(16);
-        map.put("token", token);
         return ApiResult.success(map, "登录成功");
     }
 

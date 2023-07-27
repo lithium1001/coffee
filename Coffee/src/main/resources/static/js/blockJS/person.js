@@ -8,7 +8,7 @@ $(document).ready(function () {
             // alert('没有问题');
             const a = personInfo.data.user;
             window.localStorage.setItem("id", a.id)
-            console.log(personInfo)
+            $("#avatar_src").val(a.avatarUrl)
             $("#myavatar").attr("src", a.avatarUrl);
             $("#myname").text(a.username);
             $("#myemail").text(a.email);
@@ -60,17 +60,17 @@ $("#modifyInfo").click(function () {
 $("#avatar").change(function (e) {
     const file = e.target.files[0];
     const formData = new FormData();
-    formData.append('image', file);
-    formData.append('key', "c9c4f3334967f5aa6008a0fbdf7d6381");
+    formData.append('file', file);
+    formData.append('userName', window.localStorage.getItem("myname"));
 
     $.ajax({
         type: "post",
-        url: "https://api.imgbb.com/1/upload",
+        url: "http://localhost:8080/user/avatar",
         data: formData,
         contentType: false,
         processData: false,
         success: function (res) {
-            $("#avatar_src").val(res.data.display_url)
+            $("#avatar_src").val("http://localhost:8080"+res.data.imgUrl)
             alert("头像上传成功！")
         }
     })
