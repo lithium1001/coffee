@@ -6,6 +6,8 @@ import com.example.coffee.dto.RegisterDTO;
 import com.example.coffee.pojo.User;
 import com.example.coffee.vo.ProfileVO;
 
+import java.util.Map;
+
 public interface UserService extends IService<User> {
     User executeRegister(RegisterDTO dto);
     /**
@@ -21,7 +23,7 @@ public interface UserService extends IService<User> {
      * @param dto
      * @return 生成的JWT的token
      */
-    String executeLogin(LoginDTO dto);
+    Map<String, String> executeLogin(LoginDTO dto);
 
     /**
      * 获取用户信息

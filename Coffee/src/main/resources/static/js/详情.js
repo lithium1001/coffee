@@ -24,3 +24,14 @@ function getQueryString(name) {
     if (r != null) return decodeURI(r[2]);
     return null;
 }
+
+    document.getElementById('copyButton').addEventListener('click', function() {
+    var dummyInput = document.createElement('input');
+    dummyInput.setAttribute('value', window.location.href);
+    document.body.appendChild(dummyInput);
+    dummyInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummyInput);
+    alert('链接复制成功！');
+
+});

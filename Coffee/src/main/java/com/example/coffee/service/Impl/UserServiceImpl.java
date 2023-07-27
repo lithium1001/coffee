@@ -18,10 +18,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -53,21 +53,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User getUserByUsername(String username) {
         return baseMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
     }
+
     @Override
-    public String executeLogin(LoginDTO dto) {
+    public Map<String, String> executeLogin(LoginDTO dto) {
         String token = null;
+        Map<String, String> map = new HashMap<>();
         try {
             User user = getUserByUsername(dto.getUsername());
-            String Pwd =MD5.getPwd(dto.getPassword());
-            if(!Pwd.equals(user.getPassword()))
-            {
+            String Pwd = MD5.getPwd(dto.getPassword());
+            if (!Pwd.equals(user.getPassword())) {
                 throw new Exception("密码错误");
             }
             token = JwtUtil.generateToken(String.valueOf(user.getUsername()));
+            map.put("avatarurl", user.getAvatarUrl());
+            map.put("token", token);
         } catch (Exception e) {
             log.warn("用户不存在or密码验证失败=======>{}", dto.getUsername());
         }
-        return token;
+
+
+        return map;
     }
 
     @Override

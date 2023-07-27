@@ -178,7 +178,9 @@
             color: #fff;
             background: #aa725a;
         }
-
+         .red {
+             color: red;
+         }
     </style>
 </head>
 <body>
@@ -400,11 +402,11 @@
                 </div>
                 <div class="textwidget custom-html-widget">
                     <div class="widget-social">
-                        <a href="#" style="margin-right: 50px;"><i class="fab fa-gratipay"></i>
+                        <a href="#" style="margin-right: 50px;" id="likeButton"><i class="fab fa-gratipay"></i>
                             <p>点赞</p></a>
                         <a href="#" style="margin-right:50px;"><i class=" fas fa-star"></i>
                             <p>收藏</p></a>
-                        <a href="#" style="margin-right:50px;"><i class="fas fa-share"></i>
+                        <a href="#" style="margin-right:50px;"  id="copyButton"><i class="fas fa-share"></i>
                             <p>分享</p></a>
 
                     </div>
@@ -413,17 +415,14 @@
             <!-- #right side -->
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <aside class="sidebar-widget">
-
-
-<!--                    <section id="search-3" class="widget widget_search">-->
-<!--                        <h2 class="widget-title">查找</h2>-->
-<!--                        <form role="search" method="get" class="search-form" action="http://wordpress.zcube.in/finco/">-->
-<!--                            <label>-->
-<!--                                <input type="search" class="search-field" placeholder="请输入关键词" value="" name="s"/>-->
-<!--                            </label>-->
-<!--                            <input type="submit" class="search-submit" value="搜索"/>-->
-<!--                        </form>-->
-<!--                    </section>-->
+                    <section id="search-3" class="widget widget_search">
+                        <h2 class="widget-title">查找</h2>
+                        <form id="searchForm" >
+                            <input type="text" id="searchInput" required> &emsp;
+                            <input type="submit" class="search-submit" value="搜索" />
+                        </form>
+                        <ul id="suggestions"></ul>
+                    </section>
                     <section id="tag_cloud-1" class="widget widget_tag_cloud">
                         <h2 class="widget-title">标签</h2>
                         <div class="tagcloud">
@@ -606,5 +605,13 @@
 <script src="js/详情.js"></script>
 <script src="js/new.js"></script>
 <script src="js/blockJS/login.js"></script>
+<script>
+    var likeButton = document.getElementById('likeButton');
+    likeButton.addEventListener('click', function() {
+        var icon = likeButton.querySelector('i');
+        icon.classList.add('red');
+    });
+</script>
+<script src="js/搜索.js"></script>
 </body>
 </html>
