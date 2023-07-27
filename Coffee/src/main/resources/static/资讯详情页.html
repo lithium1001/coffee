@@ -415,17 +415,14 @@
             <!-- #right side -->
             <div class="col-sm-12 col-md-12 col-lg-4">
                 <aside class="sidebar-widget">
-
-
-<!--                    <section id="search-3" class="widget widget_search">-->
-<!--                        <h2 class="widget-title">查找</h2>-->
-<!--                        <form role="search" method="get" class="search-form" action="http://wordpress.zcube.in/finco/">-->
-<!--                            <label>-->
-<!--                                <input type="search" class="search-field" placeholder="请输入关键词" value="" name="s"/>-->
-<!--                            </label>-->
-<!--                            <input type="submit" class="search-submit" value="搜索"/>-->
-<!--                        </form>-->
-<!--                    </section>-->
+                    <section id="search-3" class="widget widget_search">
+                        <h2 class="widget-title">查找</h2>
+                        <form id="searchForm" >
+                            <input type="text" id="searchInput" required> &emsp;
+                            <input type="submit" class="search-submit" value="搜索" />
+                        </form>
+                        <ul id="suggestions"></ul>
+                    </section>
                     <section id="tag_cloud-1" class="widget widget_tag_cloud">
                         <h2 class="widget-title">标签</h2>
                         <div class="tagcloud">
@@ -615,5 +612,6 @@
         icon.classList.add('red');
     });
 </script>
+<script src="js/搜索.js"></script>
 </body>
 </html>
