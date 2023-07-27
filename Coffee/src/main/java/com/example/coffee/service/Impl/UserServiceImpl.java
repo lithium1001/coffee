@@ -13,11 +13,13 @@ import com.example.coffee.mapper.UserMapper;
 import com.example.coffee.pojo.User;
 import com.example.coffee.service.UserService;
 import com.example.coffee.vo.ProfileVO;
+import com.example.coffee.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +28,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public abstract class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Autowired
     private PostMapper PostMapper;

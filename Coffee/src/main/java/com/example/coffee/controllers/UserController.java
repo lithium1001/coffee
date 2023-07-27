@@ -11,19 +11,26 @@ import com.example.coffee.dto.LoginDTO;
 import com.example.coffee.dto.RegisterDTO;
 import com.example.coffee.pojo.Post;
 import com.example.coffee.pojo.User;
+import com.example.coffee.service.Impl.UserServiceImpl;
 import com.example.coffee.service.PostService;
 import com.example.coffee.service.UserService;
 import com.example.coffee.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,6 +46,7 @@ public class UserController {
     private UserService iUmsUserService;
     @Resource
     private PostService PostService;
+
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ApiResult<Map<String, Object>> register(@Valid @RequestBody RegisterDTO dto) {
@@ -64,6 +72,7 @@ public class UserController {
         User user = iUmsUserService.getUserByUsername(userName);
         return ApiResult.success(user);
     }
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ApiResult<Object> logOut() {
         return ApiResult.success(null, "注销成功");
@@ -82,25 +91,25 @@ public class UserController {
         map.put("topics", page);
         return ApiResult.success(map);
     }
+
     @PostMapping("/update")
     public ApiResult<User> updateUser(@RequestBody User User) {
         iUmsUserService.updateById(User);
         return ApiResult.success(User);
     }
+
     @RequestMapping(value = "/avatar", method = RequestMethod.POST)
-    public ApiResult<Map<String,Object>> avatar(@RequestParam(value = "userName") String userName , @RequestPart(value = "file")MultipartFile file) throws IOException {
-        User cUser=iUmsUserService.getUserByUsername(userName);
+    public ApiResult<Map<String, Object>> avatar(@RequestParam(value = "userName") String userName, @RequestPart(value = "file") MultipartFile file) throws IOException {
+        User cUser = iUmsUserService.getUserByUsername(userName);
 
         // 文件名称  时间日期+文件名_uuid+后缀
-        String fileName = StrUtil.format("{}/{}_{}.{}", DateUtil.format(DateUtil.date(),"yyy/MM/dd"), FilenameUtils.getBaseName(file.getOriginalFilename()),DateUtil.format(new Date(),"yyyyMMdd")+ IdUtil.fastUUID(),FilenameUtils.getExtension(file.getOriginalFilename()));
+        String fileName = StrUtil.format("{}/{}_{}.{}", DateUtil.format(DateUtil.date(), "yyy/MM/dd"), FilenameUtils.getBaseName(file.getOriginalFilename()), DateUtil.format(new Date(), "yyyyMMdd") + IdUtil.fastUUID(), FilenameUtils.getExtension(file.getOriginalFilename()));
         // 父目录
         String baseDir = CoffeeConfig.getAvatarPath();
         //路径拼接
         File desc = new File(baseDir + File.separator + fileName);
-        if (!desc.exists())
-        {
-            if (!desc.getParentFile().exists())
-            {
+        if (!desc.exists()) {
+            if (!desc.getParentFile().exists()) {
                 desc.getParentFile().mkdirs();
             }
         }
@@ -112,10 +121,10 @@ public class UserController {
         cUser.setAvatarUrl(avatar);
         iUmsUserService.updateById(cUser);
         Map<String, Object> map = new HashMap<>();
-        map.put("imgUrl",avatar);
-       /* public Result uploadMultiFileToQiniu(@RequestPart("files") MultipartFile[] files){
-            return uploadService.uploadFileToQiniu(files);
-        }*/
+        map.put("imgUrl", avatar);
+
         return ApiResult.success(map);
     }
+
+
 }

@@ -5,9 +5,14 @@ import com.example.coffee.dto.LoginDTO;
 import com.example.coffee.dto.RegisterDTO;
 import com.example.coffee.pojo.User;
 import com.example.coffee.vo.ProfileVO;
+import com.example.coffee.vo.Result;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Map;
 
+@Service
 public interface UserService extends IService<User> {
     User executeRegister(RegisterDTO dto);
     /**
@@ -32,4 +37,7 @@ public interface UserService extends IService<User> {
      * @return
      */
     ProfileVO getUserProfile(String id);
+
+    boolean save(MultipartFile file,String fileName,String filePath);
+
 }
