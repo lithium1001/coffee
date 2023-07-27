@@ -85,7 +85,7 @@
           <img src="img/testimonial/testi_avatar.png" alt="img" id="myavatar">
           <h3 id="myname">用户昵称</h3>
           <p id="myemail">用户邮箱</p>
-          <button type="button" class="btn" id="modifyInfo">
+          <button type="button" class="btn" data-dismiss="modal" data-target="#UserInfoModal" data-toggle="modal">
               <i class="fa fa-user-circle"></i>
               修改信息
           </button>
@@ -260,14 +260,67 @@
     </div>
 </footer>
 <!-- footer-end -->
-
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="UserInfoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="far fa-coffee-pot"></i>
+                    修改用户信息
+                </h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form_sign">
+                    <div class="form-group">
+                        <label class="control-label">头像：</label>
+                        <input type="file" accept="image/*" id="avatar" />
+                            <input class="form-control" id="avatar_src" type="text" style="display: none">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">昵称：</label>
+                        <input class="form-control" id="sign_username" type="text">
+                        <div class="prompt" id="prompt_username">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>&nbsp;昵称长度应在2~15之间</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">密码：</label>
+                        <input class="form-control" id="sign_pass" type="password">
+                        <div class="prompt" id="prompt_pass">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>密码长度应在6~20之间</span>
+                        </div>
+                    </div>
+                    <div class="pb-1">
+                        <label class="control-label">邮箱：</label>
+                        <input class="form-control" id="sign_email" type="text">
+                    </div>
+                </form>
+                <div class="prompt" id="prompt_register">
+                    <i class="far fa-exclamation-circle"></i>
+                    <span></span>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button class="btn" id="modifyInfo" type="button">确认修改</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- JS here -->
+
 <script src="js/jquery-3.7.0.min.js"></script>
 <script src="js/ajax-form.js"></script>
+<script src="js/blockJS/person.js"> </script>
+
 <!--modernizr是用来检查浏览器的版本是否适配html5和css3的，不知道有什么具体作用，但先留着-->
-<script src="js/modernizr-3.5.0.min.js"></script>
+<!--<script src="js/plug-in/modernizr-3.5.0.min.js"></script>-->
 <!--popper是用来实现JS定位的，例如提示框定位，目前还不太会用，先留着，介绍链接：https://blog.csdn.net/jhzhahuaiyu/article/details/90213582-->
-<script src="js/popper.min.js"></script>
+<script src="js/plug-in/popper.min.js"></script>
 <!--依次是slick响应式轮播插件，paroller视差滚动插件，wow滚动页面时触发CSS动画效果的插件，js_isotope元素分类过滤和排序布局插件，imagesloaded检验图片是否完成显示的插件，parallax视觉差特效引擎插件-->
 <script src="js/plug-in/slick.min.js"></script>
 <script src="js/plug-in/paroller.js"></script>
