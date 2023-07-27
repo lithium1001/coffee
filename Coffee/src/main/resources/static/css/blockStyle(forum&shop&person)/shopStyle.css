@@ -133,18 +133,18 @@
     border-right: 2px solid #faeadd;
     border-left: 2px solid #faeadd;
 }
-#sortbtn .no{
+.storeArrangement .no{
     color: #76452f;
     background-color: transparent;
 }
-#sortbtn .no i{
+.storeArrangement .no i{
     display: none;
 }
-#sortbtn .yes{
+.storeArrangement .yes{
     color: #FFFFFF;
     background-color: #c7a092;
 }
-#sortbtn .yes i{
+.storeArrangement .yes i{
     display: inline;
 }
 .shopList{
@@ -175,6 +175,30 @@
     width: 700px;
     padding-left: 10px;
     margin-left: 10px;
+}
+.shopListItem .btn{
+    background-color: transparent;
+    border: 1px solid #faeadd;
+    padding: 5px 10px;
+    width: auto;
+}
+.shopListItem .btn:hover{
+    background-color: #faf1ea;
+    color:#76452f
+}
+.shopMark .collection{
+    margin-left: 300px;
+    margin-right: 20px;
+}
+.shopMark .collection i{
+    display: inline;
+    color: #faa292;
+    margin: 2px auto;
+}
+.shopMark .fa-share{
+    display: inline;
+    color: #76452f;
+    margin: 2px auto;
 }
 .shopMark{
     height: 35px;

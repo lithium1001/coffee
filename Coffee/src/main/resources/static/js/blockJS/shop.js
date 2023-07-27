@@ -135,12 +135,22 @@ function addCluster(tag) {
 
 } */
 
+var sortS = false
+var tagS = null
+var districtS = null
+
 // 初始化shop界面
 $(function () {
+    $('[data-toggle="popover"]').popover()
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
+        data: {
+            sort: sortS,
+            district: districtS,
+            tag: tagS
+        },
         success: function (shoplist) {
             // alert('没有问题');
             updateShopInfo(shoplist.data.records);
@@ -169,37 +179,42 @@ $(function () {
 function updateShopInfo(shoplist) {
     $(".shopList").empty()
     var rows = [];
+    var number=0
     $.each(shoplist, function (i, a) {
         rows.push('<div class="media shopListItem"><img class="align-self-center" src="'
             + a.pictureUrl
-            + '"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(this)">'
+            + '"/><div class="shopInfo"> <h4 class="shopName" onclick="goShop(\''
+            + a.name+'\')">'
             + a.name
             + '</h4> <div class="shopMark align-self-center"> <span id="rating">店铺评分：'
             + a.rating
-            + '分 &nbsp;</span> <span style="margin-left: 130px;margin-right: 30px">收藏数：10</span> <button class="btn" type="button" onclick="addColletion(this)">收藏 <i class="far fa-heart"></i></button> <span style="margin-right: 10px">&nbsp;</span><button class="btn " type="button">转发 <i class="far fa-share"></i></button></div><p>'
+            + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(\''
+            + a.name
+            + '\')">收藏 <i class="far fa-heart"></i></button><button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="http://localhost:8080/shopdetail?'+a.name+'">转发 <i class="far fa-share"></i></button></div><p>'
             + "上海市"+a.district+a.road+a.number
             + '</p> <p>'
             + a.opentime + '</p></div></div>')
+        number=number+1
     })
+    if (number==0){
+        rows=['<h5>暂无满足要求的店铺 </h5>']
+    }
     $(".shopList").append(rows.join(''));
+    $('[data-toggle="popover"]').popover()
 }
 
 // 页面跳转 ok
 function goShop(a) {
-    name = $(a).text();
-    window.sessionStorage.setItem('shopname', name)
+    console.log(a)
+    window.sessionStorage.setItem('shopname', a)
     window.location.href = "http://localhost:8080/shop-detail.html";
 }
-
-var sortS = false
-var tagS = null
-var districtS = null
 
 //评分赋值
 $("#sortbtn").click(function () {
     var sortbtn = document.getElementById("sortbtn")
     var sortnow = sortbtn.classList[1];
-    sortS = sortnow != "no";
+    sortS = sortnow == "no";
     // console.log(sortS);
     $("#sortbtn").toggleClass("yes");
     $("#sortbtn").toggleClass("no");
@@ -252,7 +267,6 @@ function selectShop() {
 //自动联想&回车触发搜索
 $(".search-field").keyup(function (e) {
     var searchKey = $(".search-field").val()
-    // console.log(searchKey)
     if (searchKey == "" || searchKey == " ") {
         $("#valueList").attr("style", "display:none")
         return
@@ -349,7 +363,32 @@ $("#shopcard").click(function () {
     window.location.href = "http://localhost:8080/shop-detail.html";
 })
 
-function addColletion(a){
-    
-
+function addColletion(shopname){
+    var token = window.localStorage.getItem("token");
+    var username=window.localStorage.getItem("myname")
+    if (token == null) {
+        $('#loginModal').modal('show')
+        alert("请先进行登录");
+        return;
+    }
+    var info= {
+        "name": shopname,
+        "userId":username,
+        "sUrl":"http://localhost:8080/shop-detail.html?"+shopname
+    }
+    $.ajax({
+        type: "post",
+        url: "http://localhost:8080/coffee-shop/addshop",
+        data: JSON.stringify(info),
+        contentType : "application/json",
+        dataType: "json",
+        success: function (reviewInfo) {
+            alert('收藏成功');
+            $(".collection i").removeClass("far")
+            $(".collection i").addClass("fas")
+        },
+        error: function () {
+            alert('出现问题')
+        }
+    })
 }
