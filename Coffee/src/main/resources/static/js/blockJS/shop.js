@@ -254,6 +254,7 @@ $(".search-field").keyup(function (e) {
     var searchKey = $(".search-field").val()
     // console.log(searchKey)
     if (searchKey == "" || searchKey == " ") {
+        $("#valueList").attr("style", "display:none")
         return
     }
     if (e.keyCode == "13") {

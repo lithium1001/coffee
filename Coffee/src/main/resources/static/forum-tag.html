@@ -16,6 +16,7 @@
     <link href="css/blockStyle(forum&shop&person)/forumStyle.css" rel="stylesheet">
     <link href="css/blockStyle(forum&shop&person)/forumBasicStyle.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
+
     <link href="css/animate.min.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
     <link href="css/dripicons.css" rel="stylesheet">
@@ -208,16 +209,20 @@
                 <button class="btn answer pull-right" id="wantAddForum">
                     <i class="far fa-comment">&nbsp;我要发帖</i>
                 </button>
-                <button class="btn answer pull-right no" id="sortByHot">
-                    <i class="far fa-fire-alt">&nbsp;按热度排序</i>
-                </button>
             </div>
             <div class="row" style="width: 100%">
                 <!--左侧论坛区-->
                 <div class="col-sm-8 col-md-8 col-lg-8 forum">
                     <div id="forumList"></div>
+                    <div class="review">
+                        <form class="panel-body" id="reviewAdd">
+                            <h6 class="panel-title">留下您的回帖：</h6>
+                            <textarea class="form-control" name="content"></textarea>
+                            <button type="submit" class="btn pull-right">发表评论</button>
+                        </form>
+                    </div>
                 </div>
-                <!-- #右侧乱七八糟信息区 -->
+                    <!-- #右侧乱七八糟信息区 -->
                 <div class="col-sm-4 col-md-4 col-lg-4">
                         <div class="forumSearch">
                             <h4 class="forumSearch-title">查找：</h4>
@@ -226,15 +231,26 @@
                                 <input class="search-submit text-center" value="Search" onclick="search()">
                             </form>
                             <div id="valueList">
-                                <!--<div class="valueListItem"></div>-->
                             </div>
                         </div>
                         <div class="forumTopic">
                             <h5 class="forumTopic-title">热议话题tag</h5>
                             <ul>
-                                <li class="forumTopicItem" onclick="goTag(this)">a</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">b</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">c</li>
+                                <li class="forumTopicItem">
+                                    <a href="#"># a</a>
+                                </li>
+                                <li class="forumTopicItem">
+                                    <a href="#"># b</a>
+                                </li>
+                                <li class="forumTopicItem">
+                                    <a href="#"># c</a>
+                                </li>
+                                <li class="forumTopicItem">
+                                    <a href="#"># 同济大学军训晚会暴雨</a>
+                                </li>
+                                <li class="forumTopicItem">
+                                    <a href="#"># 同济大学军训晚会暴雨</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -262,14 +278,17 @@
                     <div class="form-group">
                         <label class="control-label">标题：</label>
                         <input class="form-control" id="forum_title" type="text">
+                        <div class="prompt" id="prompt_title">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>&nbsp标题不可为空</span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" style="line-height: 40px">内容：</label>
-                        <textarea class="form-control" id="forum_content" rows="1">
-                        </textarea>
-                        <div class="prompt" id="prompt_content" style="display: none">
+                        <label class="control-label">内容：</label>
+                        <input class="form-control" id="forum_content" type="password">
+                        <div class="prompt" id="prompt_content">
                             <i class="far fa-exclamation-circle"></i>
-                            <span>标题以及内容不可为空</span>
+                            <span>内容不可为空</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -383,7 +402,6 @@ newslater-area
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -432,8 +450,8 @@ newslater-area
 <script src="bootstrap/js/bootstrap.bundle.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
 <script src="bootstrap/js/bootstrap-select.min.js"></script>
-<script src="js/blockJS/forum.js"></script>
-<script src="js/blockJS/login.js"></script>
+<script src="js/blockJS/forumTag.js"></script>
 <script src="js/blockJS/forumBasic.js"></script>
+<script src="js/blockJS/login.js"></script>
 </body>
 </html>

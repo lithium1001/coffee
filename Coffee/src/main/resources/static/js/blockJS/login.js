@@ -14,8 +14,9 @@ $("#button_login").click(function(){
         dataType: "json",
         success: function (data) {
             if(data.code==200){
+                alert(data.data.token);
                 alert("登陆成功！");
-                window.localStorage.setItem("token",data.token)
+                window.localStorage.setItem("token",data.data.token)
                 window.localStorage.setItem("myname",username)
                 $("#prompt_login").attr("style","display:block")
                 $("#prompt_login i").attr("style","color:limegreen")
@@ -155,11 +156,6 @@ $(function () {
             $("#myavatar").attr("src",avatarurl)
         }
     }
-})
-
-//跳转个人页面
-$("#toPerson").click(function (){
-    window.location.href = "http://localhost:8080/Person.html";
 })
 
 $("#byebye").click(function (){
