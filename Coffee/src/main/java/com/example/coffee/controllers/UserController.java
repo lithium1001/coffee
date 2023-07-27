@@ -89,8 +89,9 @@ public class UserController {
         return ApiResult.success(User);
     }
     @RequestMapping(value = "/avatar", method = RequestMethod.POST)
-    public ApiResult<Map<String,Object>> avatar(@RequestParam(value = "userId") String userId , @RequestPart(value = "file")MultipartFile file) throws IOException {
-        User cUser=iUmsUserService.getById(userId);
+    public ApiResult<Map<String,Object>> avatar(@RequestParam(value = "userName") String userName , @RequestPart(value = "file")MultipartFile file) throws IOException {
+        User cUser=iUmsUserService.getUserByUsername(userName);
+
         // 文件名称  时间日期+文件名_uuid+后缀
         String fileName = StrUtil.format("{}/{}_{}.{}", DateUtil.format(DateUtil.date(),"yyy/MM/dd"), FilenameUtils.getBaseName(file.getOriginalFilename()),DateUtil.format(new Date(),"yyyyMMdd")+ IdUtil.fastUUID(),FilenameUtils.getExtension(file.getOriginalFilename()));
         // 父目录
@@ -109,10 +110,10 @@ public class UserController {
         int dirLastIndex = CoffeeConfig.getProfile().length() + 1;
         String currentDir = baseDir.substring(dirLastIndex);
         String avatar = "/profile" + "/" + currentDir + "/" + fileName;
-        iUmsUserService.updateUserAvatar(cUser,avatar);
+        cUser.setAvatarUrl(avatar);
+        iUmsUserService.updateById(cUser);
         Map<String, Object> map = new HashMap<>();
         map.put("imgUrl",avatar);
         return ApiResult.success(map);
     }
-
 }
