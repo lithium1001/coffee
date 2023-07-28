@@ -38,7 +38,7 @@ public class CommonController {
     @Value("${upload.serverPath}")
     private String serverPath;
 
-    @PostMapping(value = "/upload")
+   /* @PostMapping(value = "/upload")
     public Result upload(@RequestParam(value = "userName") String userName, HttpServletRequest request, HttpServletResponse response){
         MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest) request;
         MultipartFile file= multipartHttpServletRequest.getFile("file");
@@ -48,5 +48,5 @@ public class CommonController {
         cUser.setAvatarUrl(accessPath+fileName);
         iUmsUserService.updateById(cUser);
         return Result.suc(accessPath+fileName);
-    }
+    }*/
 }

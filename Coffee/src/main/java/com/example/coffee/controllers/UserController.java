@@ -4,20 +4,25 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.coffee.common.Api.ApiResult;
 import com.example.coffee.config.CoffeeConfig;
 import com.example.coffee.dto.LoginDTO;
 import com.example.coffee.dto.RegisterDTO;
+import com.example.coffee.pojo.Article;
 import com.example.coffee.pojo.Post;
 import com.example.coffee.pojo.User;
 import com.example.coffee.service.Impl.UserServiceImpl;
 import com.example.coffee.service.PostService;
 import com.example.coffee.service.UserService;
+import com.example.coffee.utils.QiniuUtils;
 import com.example.coffee.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.http.MediaType;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
@@ -84,7 +89,7 @@ public class UserController {
                                                         @RequestParam(value = "size", defaultValue = "10") Integer size) {
         Map<String, Object> map = new HashMap<>(16);
         User user = iUmsUserService.getUserByUsername(username);
-        Assert.notNull(user, "用户不存在");
+        //Assert.notNull(user, "用户不存在");
         Page<Post> page = PostService.page(new Page<>(pageNo, size),
                 new LambdaQueryWrapper<Post>().eq(Post::getUserId, user.getId()));
         map.put("user", user);
@@ -125,6 +130,19 @@ public class UserController {
 
         return ApiResult.success(map);
     }
+    @PostMapping("/upload")
+    public String upload(@RequestParam(defaultValue="li") String user, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+        String fileName = StrUtil.format("{}/{}_{}.{}", DateUtil.format(DateUtil.date(), "yyy/MM/dd"), FilenameUtils.getBaseName(multipartFile.getOriginalFilename()), DateUtil.format(new Date(), "yyyyMMdd") + IdUtil.fastUUID(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
 
+        QiniuUtils.upload2Qiniu(multipartFile.getBytes(),fileName);
+        String headUrl = QiniuUtils.getUrl(fileName);
+       /* QueryWrapper<User> detail = new QueryWrapper<>();
+        detail.eq("username",user);
+        User cUser = iUmsUserService.getOne(detail);;
+        cUser.setAvatarUrl(headUrl);
+        iUmsUserService.updateById(cUser);*/
+
+        return headUrl;
+    }
 
 }
