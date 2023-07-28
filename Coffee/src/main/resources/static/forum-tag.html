@@ -205,7 +205,7 @@
         <div class="container">
             <div class="forumtop">
                 <img alt="img" src="img/bg/circle-left.png"/>
-                <h4 style="display: inline-block">咖啡论坛，与世界各地的朋友谈论您感兴趣的咖啡话题</h4>
+                <h4 style="display: inline-block" id="tagtitle"></h4>
                 <button class="btn answer pull-right" id="wantAddForum">
                     <i class="far fa-comment">&nbsp;我要发帖</i>
                 </button>
@@ -214,50 +214,32 @@
                 <!--左侧论坛区-->
                 <div class="col-sm-8 col-md-8 col-lg-8 forum">
                     <div id="forumList"></div>
-                    <div class="review">
-                        <form class="panel-body" id="reviewAdd">
-                            <h6 class="panel-title">留下您的回帖：</h6>
-                            <textarea class="form-control" name="content"></textarea>
-                            <button type="submit" class="btn pull-right">发表评论</button>
-                        </form>
-                    </div>
                 </div>
-                    <!-- #右侧乱七八糟信息区 -->
+                <!-- #右侧乱七八糟信息区 -->
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                        <div class="forumSearch">
-                            <h4 class="forumSearch-title">查找：</h4>
-                            <form action="" class="search-form" method="get" role="search">
-                                <input class="search-field" placeholder="请输入关键词" type="text">
-                                <input class="search-submit text-center" value="Search" onclick="search()">
-                            </form>
-                            <div id="valueList">
-                            </div>
+                    <div class="forumSearch">
+                        <h4 class="forumSearch-title">查找：</h4>
+                        <form action="" class="search-form" method="get" role="search">
+                            <input class="search-field" placeholder="请输入关键词" type="text">
+                            <input class="search-submit text-center" value="Search" onclick="search()">
+                        </form>
+                        <div id="valueList">
+                            <!--<div class="valueListItem"></div>-->
                         </div>
-                        <div class="forumTopic">
-                            <h5 class="forumTopic-title">热议话题tag</h5>
-                            <ul>
-                                <li class="forumTopicItem">
-                                    <a href="#"># a</a>
-                                </li>
-                                <li class="forumTopicItem">
-                                    <a href="#"># b</a>
-                                </li>
-                                <li class="forumTopicItem">
-                                    <a href="#"># c</a>
-                                </li>
-                                <li class="forumTopicItem">
-                                    <a href="#"># 同济大学军训晚会暴雨</a>
-                                </li>
-                                <li class="forumTopicItem">
-                                    <a href="#"># 同济大学军训晚会暴雨</a>
-                                </li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="forumTopic">
+                        <h5 class="forumTopic-title">热议话题tag</h5>
+                        <ul>
+                            <li class="forumTopicItem" onclick="goTag(this)">a</li>
+                            <li class="forumTopicItem" onclick="goTag(this)">b</li>
+                            <li class="forumTopicItem" onclick="goTag(this)">c</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <!-- inner-blog-end -->
         </div>
+        <!-- inner-blog-end -->
+    </div>
 </main>
 
 <!--发帖弹窗-->

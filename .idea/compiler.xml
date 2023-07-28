@@ -10,8 +10,5 @@
         <module name="Coffee" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Coffee" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

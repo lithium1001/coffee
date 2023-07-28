@@ -97,3 +97,9 @@
     border-bottom: 2px solid #EEEEEE;
     line-height: 40px;
 }
+.badge{
+    background-color:#F8F2EAFF;
+    border: 1px solid #76452f;
+    color: #76452f;
+    margin-right: 20px;
+}

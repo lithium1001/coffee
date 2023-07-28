@@ -206,22 +206,24 @@
         <h3 class="shopName">店铺名称</h3>
         <div class="shopMark">
             <!--评分显示 待实现动态 待实现评分功能-->
-            <span id="rating">4.5分 &nbsp;</span>
-            <i class="fas fa-star"/></i>
-            <i class="fas fa-star"/></i>
-            <i class="fas fa-star"/></i>
-            <i class="fas fa-star"/></i>
-            <i class="fad fa-star-half-alt"/></i>
+            <span id="rating">&nbsp;</span>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fad fa-star-half-alt"></i>
             <span style="margin-right: 530px">&nbsp;</span>
             <!--点赞按钮 待实现动态-->
-            <button class="btn " type="button">
-                收藏 <i class="far fa-heart"/></i>
+            <button class="btn" type="button" onclick="addColletion()" id="collection">
+                收藏 <i class="far fa-heart"></i>
             </button>
             <span style="margin-right: 10px">&nbsp;</span>
             <!--收藏按钮 待实现动态-->
-            <button class="btn " type="button">
-                转发 <i class="far fa-share"/></i>
+            <button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="a">
+                转发 <i class="far fa-share"></i>
             </button>
+
+
         </div>
         <div class="container">
             <div class="row justify-content-center align-items-center">
@@ -408,7 +410,7 @@
 <script src="js/plug-in/jquery.meanmenu.min.js"></script>
 <script src="js/plug-in/parallax-scroll.js"></script>
 <script src="js/plug-in/jquery.magnific-popup.min.js"></script>
-
+<script src="js/plug-in/popper.min.js"></script>
 <script src="js/element-in-view.js"></script>
 <script src="js/main.js"></script>
 

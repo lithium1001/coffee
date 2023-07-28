@@ -26,7 +26,6 @@
     margin-top: 25px;
     margin-bottom: 10px;
     font-size: 24px;
-    font-family: 'SourceHanSerifCN-Bold'
 }
 
 .shopMark i{
@@ -36,17 +35,20 @@
 }
 .shopMark .btn{
     background-color: transparent;
-    border: 1px solid #ccc;
-    padding: 1px 5px;
-    height: 30px;
+    border: 1px solid #76452f;
+    padding: 5px 10px;
     width: auto;
 }
-.shopMark i .fa-heart{
+.shopMark .btn:hover{
+    background-color: #faf1ea;
+    color:#76452f
+}
+.shopMark  #collection i{
     display: inline;
     color: #faa292;
     margin: 0 auto;
 }
-.shopMark i .fa-share{
+.shopMark .fa-share{
     display: inline;
     color: #76452f;
     margin: 0 auto;
@@ -84,9 +86,9 @@
 .shopSearchBlock{
     background-color: #f7f5f1;
 }
+
 .shopSearch{
     margin: 0px auto;
-
     width: 578px;
     height: 40px;
 }
