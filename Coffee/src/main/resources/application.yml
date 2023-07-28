@@ -2,12 +2,17 @@ spring:
   application:
     name: Coffee
 
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+
   datasource:
     username: root
-
     password: tzxzjyzzyljjyzxdfwq0707
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.115.230.54:3306/coffee
+
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
 mybatis-plus:
@@ -15,5 +20,4 @@ mybatis-plus:
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
-coffee:
-  profile: D:/coffee/uploadPath
+

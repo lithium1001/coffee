@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,10 +53,15 @@ public class ScollectionController {
     }
 
     @GetMapping("/shoplist")   //分页显示
-    public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "30") int pageSize) {
-        log.info("shop list, pageNum={}, pageSize={}", pageNum, pageSize);
+    public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "30") int pageSize,
+                               @RequestParam String username, HttpServletResponse response) {
+        log.info("shop list, pageNum={}, pageSize={}, username={}", pageNum, pageSize, username);
 
+        response.setHeader("Access-Control-Allow-Origin","*");
         Page<Scollection> page = new Page<>(pageNum, pageSize);
+
+        //先根据username查询对应的userId
+        
         IPage<Scollection> pageResult = scollectionService.page(page);
 
         List scollectionVoList = pageResult.getRecords().stream().map( scollection -> {
