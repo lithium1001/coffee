@@ -14,8 +14,6 @@ public class QiniuUtils {
     private static String secretKey = "R1zBGVud6j-6pv1UA_P9ROgT9iiWpannb_XrXzcj";
     private static String bucket = "imageserver111";
 
-
-
     public static void upload2Qiniu(String filePath,String fileName){
         //构造一个带指定Zone对象的配置类
         Configuration cfg = new Configuration(com.qiniu.storage.Region.autoRegion());
@@ -24,14 +22,12 @@ public class QiniuUtils {
         String upToken = auth.uploadToken(bucket);
         try {
             Response response = uploadManager.put(filePath, fileName, upToken);
-            /*//解析上传成功的结果
-            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);*/
         } catch (QiniuException ex) {
             Response r = ex.response;
             try {
                 System.err.println(r.bodyString());
             } catch (QiniuException ex2) {
-                //ignore
+
             }
         }
     }
@@ -49,17 +45,13 @@ public class QiniuUtils {
         String upToken = auth.uploadToken(bucket);
         try {
             Response response = uploadManager.put(bytes, key, upToken);
-            /*//解析上传成功的结果
-            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-            System.out.println(putRet.key);
-            System.out.println(putRet.hash);*/
         } catch (QiniuException ex) {
             Response r = ex.response;
             System.err.println(r.toString());
             try {
                 System.err.println(r.bodyString());
             } catch (QiniuException ex2) {
-                //ignore
+
             }
         }
     }

@@ -9,10 +9,10 @@ spring:
 
   datasource:
     username: root
-
     password: tzxzjyzzyljjyzxdfwq0707
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://47.115.230.54:3306/coffee
+
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
 mybatis-plus:
@@ -20,15 +20,4 @@ mybatis-plus:
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
-    # qiniu
-    qiniu:
-      url: ryg646frj.hn-bkt.clouddn.com
 
-      accessKey: bucVkkzhyf6CoOQMCZPXwyOgecD2BTr8d5kHwwMR
-
-      accessSecretKey: R1zBGVud6j-6pv1UA_P9ROgT9iiWpannb_XrXzcj
-
-      bucket: imageserver111
-upload:
-  serverPath: http://47.115.230.54:1099/imageserver/
-  accessPath: /upload/
