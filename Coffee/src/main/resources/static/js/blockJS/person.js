@@ -64,16 +64,16 @@ $("#avatar").change(function (e) {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('userName', window.localStorage.getItem("myname"));
+    formData.append('user', window.localStorage.getItem("myname"));
 
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/user/avatar",
+        url: "http://localhost:8080/user/upload",
         data: formData,
         contentType: false,
         processData: false,
         success: function (res) {
-            $("#avatar_src").val("http://localhost:8080"+res.data.imgUrl)
+            $("#avatar_src").val(res.data.imgUrl)
             alert("头像上传成功！")
         }
     })
