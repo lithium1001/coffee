@@ -41,7 +41,7 @@ public class ShopController {
 
         response.setHeader("Access-Control-Allow-Origin","*");
         Page<Shop> page = new Page<>(pageNum, pageSize);
-        if (sort || !Objects.equals(district, "") || !Objects.equals(tag, "")){
+        if (sort || (!Objects.equals(district, "")&&district != null) || (!Objects.equals(tag, "")&&tag != null)){
             //需要先查询符合条件的所有记录
             QueryWrapper<Shop> query = new QueryWrapper<Shop>();
             List<Shop> shopList;
