@@ -36,6 +36,6 @@ public class User {
 
     @Builder.Default
     @TableField("avatar_url")
-    private String avatarUrl = "defaultAvatar";
+    private String avatarUrl = "http://ryg646frj.hn-bkt.clouddn.com/2023/07/28/protfolio-img03_202307282d3124f7-b163-47d3-9385-881fa3f4b246.png";
 
 }

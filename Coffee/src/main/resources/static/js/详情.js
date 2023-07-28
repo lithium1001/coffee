@@ -35,3 +35,33 @@ function getQueryString(name) {
     alert('链接复制成功！');
 
 });
+function addColletion(shopname){
+    var token = window.localStorage.getItem("token");
+    var username=window.localStorage.getItem("myname")
+    if (token == null) {
+        $('#loginModal').modal('show')
+        alert("请先进行登录");
+        return;
+    }
+    var info= {
+        "name": shopname,
+        "userId":username,
+        "sUrl":"http://localhost:8080/shop-detail.html?"+shopname
+    }
+    $.ajax({
+        type: "post",
+        url: "http://localhost:8080/coffee-shop/addshop",
+        data: JSON.stringify(info),
+        contentType : "application/json",
+        dataType: "json",
+        success: function (reviewInfo) {
+            alert('收藏成功');
+            $(".collection i").removeClass("far")
+            $(".collection i").addClass("fas")
+        },
+        error: function () {
+            alert('出现问题')
+        }
+    })
+}
+
