@@ -4,15 +4,16 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.coffee.common.Api.ApiResult;
-import com.example.coffee.config.CoffeeConfig;
 import com.example.coffee.dto.LoginDTO;
 import com.example.coffee.dto.RegisterDTO;
 import com.example.coffee.pojo.Post;
 import com.example.coffee.pojo.User;
 import com.example.coffee.service.PostService;
 import com.example.coffee.service.UserService;
+import com.example.coffee.utils.QiniuUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.util.Assert;
@@ -22,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
@@ -86,32 +86,20 @@ public class UserController {
         iUmsUserService.updateById(User);
         return ApiResult.success(User);
     }
-    @RequestMapping(value = "/avatar", method = RequestMethod.POST)
-    public ApiResult<Map<String,Object>> avatar(@RequestParam(value = "userName") String userName , @RequestPart(value = "file")MultipartFile file) throws IOException {
-        User cUser=iUmsUserService.getUserByUsername(userName);
 
-        // 文件名称  时间日期+文件名_uuid+后缀
-        String fileName = StrUtil.format("{}/{}_{}.{}", DateUtil.format(DateUtil.date(),"yyy/MM/dd"), FilenameUtils.getBaseName(file.getOriginalFilename()),DateUtil.format(new Date(),"yyyyMMdd")+ IdUtil.fastUUID(),FilenameUtils.getExtension(file.getOriginalFilename()));
-        // 父目录
-        String baseDir = CoffeeConfig.getAvatarPath();
-        //路径拼接
-        File desc = new File(baseDir + File.separator + fileName);
-        if (!desc.exists())
-        {
-            if (!desc.getParentFile().exists())
-            {
-                desc.getParentFile().mkdirs();
-            }
-        }
-        // 下载
-        file.transferTo(desc);
-        int dirLastIndex = CoffeeConfig.getProfile().length() + 1;
-        String currentDir = baseDir.substring(dirLastIndex);
-        String avatar = "/profile" + "/" + currentDir + "/" + fileName;
-        cUser.setAvatarUrl(avatar);
+    @PostMapping("/upload")
+    public ApiResult<Map<String,Object>> upload(@RequestParam(defaultValue="li") String user, @RequestParam("file") MultipartFile multipartFile) throws IOException {
+        String fileName = StrUtil.format("{}/{}_{}.{}", DateUtil.format(DateUtil.date(), "yyy/MM/dd"), FilenameUtils.getBaseName(multipartFile.getOriginalFilename()), DateUtil.format(new Date(), "yyyyMMdd") + IdUtil.fastUUID(), FilenameUtils.getExtension(multipartFile.getOriginalFilename()));
+
+        QiniuUtils.upload2Qiniu(multipartFile.getBytes(),fileName);
+        String headUrl = QiniuUtils.getUrl(fileName);
+        QueryWrapper<User> detail = new QueryWrapper<>();
+        detail.eq("username",user);
+        User cUser = iUmsUserService.getOne(detail);;
+        cUser.setAvatarUrl(headUrl);
         iUmsUserService.updateById(cUser);
         Map<String, Object> map = new HashMap<>();
-        map.put("imgUrl",avatar);
+        map.put("imgUrl",headUrl);
         return ApiResult.success(map);
     }
 }

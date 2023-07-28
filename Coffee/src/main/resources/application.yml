@@ -2,6 +2,11 @@ spring:
   application:
     name: Coffee
 
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+
   datasource:
     username: root
 
@@ -15,5 +20,15 @@ mybatis-plus:
   configuration:
     default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
 
-coffee:
-  profile: D:/coffee/uploadPath
+    # qiniu
+    qiniu:
+      url: ryg646frj.hn-bkt.clouddn.com
+
+      accessKey: bucVkkzhyf6CoOQMCZPXwyOgecD2BTr8d5kHwwMR
+
+      accessSecretKey: R1zBGVud6j-6pv1UA_P9ROgT9iiWpannb_XrXzcj
+
+      bucket: imageserver111
+upload:
+  serverPath: http://47.115.230.54:1099/imageserver/
+  accessPath: /upload/
