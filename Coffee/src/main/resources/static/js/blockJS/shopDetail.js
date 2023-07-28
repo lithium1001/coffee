@@ -22,7 +22,7 @@ $(function () {
             console.log(a.name);
             $(".pictureUrl").attr("src",a.pictureUrl);
             // alert($(".pictureUrl").attr("src"));
-            $("#location").text("上海市"+a.district+a.road+a.number);
+            $("#location").text("上海市"+a.district+a.location);
             $("#phone").text(a.phone);
             $("#rating").text(a.rating);
             $("#opentime").text(a.opentime);
