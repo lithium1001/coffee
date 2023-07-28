@@ -38,7 +38,4 @@ public class User {
     @TableField("avatar_url")
     private String avatarUrl = "defaultAvatar";
 
-    @Builder.Default
-    @TableField("active")
-    private Boolean active = true;
 }
