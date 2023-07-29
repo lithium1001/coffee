@@ -5,6 +5,7 @@ if(tem[1]!=''&&tem[1]!=null&&tem.length!=0){
     nameS=tem[1]
     console.log(tem[1]);
 }
+nameS=nameS.replace(/&/g,'%26')
 
 $(function () {
     $('[data-toggle="popover"]').popover()
@@ -21,11 +22,11 @@ $(function () {
             var a = shopInfo.data;
             $(".shopName").text(a.name);
             console.log(a.name);
-            $(".pictureUrl").attr("src",a.pictureUrl);
+            $("#pictureUrl").attr("src",a.pictureUrl);
             // alert($(".pictureUrl").attr("src"));
             $("#location").text("上海市"+a.district+a.location);
             $("#phone").text(a.phone);
-            $("#rating").text(a.rating);
+            $("#rating").text("评分："+a.rating);
             $("#opentime").text(a.opentime);
             $("#description").text(a.description);
             $("#share").attr("data-content","http://localhost:8080/shopdetail"+a.name)
@@ -34,15 +35,14 @@ $(function () {
             alert('出现问题')
         }
     })
-    var shopname=$(".shopName").text()
-    shopname=shopname.replace(/&/g,'%26')
+    var username=window.localStorage.getItem("myname")
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shopdetail?name="+shopname+"&username="+username,
+        url: "http://localhost:8080/coffee-shop/shopdetail?name="+nameS+"&username="+username,
         contentType : "application/json",
         dataType: "json",
         success: function (a) {
-            if(a.isCollection==true)
+            if(a.data.collection==true)
             {
                 $("#collection i").removeClass("far")
                 $("#collection i").addClass("fas")
@@ -60,17 +60,13 @@ $(function () {
 
 //添加收藏
 function addColletion(){
-    var shopname=$(".shopName").text()
-    shopname=shopname.replace(/&/g,'%26')
     var token = window.localStorage.getItem("token");
     var username=window.localStorage.getItem("myname")
     var collectionI = document.getElementsByClassName("fa-star")
-    console.log(collectionI)
     collectionI=collectionI[0]
+    collectionI=collectionI.classList[1]
     console.log(collectionI)
-    collectionI=collectionI.classList[0]
-    console.log(collectionI)
-    if (token == null) {collectionI
+    if (token == null) {
         $('#loginModal').modal('show')
         alert("请先进行登录");
         return;
@@ -78,7 +74,7 @@ function addColletion(){
     if(collectionI=="far"){
         $.ajax({
             type: "post",
-            url: "http://localhost:8080/coffee-shop/addshop?name="+shopname+"&username="+username,
+            url: "http://localhost:8080/coffee-shop/addshop?name="+nameS+"&username="+username,
             // data: JSON.stringify(info),
             contentType : "application/json",
             dataType: "json",
@@ -94,14 +90,14 @@ function addColletion(){
     }
     else{
         $.ajax({
-            type: "post",
-            url: "http://localhost:8080/coffee-shop/addshop?name="+shopname+"&username="+username,
+            type: "delete",
+            url: "http://localhost:8080/coffee-shop/deleteshop?name="+nameS+"&username="+username,
             contentType : "application/json",
             dataType: "json",
             success: function (reviewInfo) {
                 alert('取消收藏成功');
-                $(".collection i").removeClass("fas")
-                $(".collection i").addClass("far")
+                $("#collection i").removeClass("fas")
+                $("#collection i").addClass("far")
             },
             error: function () {
                 alert('出现问题')

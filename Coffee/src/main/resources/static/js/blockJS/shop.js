@@ -135,8 +135,6 @@ $(function () {
             // alert('没有问题');
             updateShopInfo(shoplist.data.records);
             $.each(shoplist.data.records, function (i, a) {
-
-
                 var coordinatesObj = JSON.parse(a.position);
                 var longitude = coordinatesObj[0];
                 var latitude = coordinatesObj[1];
@@ -201,7 +199,6 @@ function updateShopInfo(shoplist) {
         rows=['<h5>暂无满足要求的店铺 </h5>']
     }
     $(".shopList").append(rows.join(''));
-    $('[data-toggle="popover"]').popover()
 }
 
 // 页面跳转 ok
@@ -286,9 +283,9 @@ $(".search-field").keyup(function (e) {
             if (searchValue.data != []) {
                 $("#valueList").attr("style", "display:block")
                 var rows = [];
-                for(var i=0;i<100;i++){
+                $.each(searchValue.data, function (i, a) {
                     rows.push('<div class="valueListItem" onclick="setInput(this)">' + searchValue.data[i].name + '</div>')
-                }
+                })
                 $("#valueList").append(rows.join(''));
             }
         },
@@ -358,9 +355,9 @@ function addColletion(a) {
                     contentType: "application/json",
                     dataType: "json",
                     success: function (reviewInfo) {
-                        alert('取消收藏成功');
-                        $(".collection i").removeClass("fas")
-                        $(".collection i").addClass("far")
+                        alert('收藏成功');
+                        $(".collection i").removeClass("far")
+                        $(".collection i").addClass("fas")
                     },
                     error: function () {
                         alert('出现问题1')
@@ -368,14 +365,14 @@ function addColletion(a) {
                 })
             } else {
                 $.ajax({
-                    type: "post",
+                    type: "delete",
                     url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
                     contentType: "application/json",
                     dataType: "json",
                     success: function (reviewInfo) {
-                        alert('收藏成功');
-                        $(".collection i").removeClass("far")
-                        $(".collection i").addClass("fas")
+                        alert('取消收藏成功');
+                        $(".collection i").removeClass("fas")
+                        $(".collection i").addClass("far")
                     },
                     error: function () {
                         alert('出现问题2')
@@ -388,6 +385,7 @@ function addColletion(a) {
         }
     })
 }
+
 //分享
 $('#copyButton').click( function() {
     alert('cf');

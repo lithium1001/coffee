@@ -47,7 +47,7 @@
 }
 .shopMark  #collection i{
     display: inline;
-    color: #faa292;
+    color: #ffdf7e;
     margin: 0 auto;
 }
 .shopMark .fa-share{
@@ -76,8 +76,8 @@
 }
 .shopPictureRotation{
     margin: 0 auto;
-    width: 480px;
-    height: 252px;
+    width: auto;
+    height: 300px;
     opacity: 1;
     border: 2px solid rgba(107, 69, 37, 1);
 }
