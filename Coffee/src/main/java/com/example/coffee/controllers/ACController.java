@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.coffee.pojo.ACollection;
+import com.example.coffee.pojo.Article;
 import com.example.coffee.pojo.User;
 import com.example.coffee.service.IACService;
+import com.example.coffee.service.IArticleService;
 import com.example.coffee.service.UserService;
 import com.example.coffee.vo.ACVo;
 import com.example.coffee.vo.Result;
@@ -27,6 +29,8 @@ public class ACController {
     private IACService acService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private IArticleService articleService;
 
     @GetMapping("/user/acollection")
     public Result acpage(@RequestParam String uname,@RequestParam(defaultValue="1") int pageNum, @RequestParam(defaultValue="2")int pageSize, @RequestParam(defaultValue = "desc") String order){
@@ -49,7 +53,14 @@ public class ACController {
         return Result.suc(pageResult);
     }
     @PostMapping("/articles/add")
-    public Result Aadd(@RequestBody ACollection newac) {
+    public Result Aadd(@RequestParam String username, @RequestParam String articlename) {
+        User user=userService.getUserByUsername(username);
+        QueryWrapper<Article> query1 = new QueryWrapper<>();
+        query1.eq("title",articlename);
+        Article article=articleService.getOne(query1);
+        ACollection newac = new ACollection();
+        newac.setUserId(user.getId());
+        newac.setAid(article.getArticleId());
         QueryWrapper<ACollection> query = new QueryWrapper<>();
         query.and(w -> w.eq("user_id", newac.getUserId()))
                 .and(w -> w.eq("aid", newac.getAid()));
@@ -63,8 +74,14 @@ public class ACController {
             }
         }
     @DeleteMapping("/articles/delete")
-    public Result Adel(@RequestBody ACollection delac) {
-
+    public Result Adel(@RequestParam String username, @RequestParam String articlename) {
+        User user=userService.getUserByUsername(username);
+        QueryWrapper<Article> query1 = new QueryWrapper<>();
+        query1.eq("title",articlename);
+        Article article=articleService.getOne(query1);
+        ACollection delac=new ACollection();
+        delac.setUserId(user.getId());
+        delac.setAid(article.getArticleId());
         QueryWrapper<ACollection> query = new QueryWrapper<>();
         query.and(w -> w.eq("user_id", delac.getUserId()))
                 .and(w -> w.eq("aid", delac.getAid()));
