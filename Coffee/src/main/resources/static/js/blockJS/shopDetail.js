@@ -8,6 +8,7 @@ if(tem[1]!=''&&tem[1]!=null&&tem.length!=0){
 
 $(function () {
     $('[data-toggle="popover"]').popover()
+    //初始化页面
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shopdetail",
@@ -33,35 +34,78 @@ $(function () {
             alert('出现问题')
         }
     })
-});
-
-//添加收藏
-function addColletion(){
-    var token = window.localStorage.getItem("token");
-    var username=window.localStorage.getItem("myname")
-    if (token == null) {
-        $('#loginModal').modal('show')
-        alert("请先进行登录");
-        return;
-    }
-    var info= {
-        "name": nameS,
-        "userId":username,
-        "sUrl":"http://localhost:8080/shop-detail.html?"+nameS
-    }
+    var shopname=$(".shopName").text()
+    shopname=shopname.replace(/&/g,'%26')
     $.ajax({
-        type: "post",
-        url: "http://localhost:8080/coffee-shop/addshop",
-        data: JSON.stringify(info),
+        type: "get",
+        url: "http://localhost:8080/coffee-shop/shopdetail?name="+shopname+"&username="+username,
         contentType : "application/json",
         dataType: "json",
-        success: function (reviewInfo) {
-            alert('收藏成功');
-            $("#collection i").removeClass("far")
-            $("#collection i").addClass("fas")
+        success: function (a) {
+            if(a.isCollection==true)
+            {
+                $("#collection i").removeClass("far")
+                $("#collection i").addClass("fas")
+            }
+            else{
+                $(".collection i").removeClass("fas")
+                $(".collection i").addClass("far")
+            }
         },
         error: function () {
             alert('出现问题')
         }
     })
+});
+
+//添加收藏
+function addColletion(){
+    var shopname=$(".shopName").text()
+    shopname=shopname.replace(/&/g,'%26')
+    var token = window.localStorage.getItem("token");
+    var username=window.localStorage.getItem("myname")
+    var collectionI = document.getElementsByClassName("fa-star")
+    console.log(collectionI)
+    collectionI=collectionI[0]
+    console.log(collectionI)
+    collectionI=collectionI.classList[0]
+    console.log(collectionI)
+    if (token == null) {collectionI
+        $('#loginModal').modal('show')
+        alert("请先进行登录");
+        return;
+    }
+    if(collectionI=="far"){
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8080/coffee-shop/addshop?name="+shopname+"&username="+username,
+            // data: JSON.stringify(info),
+            contentType : "application/json",
+            dataType: "json",
+            success: function (reviewInfo) {
+                alert('收藏成功');
+                $("#collection i").removeClass("far")
+                $("#collection i").addClass("fas")
+            },
+            error: function () {
+                alert('出现问题')
+            }
+        })
+    }
+    else{
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8080/coffee-shop/addshop?name="+shopname+"&username="+username,
+            contentType : "application/json",
+            dataType: "json",
+            success: function (reviewInfo) {
+                alert('取消收藏成功');
+                $(".collection i").removeClass("fas")
+                $(".collection i").addClass("far")
+            },
+            error: function () {
+                alert('出现问题')
+            }
+        })
+    }
 }

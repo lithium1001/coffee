@@ -334,7 +334,6 @@ $("#shopcard").click(function () {
 
 //添加收藏
 function addColletion(a) {
-    alert("cf")
     var shopname = a
     shopname = shopname.replace(/&/g, '%26')
     console.log(shopname)
