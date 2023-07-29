@@ -152,7 +152,7 @@
     margin:0px auto 10px;
 }
 .shopListItem{
-    height: 150px;
+    height: 175px;
     border-bottom: 2px solid #EEEEEE;
 }
 .shopName :hover{
@@ -168,7 +168,7 @@
     height: 120px;
     object-fit: none;
     border-radius: 3px;
-    margin:0 10px;
+    margin:0 20px 0 50px;
 }
 .shopListItem .shopInfo{
     display: inline-block;
@@ -192,7 +192,7 @@
 }
 .shopMark .collection i{
     display: inline;
-    color: #faa292;
+    color: #ffdf7e;
     margin: 2px auto;
 }
 .shopMark .fa-share{

@@ -142,15 +142,26 @@ var districtS = null
 // 初始化shop界面
 $(function () {
     $('[data-toggle="popover"]').popover()
+    var username = window.localStorage.getItem("myname");
+    if (username == null) {
+        var info= {
+            sort: sortS,
+            district: districtS,
+            tag: tagS
+        }
+    } else {
+        var info= {
+            sort: sortS,
+            district: districtS,
+            tag: tagS,
+            username: username
+        }
+    }
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
-        data: {
-            sort: sortS,
-            district: districtS,
-            tag: tagS
-        },
+        data: info,
         success: function (shoplist) {
             // alert('没有问题');
             updateShopInfo(shoplist.data.records);
@@ -190,7 +201,14 @@ function updateShopInfo(shoplist) {
             + a.rating
             + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(\''
             + a.name
-            + '\')">收藏 <i class="far fa-heart"></i></button><button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="http://localhost:8080/shopdetail?'+a.name+'">转发 <i class="far fa-share"></i></button></div><p>'
+            + '\')">收藏')
+        if(a.collection==true){
+            rows.push('<i class="fas fa-star"></i>')
+        }
+            else{
+            rows.push('<i class="far fa-star"></i>')
+        }
+        rows.push('</button><button class="btn" id="copyButton" type="button" data-content="http://localhost:8080/shopdetail?'+a.name+'">转发 <i class="far fa-share"></i></button></div><p>'
             + "上海市"+a.district+a.location
             + '</p> <p>'
             + a.opentime + '</p></div></div>')
@@ -363,6 +381,7 @@ $("#shopcard").click(function () {
     window.location.href = "http://localhost:8080/shop-detail.html";
 })
 
+//添加收藏
 function addColletion(shopname){
     var token = window.localStorage.getItem("token");
     var username=window.localStorage.getItem("myname")
@@ -374,7 +393,6 @@ function addColletion(shopname){
     var info= {
         "name": shopname,
         "userId":username,
-        "sUrl":"http://localhost:8080/shop-detail.html?"+shopname
     }
     $.ajax({
         type: "post",
@@ -392,3 +410,14 @@ function addColletion(shopname){
         }
     })
 }
+
+//分享
+document.getElementById('copyButton').addEventListener('click', function() {
+    var dummyInput = document.createElement('input');
+    dummyInput.setAttribute('value', window.location.href);
+    document.body.appendChild(dummyInput);
+    dummyInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummyInput);
+    alert('链接复制成功！');
+});

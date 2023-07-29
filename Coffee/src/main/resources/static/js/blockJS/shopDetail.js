@@ -3,7 +3,7 @@ var nameS=window.sessionStorage.getItem("shopname");
 var tem=location.search.split('?');
 if(tem[1]!=''&&tem[1]!=null&&tem.length!=0){
     nameS=tem[1]
-    alert(tem[1]);
+    console.log(tem[1]);
 }
 
 $(function () {

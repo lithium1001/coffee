@@ -94,12 +94,24 @@
     margin-bottom: 10px;
 }
 .forumTopicItem{
-    border-bottom: 2px solid #EEEEEE;
-    line-height: 40px;
+    border-bottom: 2px solid white;
+    line-height: 35px;
+    padding: 5px 0;
 }
+.forumTopicItem:hover{
+    cursor: pointer;
+}
+.forumTitle,.username{
+    cursor: pointer;
+}
+.forumTitle{
+    padding: 2px 0;
+}
+
 .badge{
-    background-color:#F8F2EAFF;
-    border: 1px solid #76452f;
+    background-color:#f7f5f1;
+    border: 1px solid #c7a092;
     color: #76452f;
+    margin-right: 20px;
     margin-right: 20px;
 }

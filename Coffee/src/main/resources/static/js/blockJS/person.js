@@ -21,6 +21,14 @@ $(document).ready(function () {
             alert('出现问题')
         }
     })
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/Scollection",
+        dataType: "json",
+        success: function (personInfo) {
+            updateShopInfo(shoplist)
+        }
+    })
 });
 
 //用户信息修改待完善
@@ -85,14 +93,23 @@ $("#logout").click(function () {
     window.location.href = "http://localhost:8080/首页.html"
 })
 
-//右侧，用户收藏list
 
+//右侧，用户收藏list
+function updateShopInfo(shoplist) {
+    var rows = [];
+    $.each(shoplist, function (i, a) {
+        rows.push('<div class="col-lg-4 card" class="shopListItem">< img src = "'
+            + a.xx+ '"/ ><h5 class="shopName" onclick="goShop(this)" hashId="'
+            + a.id+ '">' + a.title + '</h5> <button class="btn" type="button" onclick="deleteCollection(this)" hashId="'
+            + a.id+ '"><i class="far fa-heart"></i></button> <div class="shopMark align-self-center" style="height: 30px"><span>'
+            +4.5+'</span><span>'+renjun+'</span></div><p>'+loca+'</p></div>')
+    })
+    $("#shop").append(rows.join(''));
+}
 
 //右侧，用户的发帖list
 function updateForumInfo(forumlist) {
     var rows = [];
-    console.log(forumlist)
-    console.log("fenjiexian ")
     $.each(forumlist, function (i, a) {
         console.log(a)
         rows.push('<div class="col-lg-6" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
