@@ -3,11 +3,12 @@ package com.example.coffee.controllers;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.coffee.form.ScollectionForm;
 import com.example.coffee.pojo.Scollection;
 import com.example.coffee.pojo.Shop;
+import com.example.coffee.pojo.User;
 import com.example.coffee.service.IScollectionService;
 import com.example.coffee.service.IShopService;
+import com.example.coffee.service.UserService;
 import com.example.coffee.vo.ShopResult;
 import com.example.coffee.vo.ShopVo;
 import lombok.extern.slf4j.Slf4j;
@@ -32,12 +33,15 @@ public class ShopController {
     @Autowired
     private IScollectionService scollectionService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/shoplist")   //分页功能（包括是否按评分rating降序显示、分类）
     public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "30")int pageSize,
                                String district, String tag, @RequestParam(defaultValue = "false") boolean sort,
-                               HttpServletResponse response) {
+                               HttpServletResponse response, String username) {
 
-        log.info("shop list, pageNum={}, pageSize={}, district={}, tag={}, sort={}", pageNum, pageSize, district, tag, sort);
+        log.info("shop list, pageNum={}, pageSize={}, district={}, tag={}, sort={}, username={}", pageNum, pageSize, district, tag, sort, username);
 
         response.setHeader("Access-Control-Allow-Origin","*");
         Page<Shop> page = new Page<>(pageNum, pageSize);
@@ -100,6 +104,21 @@ public class ShopController {
             for (int i = 0; i < pageSize && i < count - currentId; i++) {
                 ShopVo shopVo = new ShopVo();
                 BeanUtils.copyProperties(shopList.get(currentId + i), shopVo);
+
+                if (!Objects.equals(username, "") && username != null){
+                    QueryWrapper queryWrapper1 = new QueryWrapper<User>();
+                    queryWrapper1.eq("username", username);
+                    String userId = userService.getOne(queryWrapper1).getId();
+
+                    QueryWrapper queryWrapper2 = new QueryWrapper<Scollection>();
+                    queryWrapper2.eq("user_id", userId).equals(queryWrapper2.eq("shop_id", shopList.get(currentId + i).getShopId()));
+                    Scollection scollection = scollectionService.getOne(queryWrapper2);
+
+                    if (scollection != null){
+                        shopVo.setCollection(true);
+                    }
+                }
+
                 shopVoList.add(shopVo);
             }
             page.setSize(pageSize);
@@ -118,6 +137,21 @@ public class ShopController {
             List shopVoList = pageResult.getRecords().stream().map( shop -> {
                 ShopVo shopVo = new ShopVo();
                 BeanUtils.copyProperties(shop, shopVo);
+
+                if (!Objects.equals(username, "") && username != null){
+                    QueryWrapper queryWrapper1 = new QueryWrapper<User>();
+                    queryWrapper1.eq("username", username);
+                    String userId = userService.getOne(queryWrapper1).getId();
+
+                    QueryWrapper queryWrapper2 = new QueryWrapper<Scollection>();
+                    queryWrapper2.eq("user_id", userId).equals(queryWrapper2.eq("shop_id", shop.getShopId()));
+                    Scollection scollection = scollectionService.getOne(queryWrapper2);
+
+                    if (scollection != null){
+                        shopVo.setCollection(true);
+                    }
+                }
+
                 return shopVo;
             }).collect(Collectors.toList());
             pageResult.setRecords(shopVoList);
@@ -126,8 +160,8 @@ public class ShopController {
     }
 
     @GetMapping("/searchshop")  //搜索：动态联想与自动补全
-    public ShopResult searchshop(@RequestParam String keyword){
-        log.info("search, keyword={}", keyword);
+    public ShopResult searchshop(@RequestParam String keyword, String username){
+        log.info("search, keyword={}, username={}", keyword, username);
 
         QueryWrapper query = new QueryWrapper<Shop>();
         query.like("name", keyword);
@@ -137,6 +171,21 @@ public class ShopController {
         for (Shop shop : shopList) {
             ShopVo shopVo = new ShopVo();
             BeanUtils.copyProperties(shop, shopVo);
+
+            if (!Objects.equals(username, "") && username != null){
+                QueryWrapper queryWrapper1 = new QueryWrapper<User>();
+                queryWrapper1.eq("username", username);
+                String userId = userService.getOne(queryWrapper1).getId();
+
+                QueryWrapper queryWrapper2 = new QueryWrapper<Scollection>();
+                queryWrapper2.eq("user_id", userId).equals(queryWrapper2.eq("shop_id", shop.getShopId()));
+                Scollection scollection = scollectionService.getOne(queryWrapper2);
+
+                if (scollection != null){
+                    shopVo.setCollection(true);
+                }
+            }
+
             shopVoList.add(shopVo);
         }
 
@@ -158,20 +207,21 @@ public class ShopController {
     }
 
     @PostMapping("/addshop")  //实现收藏功能，给scollections表添加一条记录
-    public ShopResult addshop(@RequestBody ScollectionForm scollectionForm){
-        log.info("shop add, scollectionForm={}", scollectionForm);  //这里前端sUrl传不过来（？
+    public ShopResult addshop(@RequestParam String name, @RequestParam String username){
+        log.info("shop add, shopName={}, username={}", name, username);
 
-        //先根据name查询出shopId
-        QueryWrapper query = new QueryWrapper<Shop>();
-        query.eq("name", scollectionForm.getName());
-        int shopId = shopService.getOne(query).getShopId();
+        //先根据name查询出shopId、根据username查出userId
+        QueryWrapper query1 = new QueryWrapper<Shop>();
+        query1.eq("name", name);
+        int shopId = shopService.getOne(query1).getShopId();
+        QueryWrapper query2 = new QueryWrapper<User>();
+        query2.eq("username", username);
+        String userId = userService.getOne(query2).getId();
 
-        //将前端获取到的userId、sUrl与shopId一起写入scollections表
+        //将userId与shopId一起写入scollections表
         Scollection scollection = new Scollection();
         scollection.setShopId(shopId);
-        scollection.setUserId(scollectionForm.getUserId());
-        scollection.setSUrl("http://coffee.com");  //这里我强行写死了，等解决了前端问题可以去除
-        log.info("sUrl={}, scollection={}", scollectionForm.getSUrl(), scollection);
+        scollection.setUserId(userId);
 
         scollectionService.saveMain(scollection);
 
@@ -179,18 +229,21 @@ public class ShopController {
     }
 
     @DeleteMapping("/deleteshop")  //取消收藏
-    public ShopResult deleteshop(String name, int userId){
-        log.info("shop delete, shopName={}, userId={}", name, userId);
+    public ShopResult deleteshop(@RequestParam String name, @RequestParam String username){
+        log.info("shop delete, shopName={}, username={}", name, username);
 
-        //先根据name查询出shopId
+        //先根据name查询出shopId、根据username查出userId
         QueryWrapper query1 = new QueryWrapper<Shop>();
         query1.eq("name", name);
         int shopId = shopService.getOne(query1).getShopId();
+        QueryWrapper query2 = new QueryWrapper<User>();
+        query2.eq("username", username);
+        String userId = userService.getOne(query2).getId();
 
         //条件查询并删除记录
-        QueryWrapper query2 = new QueryWrapper<Scollection>();
-        query2.eq("user_id", userId).equals(query2.eq("shop_id", shopId));
-        scollectionService.remove(query2);
+        QueryWrapper query3 = new QueryWrapper<Scollection>();
+        query3.eq("user_id", userId).equals(query3.eq("shop_id", shopId));
+        scollectionService.remove(query3);
 
         return ShopResult.success();
     }

@@ -8,9 +8,8 @@ import lombok.Data;
 public class ScollectionVo {
     //private Integer userId;
     //private Integer shopId;
-    private String sUrl;
     private String name;
     private String pictureUrl;
-    private String phone;
+    private String district;
     private Float rating;
 }
