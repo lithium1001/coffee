@@ -125,21 +125,21 @@
                     <span>地区：</span>
                     <select class="selectpicker" data-live-search="true" id="sel-district" title="请选择地区">
                         <option>浦东新区</option>
-                        <option>徐汇</option>
-                        <option>长宁</option>
-                        <option>普陀</option>
-                        <option>虹口</option>
-                        <option>杨浦</option>
-                        <option>黄浦</option>
-                        <option>静安</option>
-                        <option>宝山</option>
-                        <option>闵行</option>
-                        <option>嘉定</option>
-                        <option>金山</option>
-                        <option>松江</option>
-                        <option>青浦</option>
-                        <option>奉贤</option>
-                        <option>崇明</option>
+                        <option>徐汇区</option>
+                        <option>长宁区</option>
+                        <option>普陀区</option>
+                        <option>虹口区</option>
+                        <option>杨浦区</option>
+                        <option>黄浦区</option>
+                        <option>静安区</option>
+                        <option>宝山区</option>
+                        <option>闵行区</option>
+                        <option>嘉定区</option>
+                        <option>金山区</option>
+                        <option>松江区</option>
+                        <option>青浦区</option>
+                        <option>奉贤区</option>
+                        <option>崇明区</option>
                     </select>
                     <span>店铺类型：</span>
                     <select class="selectpicker" id="sel-tag" title="请选择类型">
@@ -162,7 +162,7 @@
                         <input class="search-field" placeholder="请输入关键词" type="text">
                         <input class="search-submit text-center" value="Search" onclick="search()">
                     </form>
-                    <div id="valueList">
+                    <div id="valueList" class="pre-scrollable">
                         <!--<div class="valueListItem"></div>-->
                     </div>
                 </div>
@@ -170,9 +170,9 @@
                 <div class="card" id="shopcard">
                     <img alt="" src="img/gallery/protfolio-img02.png" id="card-picture"/>
                     <div class="card-body">
-                            <h5 class="card-title">店铺名称</h5>
-                            <p class="card-text" id="card-location">店铺地址</p>
-                            <p class="card-text" id="card-time">营业时间</p>
+                            <h5 class="card-title">暂无店铺信息</h5>
+                            <p class="card-text" id="card-location">请在左侧地图区域中选择</p>
+                            <p class="card-text" id="card-time"></p>
                     </div>
                 </div>
             </div>
@@ -198,27 +198,7 @@
             </div>
         </div>
     </div>
-    <div class="shopList">
-
-        <!--bootstrap 分页组件 后续用elementui替换-->
-    </div>
-    <!--    <nav aria-label="Page navigation example" class="text-center paging">-->
-    <!--        <ul class="pagination">-->
-    <!--            <li class="page-item">-->
-    <!--                <a aria-label="Previous" class="page-link" href="#">-->
-    <!--                    <span aria-hidden="true">&laquo;</span>-->
-    <!--                </a>-->
-    <!--            </li>-->
-    <!--            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-    <!--            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-    <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-    <!--            <li class="page-item">-->
-    <!--                <a aria-label="Next" class="page-link" href="#">-->
-    <!--                    <span aria-hidden="true">&raquo;</span>-->
-    <!--                </a>-->
-    <!--            </li>-->
-    <!--        </ul>-->
-    <!--    </nav>-->
+    <div class="shopList"></div>
 </div>
 
 <!--登录注册-->

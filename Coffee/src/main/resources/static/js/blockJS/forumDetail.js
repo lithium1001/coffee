@@ -18,7 +18,6 @@ $(function () {
             $(".time").text(forumInfo.data.topic.createTime);
             $(".username").text(forumInfo.data.user.username);
             $(".avatar").attr("src", forumInfo.data.user.pictureUrl);
-            alert('初始化没有问题'+postId);
         },
         error: function () {
             alert('出现问题')
@@ -33,7 +32,6 @@ $(function () {
             postid: postId
         },
         success: function (reviewInfo) {
-            alert('初始化评论列表没有问题'+postId);
             updateReview(reviewInfo.data)
         },
         error: function () {
@@ -117,7 +115,6 @@ $('#sendReview').click(function (){
 // 页面跳转到个人主页
 function goPerson(a) {
     userId = $(a).attr("hashId");
-    alert('个人主页跳转'+ userId);
     window.sessionStorage.setItem("userId",userId)
     window.location.href = "http://localhost:8080/Person.html"
 }
