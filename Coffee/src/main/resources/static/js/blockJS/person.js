@@ -93,7 +93,6 @@ $("#logout").click(function () {
     window.location.href = "http://localhost:8080/首页.html"
 })
 
-
 //右侧，用户收藏list
 function updateShopInfo(shoplist) {
     var rows = [];

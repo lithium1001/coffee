@@ -92,11 +92,13 @@
 }
 .forumTopic-title{
     margin-bottom: 10px;
+    border-bottom: 2px solid #76452f;
 }
 .forumTopicItem{
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #c7a092;
     line-height: 35px;
-    padding: 5px 0;
+    padding: 3px 10px;
+    color: #444444;
 }
 .forumTopicItem:hover{
     cursor: pointer;
