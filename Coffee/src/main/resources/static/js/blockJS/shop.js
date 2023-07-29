@@ -157,7 +157,7 @@ $(function () {
             $.each(shoplist.data.records, function (i, a) {
                 marker = new AMap.Marker({
                     icon: "/img/坐标.png",
-                    position: a.location,
+                    position: a.position,
                     offset: new AMap.Pixel(-13, -30)
                 });
                 marker.setMap(map);
@@ -191,7 +191,7 @@ function updateShopInfo(shoplist) {
             + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(\''
             + a.name
             + '\')">收藏 <i class="far fa-heart"></i></button><button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="http://localhost:8080/shopdetail?'+a.name+'">转发 <i class="far fa-share"></i></button></div><p>'
-            + "上海市"+a.district+a.road+a.number
+            + "上海市"+a.district+a.location
             + '</p> <p>'
             + a.opentime + '</p></div></div>')
         number=number+1
