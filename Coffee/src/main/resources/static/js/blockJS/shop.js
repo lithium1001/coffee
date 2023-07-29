@@ -15,7 +15,7 @@ var center = map.getCenter();
 
 // 添加事件监听, 使地图自适应显示到合适的范围
 var setFitViewBtn = document.getElementById('setFitView');
-setFitViewBtn.onclick = function(){
+setFitViewBtn.onclick=function(){
     // 第一个参数为空，表明用图上所有覆盖物 setFitview
     // 第二个参数为false, 非立即执行
     // 第三个参数设置上左下右的空白
@@ -188,7 +188,7 @@ function updateShopInfo(shoplist) {
         if(a.collection==true){
             rows.push('<i class="fas fa-star" id="'+a.name+'"></i>')
         }
-            else{
+        else{
             rows.push('<i class="far fa-star"></i>')
         }
         rows.push('</button><button class="btn" id="copyButton" type="button" data-content="http://localhost:8080/shopdetail?'+a.name+'">转发 <i class="far fa-share"></i></button></div><p>'
@@ -333,55 +333,62 @@ $("#shopcard").click(function () {
 })
 
 //添加收藏
-function addColletion(a){
-    var shopname=a
-    shopname=shopname.replace(/&/g,'%26')
+function addColletion(a) {
+    alert("cf")
+    var shopname = a
+    shopname = shopname.replace(/&/g, '%26')
     console.log(shopname)
     var token = window.localStorage.getItem("token");
-    var username=window.localStorage.getItem("myname")
+    var username = window.localStorage.getItem("myname")
     if (token == null) {
         $('#loginModal').modal('show')
         alert("请先进行登录");
         return;
     }
-    
-
-
-    if(collectionI=="far"){
-        $.ajax({
-            type: "post",
-            url: "http://localhost:8080/coffee-shop/addshop?name="+encodeURIComponent(shopname)+"&username="+username,
-            // data: JSON.stringify(info),
-            contentType : "application/json",
-            dataType: "json",
-            success: function (reviewInfo) {
-                alert('收藏成功');
-                $(".collection i").removeClass("far")
-                $(".collection i").addClass("fas")
-            },
-            error: function () {
-                alert('出现问题')
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/coffee-shop/shopdetail?name=" + shopname + "&username=" + username,
+        contentType: "application/json",
+        dataType: "json",
+        success: function (a) {
+            console.log(a.data.collection)
+            if (a.data.collection != true) {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8080/coffee-shop/addshop?name=" + shopname + "&username=" + username,
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (reviewInfo) {
+                        alert('取消收藏成功');
+                        $(".collection i").removeClass("fas")
+                        $(".collection i").addClass("far")
+                    },
+                    error: function () {
+                        alert('出现问题1')
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (reviewInfo) {
+                        alert('收藏成功');
+                        $(".collection i").removeClass("far")
+                        $(".collection i").addClass("fas")
+                    },
+                    error: function () {
+                        alert('出现问题2')
+                    }
+                })
             }
-        })
-    }
-    else{
-        $.ajax({
-            type: "post",
-            url: "http://localhost:8080/coffee-shop/addshop?name="+shopname+"&username="+username,
-            contentType : "application/json",
-            dataType: "json",
-            success: function (reviewInfo) {
-                alert('取消收藏成功');
-                $(".collection i").removeClass("fas")
-                $(".collection i").addClass("far")
-            },
-            error: function () {
-                alert('出现问题')
-            }
-        })
-    }
+        },
+        error: function () {
+            alert('出现问题3')
+        }
+    })
 }
-
 //分享
 $('#copyButton').click( function() {
     alert('cf');
