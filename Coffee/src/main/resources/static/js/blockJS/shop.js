@@ -11,6 +11,7 @@ var map = new AMap.Map('mapContainer', {
 
 map.clearMap();  // 清除地图覆盖物
 
+/*
 //这些markers需要向后端发起请求，调取数据库内容，然后填充，下面只是一些示例
 var markers = [{
     icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-1.png',
@@ -43,10 +44,11 @@ function addMarker() {
 }
 
 var center = map.getCenter();
+*/
 
 // 添加事件监听, 使地图自适应显示到合适的范围
 var setFitViewBtn = document.getElementById('setFitView');
-setFitViewBtn.onclick=function(){
+setFitViewBtn.onclick = function(){
     // 第一个参数为空，表明用图上所有覆盖物 setFitview
     // 第二个参数为false, 非立即执行
     // 第三个参数设置上左下右的空白
@@ -156,6 +158,7 @@ $(function () {
             updateShopInfo(shoplist.data.records);
             $.each(shoplist.data.records, function (i, a) {
                 marker = new AMap.Marker({
+                    map: map,
                     icon: "/img/坐标.png",
                     position: a.position,
                     offset: new AMap.Pixel(-13, -30)

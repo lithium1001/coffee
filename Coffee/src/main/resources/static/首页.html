@@ -212,8 +212,27 @@
         }
 
     </style>
+
+    <!--地图-->
+    <link href="https://cache.amap.com/lbs/static/main1119.css" rel="stylesheet"/>
+    <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
+    <!--接入高德API的key-->
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c63790e173e5c52c26b68bed8ecc18ea"></script>
+    <script src="https://cache.amap.com/lbs/static/addToolbar.js" type="text/javascript"></script>
 </head>
 <body>
+<script type="text/javascript">
+    window._AMapSecurityConfig = {
+        serviceHost: 'http://47.115.230.54/_AMapService'
+    };
+
+    //创建地图
+    var map = new AMap.Map('mapContainer', {
+        resizeEnable: true,
+        zoom: 11,
+        center: [121.47, 31.23]  //上海市中心点的经纬度
+    });
+</script>
 <!-- header -->
 <header class="header-area header-three">
     <div class="header-top second-header d-none d-md-block">
@@ -657,9 +676,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
-                <div class="skills-img">
-                    <img src="img/bg/skills-img.png" alt="img" class="img">
-                </div>
+                <div class="mapDisplay" id="mapContainer"></div>
             </div>
 
         </div>
