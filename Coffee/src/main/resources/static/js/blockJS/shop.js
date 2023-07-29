@@ -182,9 +182,9 @@ function updateShopInfo(shoplist) {
             + a.name
             + '</h4> <div class="shopMark align-self-center"> <span id="rating">店铺评分：'
             + a.rating
-            + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(this)" hashId="'
+            + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(\''
             + a.name
-            + '">收藏')
+            + '\')">收藏')
         if(a.collection==true){
             rows.push('<i class="fas fa-star" id="'+a.name+'"></i>')
         }
@@ -333,7 +333,10 @@ $("#shopcard").click(function () {
 })
 
 //添加收藏
-function addColletion(shopname){
+function addColletion(a){
+    var shopname=a
+    shopname=shopname.replace(/&/g,'%26')
+    console.log(shopname)
     var token = window.localStorage.getItem("token");
     var username=window.localStorage.getItem("myname")
     if (token == null) {
@@ -341,12 +344,9 @@ function addColletion(shopname){
         alert("请先进行登录");
         return;
     }
-    var collectionI = document.getElementsByClassName("fa-star")
-    console.log(collectionI)
-    collectionI=collectionI[0]
-    console.log(collectionI)
-    collectionI=collectionI.classList[0]
-    console.log(collectionI)
+    
+
+
     if(collectionI=="far"){
         $.ajax({
             type: "post",
@@ -380,8 +380,6 @@ function addColletion(shopname){
             }
         })
     }
-
-
 }
 
 //分享
