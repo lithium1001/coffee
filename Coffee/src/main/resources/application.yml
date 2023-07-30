@@ -1,7 +1,8 @@
 spring:
   application:
     name: Coffee
-
+  jackson:
+    time-zone: GMT+8
   servlet:
     multipart:
       max-file-size: 15MB
@@ -15,6 +16,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+
 mybatis-plus:
   type-enums-package: com.bjbss.bbcsupport.domain
   configuration:
