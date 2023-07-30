@@ -44,6 +44,14 @@ function getQueryString(name) {
 //添加收藏
     function addColletion() {
         var title = articlename
+        title = title.replace(/&/g, '%26');
+        title = title.replace(/\+/g, '%2B');
+        title = title.replace(/ /g, '%20');
+        title = title.replace(/\?/g, '%3F');
+        title = title.replace(/%/g, '%25');
+        title = title.replace(/#/g, '%23');
+        title = title.replace(/=/g, '%3D');
+alert(title);
         var token = window.localStorage.getItem("token");
         var username = window.localStorage.getItem("myname")
         if (token == null) {
