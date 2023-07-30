@@ -21,6 +21,14 @@ $(document).ready(function () {
             alert('出现问题')
         }
     })
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/Scollection/shoplist?username="+window.localStorage.getItem("myname"),
+        dataType: "json",
+        success: function (shoplist) {
+            updateShopInfo(shoplist)
+        }
+    })
 });
 
 //用户信息修改待完善
@@ -86,24 +94,25 @@ $("#logout").click(function () {
 })
 
 //右侧，用户收藏list
-
+function updateShopInfo(shoplist) {
+    $("#shop").empty();
+    var rows = [];
+    var number=0
+    $.each(shoplist.data.records, function (i, a) {
+        rows.push('<div class="col-lg-4 card" class="shopListItem"><img src="'
+            + a.pictureUrl+ '"/><h5 class="shopName" onclick="goShop(this)" hashId="'
+            + a.name+ '">' + a.name + '</h5> <button class="btn" type="button" onclick="deleteCollection(this)" hashId="'
+            + a.name+ '"><i class="fa-star fas"></i></button> <div class="shopMark align-self-center" style="height: 30px">'
+            +a.rating+'</span><p>所在地区：'+a.district+'</p></div></div>')
+        number=number+1
+    })
+    if (number==0){
+        rows=['<h5>暂无收藏店铺 </h5>']
+    }
+    $("#shop").append(rows.join(''));
+}
 
 //右侧，用户的发帖list
-function updateForumInfo(forumlist) {
-    var rows = [];
-    console.log(forumlist)
-    console.log("fenjiexian ")
-    $.each(forumlist, function (i, a) {
-        console.log(a)
-        rows.push('<div class="col-lg-6" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
-            + a.id+ '">' + a.title + '</h4> <button class="btn pull-right" type="button" onclick="deleteForum(this)" hashId="'
-            + a.id+ '">删除</button> <p class="forumContent" onclick="goForum(this)" hashId="'
-            + a.id+ '">' + a.content+ '</p>'
-            +'<div><span class="createtime">发帖时间:' +a.createTime
-            +'</span><span class="replies">回帖数：' + a.comments + '</span></div></div>')
-    })
-    $("#forum").append(rows.join(''));
-}
 
 //跳转到帖子详情
 function goForum(a) {

@@ -30,7 +30,7 @@ function updateForumInfo(forumlist) {
             + '</h4> <p class="forumContent"></p>')
             // +a.   看具体后面有没有content
         $.each(a.tags, function (itag, tag){
-            rows.push('<div><span class="badge rounded-pill">'+tag.name+'</span></div>')
+            rows.push('<span class="badge rounded-pill">'+tag.name+'</span>')
         })
         rows.push('<div><span class="createtime">发帖时间:'
             +a.createTime

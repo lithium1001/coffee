@@ -43,7 +43,7 @@ $("#button_login").click(function () {
 var a = true;
 var b = true;
 var c = true;
-//昵称长度检验
+//昵称长度以及特殊字符检验
 $("#sign_username").blur(function () {
     var username = document.getElementById("sign_username").value;
     if (username.length > 15 || username.length < 2) {
@@ -115,6 +115,7 @@ $("#button_register").click(function () {
                 $("#prompt_register i").addClass(" fa-check-circle")
                 $("#prompt_register span").text(data.message)
                 $('#signModal').modal('hide')
+                $('#loginModal').modal('show')
             } else if (data.code == -1) {
                 $("#prompt_register").attr("style", "display:block")
                 $("#prompt_register i").attr("style", "color:#e11d07")

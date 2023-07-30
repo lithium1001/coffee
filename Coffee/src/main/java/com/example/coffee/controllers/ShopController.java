@@ -193,8 +193,8 @@ public class ShopController {
     }
 
     @GetMapping("/shopdetail")  //用户点击shoplist中（或搜索栏中）某一店铺，显示其具体信息
-    public ShopResult shopdetail(@RequestParam String name) {
-        log.info("shopdetail, shopName={}", name);
+    public ShopResult shopdetail(@RequestParam String name, String username) {
+        log.info("shopdetail, shopName={}, username={}", name, username);
 
         QueryWrapper query = new QueryWrapper<Shop>();
         query.eq("name", name);
@@ -202,6 +202,20 @@ public class ShopController {
 
         ShopVo shopVo = new ShopVo();
         BeanUtils.copyProperties(shop, shopVo);
+
+        if (!Objects.equals(username, "") && username != null){
+            QueryWrapper queryWrapper1 = new QueryWrapper<User>();
+            queryWrapper1.eq("username", username);
+            String userId = userService.getOne(queryWrapper1).getId();
+
+            QueryWrapper queryWrapper2 = new QueryWrapper<Scollection>();
+            queryWrapper2.eq("user_id", userId).equals(queryWrapper2.eq("shop_id", shop.getShopId()));
+            Scollection scollection = scollectionService.getOne(queryWrapper2);
+
+            if (scollection != null){
+                shopVo.setCollection(true);
+            }
+        }
 
         return ShopResult.success(shopVo);
     }

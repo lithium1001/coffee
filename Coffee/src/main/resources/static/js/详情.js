@@ -34,7 +34,6 @@ function getQueryString(name) {
     document.execCommand('copy');
     document.body.removeChild(dummyInput);
     alert('链接复制成功！');
-
 });
 function addColletion(shopname){
     var token = window.localStorage.getItem("token");

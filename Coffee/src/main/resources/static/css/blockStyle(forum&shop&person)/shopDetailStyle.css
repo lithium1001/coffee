@@ -2,7 +2,7 @@
 .shopMain{
     padding-top: 105px;
     background: linear-gradient(180deg, #f7f5f1, rgba(255, 249, 242, 1) 43.01%, rgba(230, 211, 204, 1) 100%);
-    height: 700px;
+    height: 600px;
 }
 .shopNav{
     margin: 10px 5px 10px 92px;
@@ -27,11 +27,13 @@
     margin-bottom: 10px;
     font-size: 24px;
 }
-
+.shopMark{
+    margin-bottom: 10px;
+}
 .shopMark i{
     display: inline-block;
     color: #ffdf7e;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 .shopMark .btn{
     background-color: transparent;
@@ -45,7 +47,7 @@
 }
 .shopMark  #collection i{
     display: inline;
-    color: #faa292;
+    color: #ffdf7e;
     margin: 0 auto;
 }
 .shopMark .fa-share{
@@ -74,13 +76,14 @@
 }
 .shopPictureRotation{
     margin: 0 auto;
-    width: 480px;
-    height: 252px;
+    width: auto;
+    height: 300px;
     opacity: 1;
     border: 2px solid rgba(107, 69, 37, 1);
 }
-.detailInfo{
-    margin: 20px auto;
+#description{
+    margin-left: 50px;
+    margin-right: 500px;
 }
 
 .shopSearchBlock{
