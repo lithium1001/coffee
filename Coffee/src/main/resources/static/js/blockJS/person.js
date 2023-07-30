@@ -66,7 +66,7 @@ $("#modifyInfo").click(function () {
             console.log(data)
             if (data.code === 200) {
                 window.localStorage.setItem("myname", data.data.username)
-                window.localStorage.setItem("myavatar", data.data.avatarUrl)
+
                 location.reload()
             }
         },
@@ -90,6 +90,7 @@ $("#avatar").change(function (e) {
         processData: false,
         success: function (res) {
             $("#avatar_src").val(res.data.imgUrl)
+            window.localStorage.setItem("myavatar", data.data.avatarUrl)
             alert("头像上传成功！")
         }
     })
@@ -121,6 +122,12 @@ function updateShopInfo(shoplist) {
     $("#shop").append(rows.join(''));
 }
 
+//跳转到用户信息
+function goShop(a) {
+    var a = $(a).attr("hashId");
+    window.sessionStorage.setItem('shopname', a)
+    window.location.href = "http://localhost:8080/shop-detail.html";
+}
 function updateArticleInfo(articlelist) {
     $("#info").empty();
     var number = 0;
