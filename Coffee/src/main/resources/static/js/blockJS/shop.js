@@ -183,6 +183,8 @@ function updateShopInfo(shoplist) {
             offset: new AMap.Pixel(-13, -30)
         });
         marker.setMap(map);
+        map.setFitView(null, false, [0, 0, 0, 0]);
+        var newCenter = map.getCenter();
         AMap.event.addListener(marker, 'mouseover', function () {
             $(".card-title").text(a.name)
             $("#card-location").text("上海市"+a.district+a.location)
@@ -234,7 +236,7 @@ var districtCenter = [[121.53, 31.22], [121.43, 31.18], [121.42, 31.22], [121.40
 function selectByTag() {
     districtS = $("#sel-district").find("option:selected").text()
     i = $("#sel-district").find("option:selected").index()
-    if (districtS != null) {
+    if (i >= 0) {
         map.setCenter(districtCenter[i-1])
         map.setZoom(13)
     }
@@ -244,15 +246,26 @@ function selectByTag() {
 
 //实际筛选
 function selectShop() {
+    var username = window.localStorage.getItem("myname");
+    if (username == null) {
+        var info= {
+            sort: sortS,
+            district: districtS,
+            tag: tagS
+        }
+    } else {
+        var info= {
+            sort: sortS,
+            district: districtS,
+            tag: tagS,
+            username: username
+        }
+    }
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
-        data: {
-            sort: sortS,
-            district: districtS,
-            tag: tagS
-        },
+        data: info,
         success: function (shoplist) {
             updateShopInfo(shoplist.data.records);
         },
@@ -305,14 +318,23 @@ function setInput(a) {
 
 //搜索
 function search() {
+    var username = window.localStorage.getItem("myname");
+    if (username == null) {
+        var info= {
+            keyword: searchKey
+        }
+    } else {
+        var info= {
+            keyword: searchKey,
+            username: username
+        }
+    }
     var searchKey = $(".search-field").val()
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/searchshop",
         dataType: "json",
-        data: {
-            keyword: searchKey
-        },
+        data: info,
         success: function (searchResult) {
             updateShopInfo(searchResult.data)
             location.hash='shopcard'

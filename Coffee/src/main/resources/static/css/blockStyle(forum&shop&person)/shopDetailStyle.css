@@ -80,8 +80,8 @@
 }
 .shopPictureRotation{
     margin: 0 auto;
-    width: auto;
-    height: 300px;
+    width: 400px;
+    height: 290px;
     opacity: 1;
     border: 2px solid rgba(107, 69, 37, 1);
 }
