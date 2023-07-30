@@ -41,6 +41,10 @@ public class Post {
 
     @TableField("picture_url")
     private String pictureUrl;
+    @TableField("avatar_url")
+    private String avatarUrl;
+    @TableField("username")
+    private String username;
     /**
      * 评论数
      */
