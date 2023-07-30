@@ -138,12 +138,12 @@ function updateArticleInfo(articlelist) {
             type: 'GET',
             dataType: 'json',
             success: function (json) {
-                var articleHtml = '<div class="col-lg-4 card shopListItem">' +
+                var articleHtml = '<div  class=" card" class="shopListItem">' +
                     '<img src="' + json.data.pictureUrl + '"/>' +
                     '<h5 class="shopName" onclick="redirectToPage(' + json.data.articleId + ')">' + json.data.title + '</h5>' +
-                    '<div class="shopMark align-self-center" style="height: 30px">' +
+                    '<div class="shopMark align-self-center" style="height: 30px; overflow: hidden;">' +
                     json.data.abs +
-                    '<p>发布时间：' + json.data.date + '</p>' +
+                    '<p class="article-time">发布时间：' + json.data.date + '</p>' +
                     '</div>' +
                     '</div>';
 
@@ -160,6 +160,7 @@ function updateArticleInfo(articlelist) {
         });
     });
 }
+
 
 //右侧，用户的发帖list
 function updateForumInfo(forumlist) {
