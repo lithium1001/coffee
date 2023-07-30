@@ -117,7 +117,7 @@ $("#button_forum").click(function(){
 function goTag(a){
     tagname = $(a).text();
     window.sessionStorage.setItem("tagname",tagname)
-    window.location.href = "http://localhost:8080/forum-tag.html";
+    window.location.href = "http://47.115.230.54:8080/forum-tag.html";
 }
 
 

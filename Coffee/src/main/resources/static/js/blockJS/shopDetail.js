@@ -38,7 +38,7 @@ $(function () {
     var username=window.localStorage.getItem("myname")
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shopdetail?name="+nameS+"&username="+username,
+        url: "http://47.115.230.54:8080/coffee-shop/shopdetail?name="+nameS+"&username="+username,
         contentType : "application/json",
         dataType: "json",
         success: function (a) {
@@ -74,7 +74,7 @@ function addColletion(){
     if(collectionI=="far"){
         $.ajax({
             type: "post",
-            url: "http://localhost:8080/coffee-shop/addshop?name="+nameS+"&username="+username,
+            url: "http://47.115.230.54:8080/coffee-shop/addshop?name="+nameS+"&username="+username,
             // data: JSON.stringify(info),
             contentType : "application/json",
             dataType: "json",
@@ -91,7 +91,7 @@ function addColletion(){
     else{
         $.ajax({
             type: "delete",
-            url: "http://localhost:8080/coffee-shop/deleteshop?name="+nameS+"&username="+username,
+            url: "http://47.115.230.54:8080/coffee-shop/deleteshop?name="+nameS+"&username="+username,
             contentType : "application/json",
             dataType: "json",
             success: function (reviewInfo) {

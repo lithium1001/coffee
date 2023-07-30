@@ -19,7 +19,7 @@ $(function () {
     })
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/list",
+        url: "http://47.115.230.54:8080/post/list",
         dataType: "json",
         success: function (json) {
             // 请求成功后的处理
@@ -35,7 +35,7 @@ $(function () {
     })
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/list",
+        url: "http://47.115.230.54:8080/post/list",
         dataType: "json",
         success: function (json) {
             // 请求成功后的处理
@@ -51,7 +51,7 @@ $(function () {
     })
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/post/list",
+        url: "http://47.115.230.54:8080/post/list",
         dataType: "json",
         success: function (json) {
             // 请求成功后的处理
@@ -71,6 +71,6 @@ function goForum(a) {
     var postId = $(a).attr("hashId");
     alert('论坛页面跳转'+ postId);
     window.sessionStorage.setItem("postId",postId)
-    window.location.href = "http://localhost:8080/forum-detail.html";
+    window.location.href = "http://47.115.230.54:8080/forum-detail.html";
 }
 

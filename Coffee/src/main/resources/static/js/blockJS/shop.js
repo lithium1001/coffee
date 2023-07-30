@@ -344,7 +344,7 @@ function addColletion(a) {
     }
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/coffee-shop/shopdetail?name=" + shopname + "&username=" + username,
+        url: "http://47.115.230.54:8080/coffee-shop/shopdetail?name=" + shopname + "&username=" + username,
         contentType: "application/json",
         dataType: "json",
         success: function (a) {
@@ -352,7 +352,7 @@ function addColletion(a) {
             if (a.data.collection != true) {
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8080/coffee-shop/addshop?name=" + shopname + "&username=" + username,
+                    url: "http://47.115.230.54:8080/coffee-shop/addshop?name=" + shopname + "&username=" + username,
                     contentType: "application/json",
                     dataType: "json",
                     success: function (reviewInfo) {
@@ -367,7 +367,7 @@ function addColletion(a) {
             } else {
                 $.ajax({
                     type: "delete",
-                    url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
+                    url: "http://47.115.230.54:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
                     contentType: "application/json",
                     dataType: "json",
                     success: function (reviewInfo) {

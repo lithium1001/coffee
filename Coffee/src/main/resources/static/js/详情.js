@@ -46,11 +46,11 @@ function addColletion(shopname){
     var info= {
         "name": shopname,
         "userId":username,
-        "sUrl":"http://localhost:8080/shop-detail.html?"+shopname
+        "sUrl":"http://47.115.230.54:8080/shop-detail.html?"+shopname
     }
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/coffee-shop/addshop",
+        url: "http://47.115.230.54:8080/coffee-shop/addshop",
         data: JSON.stringify(info),
         contentType : "application/json",
         dataType: "json",

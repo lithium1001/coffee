@@ -37,21 +37,21 @@ searchInput.addEventListener('input', function() {
                     // 根据过滤结果生成联想项并添加到列表中
                     filteredValues.slice(0, 5).forEach(function(value) {
                         var listItem;
-                        if (url === 'http://localhost:8080/CoffeeVerse/articles') {
+                        if (url === 'http://47.115.230.54:8080/CoffeeVerse/articles') {
                             var articleId = findArticleIdByTitle(jsonData, value);
                             listItem = document.createElement('li');
                             listItem.innerHTML = '<span style="color: #000000; border: 3px solid #3f271e; padding: 4px 4px; border-radius: 30px;" >资讯</span><span style="display: inline;">&emsp;' + value + '</span>';
                             listItem.addEventListener('click', function() {
                                 redirectToPage(articleId);
                             });
-                        } else if (url === 'http://localhost:8080/post/list') {
+                        } else if (url === 'http://47.115.230.54:8080/post/list') {
                             var postId = findpostIdByTitle(jsonData, value);
                             listItem = document.createElement('li');
                             listItem.innerHTML = '<span style="color: #000000; border: 3px solid #76452f; padding: 4px 4px; border-radius: 30px;" >帖子</span><span style="display: inline;">&emsp;' + value + '</span>';
                             listItem.addEventListener('click', function() {
                                 goForum(postId);
                             });
-                        } else if (url === 'http://localhost:8080/coffee-shop/shoplist') {
+                        } else if (url === 'http://47.115.230.54:8080/coffee-shop/shoplist') {
                             var shopname = findShopnameByTitle(jsonData, value);
                             listItem = document.createElement('li');
                             listItem.innerHTML = '<span style="color: #000000; border: 3px solid #aa725a ; padding: 4px 4px; border-radius: 30px;" >店铺</span><span style="display: inline;">&emsp;' + value + '</span>';
@@ -139,10 +139,10 @@ function redirectToPage(articleId) {
 
 function goForum(postId) {
     window.sessionStorage.setItem("postId", postId)
-    window.location.href = "http://localhost:8080/forum-detail.html";
+    window.location.href = "http://47.115.230.54:8080/forum-detail.html";
 }
 
 function goShop(shopname) {
     window.sessionStorage.setItem('shopname', shopname)
-    window.location.href = "http://localhost:8080/shop-detail.html";
+    window.location.href = "http://47.115.230.54:8080/shop-detail.html";
 }
