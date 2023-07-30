@@ -25,6 +25,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 @Service
@@ -72,7 +73,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 .userId(user.getId())
                 .title(dto.getTitle())
                 .content(dto.getContent())
-                .createTime(new Date())
+                .createTime(LocalDateTime.now())
                 .pictureUrl(dto.getPictureUrl())
                 .build();
         this.baseMapper.insert(topic);
