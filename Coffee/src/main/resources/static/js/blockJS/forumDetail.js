@@ -1,6 +1,6 @@
 //获取传参
 var postId = window.sessionStorage.getItem("postId")
-
+alert(postId)
 $(function () {
     //初始化主贴
     $.ajax({

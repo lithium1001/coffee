@@ -29,6 +29,14 @@ $(document).ready(function () {
             updateShopInfo(shoplist)
         }
     })
+    $.ajax({
+        type: "get",
+        url: "http://localhost:8080/CoffeeVerse/user/acollection?uname="+window.localStorage.getItem("myname")+"&pageSize=100",
+        dataType: "json",
+        success: function (articlelist) {
+            updateArticleInfo(articlelist)
+        }
+    })
 });
 
 //用户信息修改待完善
@@ -115,6 +123,46 @@ function updateShopInfo(shoplist) {
     }
     $("#shop").append(rows.join(''));
 }
+function updateArticleInfo(articlelist) {
+    $("#info").empty();
+    var number = 0;
+
+    if (articlelist.data.records.length === 0) {
+        $("#info").append('<h5>暂无收藏资讯 </h5>');
+        return;
+    }
+
+    $.each(articlelist.data.records, function (i, a) {
+        var id = a.aid;
+
+        $.ajax({
+            url: 'http://localhost:8080/CoffeeVerse/articles/detail?id=' + id,
+            type: 'GET',
+            dataType: 'json',
+            success: function (json) {
+                var articleHtml = '<div class="col-lg-4 card shopListItem">' +
+                    '<img src="' + json.data.pictureUrl + '"/>' +
+                    '<h5 class="shopName" onclick="redirectToPage(' + json.data.articleId + ')">' + json.data.title + '</h5>' +
+                    '<div class="shopMark align-self-center" style="height: 30px">' +
+                    json.data.abs +
+                    '<p>发布时间：' + json.data.date + '</p>' +
+                    '</div>' +
+                    '</div>';
+
+                $("#info").append(articleHtml);
+                number++;
+
+                if (number === articlelist.data.records.length) {
+                    // 所有收藏项已添加完毕，可以进行其他操作
+                }
+            },
+            error: function () {
+                alert('无法加载文本内容！');
+            }
+        });
+    });
+}
+
 
 //右侧，用户的发帖list
 
@@ -146,3 +194,10 @@ function deleteForum(a) {
         }
     })
 }
+
+    function redirectToPage(articleId) {
+        // 将要跳转至的页面 URL
+        id=articleId
+        var pageURL = '资讯详情页.html?id=' + id;
+        window.location.href = pageURL;
+    }

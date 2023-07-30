@@ -71,7 +71,7 @@ public class ScollectionController {
     }
 
     @GetMapping("/shoplist")   //分页显示
-    public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "30") int pageSize,
+    public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "100") int pageSize,
                                @RequestParam String username, HttpServletResponse response) {
         log.info("shop list, pageNum={}, pageSize={}, username={}", pageNum, pageSize, username);
 

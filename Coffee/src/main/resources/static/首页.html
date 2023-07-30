@@ -213,27 +213,7 @@
         }
 
     </style>
-
-    <!--地图-->
-    <link href="https://cache.amap.com/lbs/static/main1119.css" rel="stylesheet"/>
-    <script src="https://cache.amap.com/lbs/static/es5.min.js"></script>
-    <!--接入高德API的key-->
-    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c63790e173e5c52c26b68bed8ecc18ea"></script>
-    <script src="https://cache.amap.com/lbs/static/addToolbar.js" type="text/javascript"></script>
-</head>
-<body>
-<script type="text/javascript">
-    window._AMapSecurityConfig = {
-        serviceHost: 'http://47.115.230.54/_AMapService'
-    };
-
-    //创建地图
-    var map = new AMap.Map('mapContainer', {
-        resizeEnable: true,
-        zoom: 11,
-        center: [121.47, 31.23]  //上海市中心点的经纬度
-    });
-</script>
+</head>>
 <!-- header -->
 <header class="header-area header-three">
     <div class="header-top second-header d-none d-md-block">
@@ -484,11 +464,11 @@
     </div>
 </section>
 <!-- main-area-end -->
-<!-- brand-area -->
+
 <div class="brand-area pt-60 pb-60" style="background:#3f271e">
 </div>
-<!-- brand-area-end -->
-<!-- blog-area -->
+
+<!-- 资讯板块 -->
 <section id="blog" class="blog-area p-relative fix pt-90 pb-90">
     <div class="animations-02"><img src="img/bg/an-img-06.png" alt="contact-bg-an-05"></div>
     <div class="container">
@@ -562,8 +542,8 @@
         </div>
     </div>
 </section>
-<!-- blog-area-end -->
-<!-- service-details2-area -->
+<!-- 资讯板块结束-->
+<!-- 知识板块 -->
 <section id="service-details2" class="pt-120 pb-90 p-relative" style="background-color: #fff9f2">
     <div class="animations-01"><img src="img/bg/an-img-01.png" alt="an-img-01"></div>
     <div class="container">
@@ -631,62 +611,67 @@
         </div>
     </div>
 </section>
-<!-- service-details2-area-end -->
-<!-- skill-area -->
-<section id="skill" class="skill-area p-relative fix" style="background: #3f271e;">
-    <div class="animations-01"><img src="img/bg/an-img-05.png" alt="contact-bg-an-05"></div>
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="skills-content s-about-content">
-                    <div class="skills-title pb-20">
-                        <h5><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span> 咖啡地图
-                        </h5>
-                        <h2>
-                            精选周边宝藏咖啡店！
-                        </h2>
-                    </div>
-                    <div class="skills-content s-about-content mt-20">
-                        <div class="skills">
-                            <div class="skill mb-30">
-                                <div class="skill-name"><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span>瑞幸</div>
-                                <div class="skill-bar">
-                                    <div class="skill-per" id="80"></div>
+<!-- 知识板块结束-->
+<!-- 地图板块 -->
+    <div class="brand-area pt-30 pb-30" style="background:#3f271e">
+    </div>
+    <section id="skill" class="skill-area p-relative fix" style="background: #3f271e;">
+        <div class="animations-01"><img src="img/bg/an-img-05.png" alt="contact-bg-an-05"></div>
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="skills-content s-about-content">
+                        <div class="skills-title pb-20">
+                            <h5><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span> 咖啡地图
+                            </h5>
+                            <h2>
+                                精选周边宝藏咖啡店！
+                            </h2>
+                        </div>
+                        <div class="skills-content s-about-content mt-20">
+                            <div class="skills">
+                                <div class="skill mb-30">
+                                    <div class="skill-name"><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span>MOCHA猫咪咖啡(田子坊店)</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-per" id="90"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill mb-30">
-                                <div class="skill-name"><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span>星巴克</div>
-                                <div class="skill-bar">
-                                    <div class="skill-per" id="90"></div>
+                                <div class="skill mb-30">
+                                    <div class="skill-name"><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span>SANDY'S HOUSE 山底下的小屋咖啡</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-per" id="96"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="skill mb-30">
-                                <div class="skill-name"><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span>太平洋咖啡</div>
-                                <div class="skill-bar">
-                                    <div class="skill-per" id="70"></div>
+                                <div class="skill mb-30">
+                                    <div class="skill-name"><span class="circle-left"><img src="img/bg/circle-left-w.png" alt="img"></span>竹院•竹林薄荷咖啡•低脂奶茶</div>
+                                    <div class="skill-bar">
+                                        <div class="skill-per" id="94"></div>
+                                    </div>
                                 </div>
-                            </div>
 
+
+                            </div>
 
                         </div>
+                        <h4 style="text-align: right;"> <a href="shop.html"><span style="color: white; border: 3px solid white; padding: 8px 8px; border-radius: 50px;">进入地图<i class="fal fa-long-arrow-right"></i></span></a>
+                            <br><br> </h4>
 
                     </div>
-                    <h4 style="text-align: right;"> <a href="shop.html"><span style="color: white; border: 3px solid white; padding: 8px 8px; border-radius: 50px;">进入地图<i class="fal fa-long-arrow-right"></i></span></a>
-                    </h4>
-
                 </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
-                <div class="mapDisplay" id="mapContainer"></div>
-            </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 pr-30">
+                    <div class="skills-img">
+                        <img src="img/首页/coffeemap.jpg" alt="img" class="img" style="width:600px;height: 500px">
+                    </div>
+                </div>
 
+            </div>
         </div>
-    </div>
-</section>
-<!-- skill-area-end -->
+    </section>
+
+<!-- 地图板块结束 -->
 
 
-<!-- testimonial-area -->
+<!-- 社区板块-->
 <section class="testimonial-area pt-120 pb-90 p-relative fix" style="background-color: #fff9f2">
     <div class="container">
         <div class="row">
@@ -762,7 +747,7 @@
         </div>
     </div>
 </section>
-<!-- testimonial-area-end -->
+<!-- 社区板块结束-->
 
 <!-- brand-area -->
 <div class="brand-area pt-60 pb-60" style="background:#3f271e">

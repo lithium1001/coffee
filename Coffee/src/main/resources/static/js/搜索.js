@@ -49,7 +49,7 @@ searchInput.addEventListener('input', function() {
                             listItem = document.createElement('li');
                             listItem.innerHTML = '<span style="color: #000000; border: 3px solid #76452f; padding: 4px 4px; border-radius: 30px;" >帖子</span><span style="display: inline;">&emsp;' + value + '</span>';
                             listItem.addEventListener('click', function() {
-                                goForum(postId);
+                                goToForum(postId);
                             });
                         } else if (url === 'http://47.115.230.54:8080/coffee-shop/shoplist') {
                             var shopname = findShopnameByTitle(jsonData, value);
@@ -125,7 +125,7 @@ function findShopnameByTitle(json, title) {
     var records = json.data.records;
     for (var i = 0; i < records.length; i++) {
         if (records[i].name === title) {
-            return records[i].shopname;
+            return records[i].name;
         }
     }
     return null;
@@ -137,7 +137,7 @@ function redirectToPage(articleId) {
     window.location.href = pageURL;
 }
 
-function goForum(postId) {
+function goToForum(postId) {
     window.sessionStorage.setItem("postId", postId)
     window.location.href = "http://47.115.230.54:8080/forum-detail.html";
 }

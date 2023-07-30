@@ -204,18 +204,17 @@
     </div>
     <!--店铺信息 -->
     <div class="shopInfo">
-        <h3 class="shopName">店铺名称</h3>
+        <h3 class="shopName">店铺信息加载中，请稍后</h3>
         <div class="shopMark">
             <!--评分显示 待实现动态 待实现评分功能-->
-            <span id="rating">&nbsp;a</span>
-            <span style="margin-right: 530px" id="description">&nbsp;b</span>
+            <span id="rating">&nbsp</span>
+            <span id="description">&nbsp;</span>
             <!--点赞按钮 待实现动态-->
-            <button class="btn" type="button" onclick="addColletion()" id="collection">
+            <button class="btn pull-right" type="button" onclick="addColletion()" id="collection">
                 收藏 <i class="fa-star far"></i>
             </button>
-            <span style="margin-right: 10px">&nbsp;</span>
             <!--收藏按钮 待实现动态-->
-            <button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="a">
+            <button class="btn pull-right" style="margin-left: 10px" onclick="share()">
                 转发 <i class="far fa-share"></i>
             </button>
         </div>
@@ -228,19 +227,19 @@
                              data-delay=".2s" style="visibility: visible; animation-name: fadeInUp;">
                             <i class="far fa-map"></i>
                             <h5>店铺地址</h5>
-                            <p id="location">四平路1239号</p>
+                            <p id="location"></p>
                         </div>
                         <div class="basicInfoBlock wow fadeInUp  animated" data-animation="fadeInDown animated"
                              data-delay=".2s" style="visibility: visible; animation-name: fadeInUp;">
                             <i class="far fa-clock"></i>
                             <h5>营业时间</h5>
-                            <p id="opentime">Monday to Friday 09:00 to 18:30</p>
+                            <p id="opentime"></p>
                         </div>
                         <div class="basicInfoBlock wow fadeInUp  animated" data-animation="fadeInDown animated"
                              data-delay=".2s" style="visibility: visible; animation-name: fadeInUp;">
                             <i class="far fa-envelope-open"></i>
                             <h5>联系方式</h5>
-                            <p id="phone">phone;support@example.com</p>
+                            <p id="phone"></p>
                         </div>
                     </div>
                 </div>

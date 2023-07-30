@@ -18,10 +18,8 @@ $(function () {
             name: nameS
         },
         success: function (shopInfo) {
-            alert('没有问题');
             var a = shopInfo.data;
             $(".shopName").text(a.name);
-            console.log(a.name);
             $("#pictureUrl").attr("src",a.pictureUrl);
             // alert($(".pictureUrl").attr("src"));
             $("#location").text("上海市"+a.district+a.location);
@@ -105,3 +103,13 @@ function addColletion(){
         })
     }
 }
+
+function share(){
+    var dummyInput = document.createElement('input');
+    dummyInput.setAttribute('value', "http://localhost:8080/shopdetail?"+nameS);
+    document.body.appendChild(dummyInput);
+    dummyInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummyInput);
+    alert('链接复制成功！');
+};
