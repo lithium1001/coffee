@@ -18,6 +18,9 @@ $(function () {
 function updateForumInfo(forumlist) {
     var rows = [];
     $.each(forumlist, function (i, a) {
+        var time=a.createTime;
+        time=time.replace('T',' ')
+        time=time.split('.')[0]
         rows.push('<div class="media" id="forumListItem"><img class="avatar align-self-start mr-3" alt="..." src="'
             + a.avatarUrl
             + '"/><div class="media-body"> <span class="username" >'
@@ -31,7 +34,7 @@ function updateForumInfo(forumlist) {
             rows.push('<span class="badge rounded-pill" onclick="goTag(this)">'+tag.name+'</span>')
         })
         rows.push('<div><span class="createtime">发帖时间:'
-            +a.createTime
+            +time
             +'</span><span class="replies">回帖数：'
             + a.replynum
             + '</span><button class="btn" type="button" onclick="goForum(this)" hashId="'

@@ -9,9 +9,12 @@ $(document).ready(function () {
         success: function (json) {
             // 请求成功后的处理
             articlename=json.data.title;
+            var time=json.data.date;
+            time=time.replace('T',' ')
+            time=time.split('.')[0]
             $('#title').text(json.data.title); // 处理后端返回的数据
             $('#content').html(json.data.content); // 处理后端返回的数据
-            $('#date').html('<i class="fas fa-calendar-alt"></i>' + json.data.date);// 处理后端返回的数据
+            $('#date').html('<i class="fas fa-calendar-alt"></i>' + time);// 处理后端返回的数据
             $('#img').attr("src", json.data.pictureUrl); // 处理后端返回的数据
             //收藏
         },
@@ -44,14 +47,6 @@ function getQueryString(name) {
 //添加收藏
     function addColletion() {
         var title = articlename
-        title = title.replace(/&/g, '%26');
-        title = title.replace(/\+/g, '%2B');
-        title = title.replace(/ /g, '%20');
-        title = title.replace(/\?/g, '%3F');
-        title = title.replace(/%/g, '%25');
-        title = title.replace(/#/g, '%23');
-        title = title.replace(/=/g, '%3D');
-alert(title);
         var token = window.localStorage.getItem("token");
         var username = window.localStorage.getItem("myname")
         if (token == null) {

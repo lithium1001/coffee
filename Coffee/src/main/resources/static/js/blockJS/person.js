@@ -109,7 +109,7 @@ function updateShopInfo(shoplist) {
     $.each(shoplist.data.records, function (i, a) {
         rows.push('<div class=" card" class="shopListItem"><img src="'
             + a.pictureUrl+ '"/><h5 class="shopName" onclick="goShop(this)" hashId="'
-            + a.name+ '">' + a.name + '</h5><div class="shopMark align-self-center" style="height: 30px"> <button class="btn" type="button" onclick="deleteCollection(this)" hashId="'
+            + a.name+ '">' + a.name + '</h5><div class="shopMark align-self-center" style="height: 30px"> <button class="btn" type="button" onclick="addColletion(this)" hashId="'
             + a.name+ '"><i class="fa-star fas"></i></button> 评分：'
             +a.rating+'</span><p>所在地区：'+a.district+'</p></div></div>')
         number=number+1
@@ -167,12 +167,14 @@ function updateForumInfo(forumlist) {
     var rows = [];
     var num=0
     $.each(forumlist, function (i, a) {
-        console.log(a)
-        rows.push('<div class="col-lg-6" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
+        var time=a.createTime;
+        time=time.replace('T',' ')
+        time=time.split('.')[0]
+        rows.push('<div class="col-lg-5" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
             + a.id+ '">' + a.title + '</h4> <button class="btn pull-right" type="button" onclick="deleteForum(this)" hashId="'
             + a.id+ '">删除</button> <p class="forumContent" onclick="goForum(this)" hashId="'
             + a.id+ '">' + a.content+ '</p>'
-            +'<div><span class="createtime">发帖时间:' +a.createTime
+            +'<div><span class="createtime">发帖时间:' +time
             +'</span><span class="replies">回帖数：' + a.comments + '</span></div></div>')
         num++
     })
@@ -182,6 +184,7 @@ function updateForumInfo(forumlist) {
     $("#forum").empty()
     $("#forum").append(rows.join(''));
 }
+
 //跳转到帖子详情
 function goForum(a) {
     var postId = $(a).attr("hashId");
@@ -189,26 +192,28 @@ function goForum(a) {
     window.location.href = "http://localhost:8080/forum-detail.html";
 }
 
-function deleteForum(a) {
-    var token = window.localStorage.getItem("token");
-    var postId = $(a).attr("hashId");
+function addColletion(a) {
+    var icon=a.children[0]
+    var iconclass=icon.classList[1]
+    var shopname = $(a).attr("hashId");
+    shopname = shopname.replace(/&/g, '%26')
+    var username = window.localStorage.getItem("myname")
     $.ajax({
         type: "delete",
-        url: "http://localhost:8080/post/delete/"+postId,
-        contentType : "application/json",
+        url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
+        contentType: "application/json",
         dataType: "json",
-        headers: {
-            'Authorization': "Bearer "+ token +""
-        },
         success: function (reviewInfo) {
-            alert('删帖成功');
-            location.reload();
+            alert('取消收藏成功');
+            $(icon).removeClass("fas")
+            $(icon).addClass("far")
         },
         error: function () {
             alert('出现问题')
         }
     })
 }
+
 
     function redirectToPage(articleId) {
         // 将要跳转至的页面 URL
