@@ -128,6 +128,7 @@ function goShop(a) {
     window.sessionStorage.setItem('shopname', a)
     window.location.href = "http://localhost:8080/shop-detail.html";
 }
+
 function updateArticleInfo(articlelist) {
     $("#info").empty();
     var number = 0;
@@ -168,7 +169,6 @@ function updateArticleInfo(articlelist) {
     });
 }
 
-
 //右侧，用户的发帖list
 function updateForumInfo(forumlist) {
     var rows = [];
@@ -192,39 +192,24 @@ function updateForumInfo(forumlist) {
     $("#forum").append(rows.join(''));
 }
 
-//跳转到帖子详情
-function goForum(a) {
+//删帖
+function deleteForum(a) {
+    var token = window.localStorage.getItem("token");
     var postId = $(a).attr("hashId");
-    window.sessionStorage.setItem("postId",postId)
-    window.location.href = "http://localhost:8080/forum-detail.html";
-}
-
-function addColletion(a) {
-    var icon=a.children[0]
-    var iconclass=icon.classList[1]
-    var shopname = $(a).attr("hashId");
-    shopname = shopname.replace(/&/g, '%26')
-    var username = window.localStorage.getItem("myname")
     $.ajax({
         type: "delete",
-        url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
-        contentType: "application/json",
+        url: "http://localhost:8080/post/delete/"+postId,
+        contentType : "application/json",
         dataType: "json",
-        success: function (reviewInfo) {
-            alert('取消收藏成功');
-            $(icon).removeClass("fas")
-            $(icon).addClass("far")
+        headers: {
+            'Authorization': "Bearer "+ token +""
         },
+        success: function (reviewInfo) {
+            alert('删帖成功');
+            location.reload();
+            },
         error: function () {
             alert('出现问题')
         }
     })
 }
-
-
-    function redirectToPage(articleId) {
-        // 将要跳转至的页面 URL
-        id=articleId
-        var pageURL = '资讯详情页.html?id=' + id;
-        window.location.href = pageURL;
-    }
