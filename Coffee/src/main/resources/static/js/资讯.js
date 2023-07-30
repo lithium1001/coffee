@@ -8,9 +8,12 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (json) {
             // 请求成功后的处理
+            var time=json.data.records[0].date;
+            time=time.replace('T',' ')
+            time=time.split('.')[0]
             $("#title_news").text( json.data.records[0].title)
             $("#content_news").text(json.data.records[0].abs)
-            $("#date_news").text(json.data.records[0].date)
+            $("#date_news").text(time)
             $('#img_news').attr("src", json.data.records[0].pictureUrl);
             createNews("news", json.data.records, "资讯分tag板块.html?name=资讯丨新闻&id=1")
         },
@@ -25,9 +28,12 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (json) {
             // 请求成功后的处理
+            var time=json.data.records[0].date;
+            time=time.replace('T',' ')
+            time=time.split('.')[0]
             $("#title_report").text( json.data.records[0].title)
             $("#content_report").text(json.data.records[0].abs)
-            $("#date_report").text(json.data.records[0].date)
+            $("#date_report").text(time)
             $('#img_report').attr("src", json.data.records[0].pictureUrl);
 
             createNews("bg", json.data.records, "资讯分tag板块.html?name=资讯丨行业报告&id=2")
