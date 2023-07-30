@@ -39,7 +39,7 @@ $(document).ready(function () {
     })
 });
 
-//用户信息修改待完善
+//用户信息修改
 $("#modifyInfo").click(function () {
     const username = document.getElementById("sign_username").value;
     const password = document.getElementById("sign_pass").value;
@@ -115,10 +115,12 @@ function updateShopInfo(shoplist) {
         number=number+1
     })
     if (number==0){
-        rows=['<h5>暂无收藏店铺 </h5>']
+        rows=['<h5 class="mt-15 text-center">暂无收藏店铺 </h5>']
     }
+    $("#shop").empty()
     $("#shop").append(rows.join(''));
 }
+
 function updateArticleInfo(articlelist) {
     $("#info").empty();
     var number = 0;
@@ -159,12 +161,10 @@ function updateArticleInfo(articlelist) {
     });
 }
 
-
 //右侧，用户的发帖list
 function updateForumInfo(forumlist) {
     var rows = [];
-    console.log(forumlist)
-    console.log("fenjiexian ")
+    var num=0
     $.each(forumlist, function (i, a) {
         console.log(a)
         rows.push('<div class="col-lg-6" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
@@ -173,13 +173,17 @@ function updateForumInfo(forumlist) {
             + a.id+ '">' + a.content+ '</p>'
             +'<div><span class="createtime">发帖时间:' +a.createTime
             +'</span><span class="replies">回帖数：' + a.comments + '</span></div></div>')
+        num++
     })
+    if(num==0){
+        rows.push('<h5 class="mt-15 text-center">暂无发表过的帖子</h5>')
+    }
+    $("#forum").empty()
     $("#forum").append(rows.join(''));
 }
 //跳转到帖子详情
 function goForum(a) {
     var postId = $(a).attr("hashId");
-    alert('论坛页面跳转'+ postId);
     window.sessionStorage.setItem("postId",postId)
     window.location.href = "http://localhost:8080/forum-detail.html";
 }
