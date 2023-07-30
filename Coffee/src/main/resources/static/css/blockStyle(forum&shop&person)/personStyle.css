@@ -92,6 +92,7 @@
 #forumListItem{
     padding: 10px;
     border: 2px solid #f7f5f1;
+    margin-bottom: 15px;
 }
 #forumListItem .forumTitle{
     display: inline-block;

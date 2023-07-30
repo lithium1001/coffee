@@ -169,7 +169,7 @@ function updateForumInfo(forumlist) {
         var time=a.createTime;
         time=time.replace('T',' ')
         time=time.split('.')[0]
-        rows.push('<div class="col-lg-6" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
+        rows.push('<div class="col-lg-5" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
             + a.id+ '">' + a.title + '</h4> <button class="btn pull-right" type="button" onclick="deleteForum(this)" hashId="'
             + a.id+ '">删除</button> <p class="forumContent" onclick="goForum(this)" hashId="'
             + a.id+ '">' + a.content+ '</p>'
