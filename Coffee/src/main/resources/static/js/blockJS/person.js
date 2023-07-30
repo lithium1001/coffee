@@ -130,7 +130,7 @@ function updateShopInfo(shoplist) {
 function goShop(a) {
     var a = $(a).attr("hashId");
     window.sessionStorage.setItem('shopname', a)
-    window.location.href = "http://localhost:8080/shop-detail.html";
+    window.location.href = "http://47.115.230.54:8080/shop-detail.html";
 }
 function updateArticleInfo(articlelist) {
     $("#info").empty();
@@ -212,7 +212,7 @@ function addColletion(a) {
     $.ajax({
 
         type: "delete",
-        url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
+        url: "http://47.115.230.54:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
         contentType: "application/json",
 
         dataType: "json",

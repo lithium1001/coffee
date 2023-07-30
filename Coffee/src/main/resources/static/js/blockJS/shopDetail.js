@@ -27,7 +27,7 @@ $(function () {
             $("#rating").text("评分："+a.rating);
             $("#opentime").text(a.opentime);
             $("#description").text(a.description);
-            $("#share").attr("data-content","http://localhost:8080/shopdetail"+a.name)
+            $("#share").attr("data-content","http://47.115.230.54:8080/shopdetail"+a.name)
         },
         error: function () {
             alert('出现问题')

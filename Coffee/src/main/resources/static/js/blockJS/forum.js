@@ -88,7 +88,7 @@ $("#sortByHot").click(function(){
 //分享，ok
 function share(postId){
     var dummyInput = document.createElement('input');
-    dummyInput.setAttribute('value', "http://localhost:8080/forum-detail?"+postId);
+    dummyInput.setAttribute('value', "http://47.115.230.54:8080/forum-detail?"+postId);
     document.body.appendChild(dummyInput);
     dummyInput.select();
     document.execCommand('copy');
