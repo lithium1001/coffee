@@ -192,15 +192,15 @@ function deleteForum(a) {
     var token = window.localStorage.getItem("token");
     var postId = $(a).attr("hashId");
     $.ajax({
-        type: "post",
-        url: "http://localhost:8080/comment/delete/"+postId,
+        type: "delete",
+        url: "http://localhost:8080/post/delete/"+postId,
         contentType : "application/json",
         dataType: "json",
         headers: {
             'Authorization': "Bearer "+ token +""
         },
         success: function (reviewInfo) {
-            alert('删帖成功'+postId);
+            alert('删帖成功');
             location.reload();
         },
         error: function () {

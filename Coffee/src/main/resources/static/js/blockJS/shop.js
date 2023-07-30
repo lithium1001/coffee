@@ -318,6 +318,7 @@ function setInput(a) {
 
 //搜索
 function search() {
+    var searchKey = $(".search-field").val()
     var username = window.localStorage.getItem("myname");
     if (username == null) {
         var info= {
@@ -329,7 +330,6 @@ function search() {
             username: username
         }
     }
-    var searchKey = $(".search-field").val()
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/searchshop",

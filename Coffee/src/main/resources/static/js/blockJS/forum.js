@@ -20,8 +20,7 @@ function updateForumInfo(forumlist) {
     $.each(forumlist, function (i, a) {
         rows.push('<div class="media" id="forumListItem"><img class="avatar align-self-start mr-3" alt="..." src="'
             + a.avatarUrl
-            + '"/><div class="media-body"> <span class="username" onclick="goPerson(this)" hashId="'
-            + a.userId + '">'
+            + '"/><div class="media-body"> <span class="username" >'
             + a.username
             + '</span> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
             + a.postId+ '">'
@@ -45,12 +44,6 @@ function updateForumInfo(forumlist) {
     $("#forumList").append(rows.join(''));
 }
 
-// 页面跳转到个人主页
-function goPerson(a) {
-    userId = $(a).attr("hashId");
-    window.sessionStorage.setItem("userId",userId)
-    window.location.href = "http://localhost:8080/Person.html";
-}
 
 // 页面跳转到详细页面
 function goForum(a) {

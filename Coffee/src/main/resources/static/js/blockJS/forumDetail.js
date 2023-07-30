@@ -1,6 +1,5 @@
 //获取传参
 var postId = window.sessionStorage.getItem("postId")
-alert(postId)
 $(function () {
     //初始化主贴
     $.ajax({
@@ -12,12 +11,9 @@ $(function () {
         },
         success: function (forumInfo) {
             $("#forumtitle").text(forumInfo.data.topic.title);
-            $(".forumpicture").attr("src", forumInfo.data.topic.pictureUrl);
-            // alert($forumpicture(".pictureUrl").attr("src"));
+            $(".avatar").attr("src", forumInfo.data.user.username);
             $(".forumContent").text(forumInfo.data.topic.content);
             $(".time").text(forumInfo.data.topic.createTime);
-            $(".username").text(forumInfo.data.user.username);
-            $(".avatar").attr("src", forumInfo.data.user.pictureUrl);
         },
         error: function () {
             alert('出现问题')
@@ -44,9 +40,8 @@ $(function () {
 function updateReview(reviewInfo) {
     var rows = [];
     $.each(reviewInfo, function (i, a) {
-        console.log(a.content)
         rows.push('<div class="media forumfloor"> <div class="col-lg-3 text-center userInfo"> <img class="align-self-center avatar" src="'
-            + a.pictureUrl
+            + a.aurl
             + '"/><h6 class="username">'
             + a.username
             + '</h6></div><div class="col-lg-9 pt-15"><p class="forumContent">'
@@ -69,7 +64,7 @@ $('#wantAddForum').click(function () {
         $('#sendForum').modal('show')
     }
 })
-
+//发表回帖
 $('#sendReview').click(function (){
     var token = window.localStorage.getItem("token");
     if(token==null){
@@ -104,7 +99,7 @@ $('#sendReview').click(function (){
         success: function (reviewInfo) {
             alert('发布回帖成功');
             updateReview(reviewInfo.data)
-            //location.reload();
+            location.reload();
         },
         error: function () {
             alert('出现问题')
@@ -112,13 +107,3 @@ $('#sendReview').click(function (){
     })
 })
 
-// 页面跳转到个人主页
-function goPerson(a) {
-    userId = $(a).attr("hashId");
-    window.sessionStorage.setItem("userId",userId)
-    window.location.href = "http://localhost:8080/Person.html"
-}
-
-function toAddReview(){
-    location.hash='hottag'
-}
