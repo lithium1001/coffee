@@ -48,7 +48,6 @@ $(function () {
 // 更新回帖评论信息
 function updateReview(reviewInfo) {
     var rows = [];
-
     $.each(reviewInfo, function (i, a) {
         var time=a.createTime;
         time=time.replace('T',' ')
@@ -68,7 +67,6 @@ function updateReview(reviewInfo) {
 }
 
 //发表评论
-
 $('#wantAddForum').click(function () {
     var token = window.localStorage.getItem("token");
     if (token == null) {
@@ -78,6 +76,7 @@ $('#wantAddForum').click(function () {
         $('#sendForum').modal('show')
     }
 })
+
 //发表回帖
 $('#sendReview').click(function (){
     var token = window.localStorage.getItem("token");
@@ -112,7 +111,6 @@ $('#sendReview').click(function (){
         },
         success: function (reviewInfo) {
             alert('发布回帖成功');
-            updateReview(reviewInfo.data)
             location.reload();
         },
         error: function () {
