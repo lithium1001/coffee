@@ -134,7 +134,7 @@ function updateArticleInfo(articlelist) {
     var number = 0;
 
     if (articlelist.data.records.length === 0) {
-        $("#info").append('<h5>暂无收藏资讯 </h5>');
+        $("#info").append('<h5 class="mt-15 text-center">暂无收藏资讯 </h5>');
         return;
     }
 
