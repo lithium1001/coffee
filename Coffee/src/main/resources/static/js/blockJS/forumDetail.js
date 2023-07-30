@@ -11,9 +11,14 @@ $(function () {
         },
         success: function (forumInfo) {
             $("#forumtitle").text(forumInfo.data.topic.title);
-            $(".avatar").attr("src", forumInfo.data.user.username);
-            $(".forumContent").text(forumInfo.data.topic.content);
-            $(".time").text(forumInfo.data.topic.createTime);
+            $(".lusername").text(forumInfo.data.user.username);
+            $(".lavatar").attr("src", forumInfo.data.user.avatarUrl);
+            $(".lforumContent").text(forumInfo.data.topic.content);
+            $(".ltime").text(forumInfo.data.topic.createTime);
+            $.each(forumInfo.data.tags, function (itag, tag) {
+                rows.push('<span class="badge rounded-pill" onclick="goTag(this)">'+tag.name+'</span>')
+            })
+            $(".forumtop").append(rows.join(''));
         },
         error: function () {
             alert('出现问题')
@@ -46,10 +51,11 @@ function updateReview(reviewInfo) {
             + a.username
             + '</h6></div><div class="col-lg-9 pt-15"><p class="forumContent">'
             + a.content
-            + '</p></div><div class="other"><span class="floorNum">1楼&nbsp;</span><span class="time">发帖时间'
+            + '</p></div><div class="other"><span class="floorNum">'+(i+1)+'楼&nbsp;</span><span class="time">发帖时间'
             + a.createTime
             + '</span></div></div>')
     })
+    $("#reviewlist").empty();
     $("#reviewlist").append(rows.join(''));
 }
 

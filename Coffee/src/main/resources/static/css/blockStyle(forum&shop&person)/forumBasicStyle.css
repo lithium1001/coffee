@@ -110,6 +110,9 @@
     color: #76452f;
     font-weight: bold
 }
+.forumTopicItem i{
+    margin-right: 5px;
+}
 .forumTitle,.username{
     cursor: pointer;
 }

@@ -31,7 +31,7 @@ main{
     padding-bottom: 20px;
 }
 
-.avatar{
+.avatar,.lavatar{
     margin: 15px auto;
     padding: 5px;
     background: #FFF;
