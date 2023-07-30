@@ -39,7 +39,7 @@ $(document).ready(function () {
     })
 });
 
-//用户信息修改待完善
+//用户信息修改
 $("#modifyInfo").click(function () {
     const username = document.getElementById("sign_username").value;
     const password = document.getElementById("sign_pass").value;
@@ -66,7 +66,7 @@ $("#modifyInfo").click(function () {
             console.log(data)
             if (data.code === 200) {
                 window.localStorage.setItem("myname", data.data.username)
-                window.localStorage.setItem("myavatar", data.data.avatarUrl)
+
                 location.reload()
             }
         },
@@ -94,6 +94,7 @@ $("#avatar").change(function (e) {
 
             $("#avatar_src").val(res.data.imgUrl)
 
+            window.localStorage.setItem("myavatar", data.data.avatarUrl)
             alert("头像上传成功！")
         }
     })
@@ -111,17 +112,25 @@ function updateShopInfo(shoplist) {
     var rows = [];
     var number=0
     $.each(shoplist.data.records, function (i, a) {
-        rows.push('<div class="col-lg-4 card" class="shopListItem"><img src="'
+        rows.push('<div class=" card" class="shopListItem"><img src="'
             + a.pictureUrl+ '"/><h5 class="shopName" onclick="goShop(this)" hashId="'
-            + a.name+ '">' + a.name + '</h5> <button class="btn" type="button" onclick="deleteCollection(this)" hashId="'
-            + a.name+ '"><i class="fa-star fas"></i></button> <div class="shopMark align-self-center" style="height: 30px">'
+            + a.name+ '">' + a.name + '</h5><div class="shopMark align-self-center" style="height: 30px"> <button class="btn" type="button" onclick="addColletion(this)" hashId="'
+            + a.name+ '"><i class="fa-star fas"></i></button> 评分：'
             +a.rating+'</span><p>所在地区：'+a.district+'</p></div></div>')
         number=number+1
     })
     if (number==0){
-        rows=['<h5>暂无收藏店铺 </h5>']
+        rows=['<h5 class="mt-15 text-center">暂无收藏店铺 </h5>']
     }
+    $("#shop").empty()
     $("#shop").append(rows.join(''));
+}
+
+//跳转到用户信息
+function goShop(a) {
+    var a = $(a).attr("hashId");
+    window.sessionStorage.setItem('shopname', a)
+    window.location.href = "http://localhost:8080/shop-detail.html";
 }
 function updateArticleInfo(articlelist) {
     $("#info").empty();
@@ -140,12 +149,12 @@ function updateArticleInfo(articlelist) {
             type: 'GET',
             dataType: 'json',
             success: function (json) {
-                var articleHtml = '<div class="col-lg-4 card shopListItem">' +
+                var articleHtml = '<div  class=" card" class="shopListItem">' +
                     '<img src="' + json.data.pictureUrl + '"/>' +
                     '<h5 class="shopName" onclick="redirectToPage(' + json.data.articleId + ')">' + json.data.title + '</h5>' +
-                    '<div class="shopMark align-self-center" style="height: 30px">' +
+                    '<div class="shopMark align-self-center" style="height: 30px; overflow: hidden;">' +
                     json.data.abs +
-                    '<p>发布时间：' + json.data.date + '</p>' +
+                    '<p class="article-time">发布时间：' + json.data.date + '</p>' +
                     '</div>' +
                     '</div>';
 
@@ -165,35 +174,59 @@ function updateArticleInfo(articlelist) {
 
 
 //右侧，用户的发帖list
+function updateForumInfo(forumlist) {
+    var rows = [];
+    var num=0
+    $.each(forumlist, function (i, a) {
+        var time=a.createTime;
+        time=time.replace('T',' ')
+        time=time.split('.')[0]
+        rows.push('<div class="col-lg-5" id="forumListItem"> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
+            + a.id+ '">' + a.title + '</h4> <button class="btn pull-right" type="button" onclick="deleteForum(this)" hashId="'
+            + a.id+ '">删除</button> <p class="forumContent" onclick="goForum(this)" hashId="'
+            + a.id+ '">' + a.content+ '</p>'
+            +'<div><span class="createtime">发帖时间:' +time
+            +'</span><span class="replies">回帖数：' + a.comments + '</span></div></div>')
+        num++
+    })
+    if(num==0){
+        rows.push('<h5 class="mt-15 text-center">暂无发表过的帖子</h5>')
+    }
+    $("#forum").empty()
+    $("#forum").append(rows.join(''));
+}
 
 //跳转到帖子详情
 function goForum(a) {
     var postId = $(a).attr("hashId");
-    alert('论坛页面跳转'+ postId);
     window.sessionStorage.setItem("postId",postId)
     window.location.href = "http://47.115.230.54:8080/forum-detail.html";
 }
 
-function deleteForum(a) {
-    var token = window.localStorage.getItem("token");
-    var postId = $(a).attr("hashId");
+function addColletion(a) {
+    var icon=a.children[0]
+    var iconclass=icon.classList[1]
+    var shopname = $(a).attr("hashId");
+    shopname = shopname.replace(/&/g, '%26')
+    var username = window.localStorage.getItem("myname")
     $.ajax({
-        type: "post",
-        url: "http://47.115.230.54:8080/comment/delete/"+postId,
-        contentType : "application/json",
+
+        type: "delete",
+        url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
+        contentType: "application/json",
+
         dataType: "json",
-        headers: {
-            'Authorization': "Bearer "+ token +""
-        },
         success: function (reviewInfo) {
-            alert('删帖成功'+postId);
-            location.reload();
+            alert('取消收藏成功');
+            $(icon).removeClass("fas")
+            $(icon).addClass("far")
         },
         error: function () {
             alert('出现问题')
         }
     })
 }
+
 
     function redirectToPage(articleId) {
         // 将要跳转至的页面 URL

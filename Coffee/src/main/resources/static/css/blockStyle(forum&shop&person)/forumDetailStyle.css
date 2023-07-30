@@ -31,13 +31,16 @@ main{
     padding-bottom: 20px;
 }
 
-.avatar{
+.avatar,.lavatar{
     margin: 15px auto;
     padding: 5px;
     background: #FFF;
     width: 120px;
     height: 120px;
     box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+.lavatar{
+    margin-top: 10px;
 }
 .other{
     position: absolute;

@@ -77,7 +77,7 @@ $('#wantAddForum').click(function () {
 $("#button_forum").click(function(){
     var title = document.getElementById("forum_title").value;
     var content = document.getElementById("forum_content").value;
-    var tag = $("#sel-tag").find("option:selected").text();
+    var tag = $("#sel-tag").val();
     var token = window.localStorage.getItem("token");
     if(title.length==0||content.length==0){
         $("#prompt_content").attr("style","display:block")
@@ -90,7 +90,7 @@ $("#button_forum").click(function(){
     var info= {
         "title":title,
         "content":content,
-        "tag":tag,
+        "tags":tag,
         "pictureUrl":"pic"
     }
     $.ajax({

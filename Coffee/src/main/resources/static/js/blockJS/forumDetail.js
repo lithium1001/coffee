@@ -1,6 +1,5 @@
 //获取传参
 var postId = window.sessionStorage.getItem("postId")
-alert(postId)
 $(function () {
     //初始化主贴
     $.ajax({
@@ -12,12 +11,18 @@ $(function () {
         },
         success: function (forumInfo) {
             $("#forumtitle").text(forumInfo.data.topic.title);
-            $(".forumpicture").attr("src", forumInfo.data.topic.pictureUrl);
-            // alert($forumpicture(".pictureUrl").attr("src"));
-            $(".forumContent").text(forumInfo.data.topic.content);
-            $(".time").text(forumInfo.data.topic.createTime);
-            $(".username").text(forumInfo.data.user.username);
-            $(".avatar").attr("src", forumInfo.data.user.pictureUrl);
+            $(".lusername").text(forumInfo.data.user.username);
+            $(".lavatar").attr("src", forumInfo.data.user.avatarUrl);
+            $(".lforumContent").text(forumInfo.data.topic.content);
+            var time=forumInfo.data.topic.createTime;
+            time=time.replace('T',' ')
+            time=time.split('.')[0]
+            console.log(time)
+            $(".ltime").text(time);
+            $.each(forumInfo.data.tags, function (itag, tag) {
+                rows.push('<span class="badge rounded-pill" onclick="goTag(this)">'+tag.name+'</span>')
+            })
+            $(".forumtop").append(rows.join(''));
         },
         error: function () {
             alert('出现问题')
@@ -44,22 +49,24 @@ $(function () {
 function updateReview(reviewInfo) {
     var rows = [];
     $.each(reviewInfo, function (i, a) {
-        console.log(a.content)
+        var time=a.createTime;
+        time=time.replace('T',' ')
+        time=time.split('.')[0]
         rows.push('<div class="media forumfloor"> <div class="col-lg-3 text-center userInfo"> <img class="align-self-center avatar" src="'
-            + a.pictureUrl
+            + a.aurl
             + '"/><h6 class="username">'
             + a.username
             + '</h6></div><div class="col-lg-9 pt-15"><p class="forumContent">'
             + a.content
-            + '</p></div><div class="other"><span class="floorNum">1楼&nbsp;</span><span class="time">发帖时间'
-            + a.createTime
+            + '</p></div><div class="other"><span class="floorNum">'+(i+1)+'楼&nbsp;</span><span class="time">发帖时间'
+            + time
             + '</span></div></div>')
     })
+    $("#reviewlist").empty();
     $("#reviewlist").append(rows.join(''));
 }
 
 //发表评论
-
 $('#wantAddForum').click(function () {
     var token = window.localStorage.getItem("token");
     if (token == null) {
@@ -70,6 +77,7 @@ $('#wantAddForum').click(function () {
     }
 })
 
+//发表回帖
 $('#sendReview').click(function (){
     var token = window.localStorage.getItem("token");
     if(token==null){
@@ -103,8 +111,7 @@ $('#sendReview').click(function (){
         },
         success: function (reviewInfo) {
             alert('发布回帖成功');
-            updateReview(reviewInfo.data)
-            //location.reload();
+            location.reload();
         },
         error: function () {
             alert('出现问题')
@@ -112,13 +119,4 @@ $('#sendReview').click(function (){
     })
 })
 
-// 页面跳转到个人主页
-function goPerson(a) {
-    userId = $(a).attr("hashId");
-    window.sessionStorage.setItem("userId",userId)
-    window.location.href = "http://47.115.230.54:8080/Person.html"
-}
 
-function toAddReview(){
-    location.hash='hottag'
-}

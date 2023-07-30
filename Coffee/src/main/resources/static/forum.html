@@ -114,7 +114,7 @@
                     </div>
                     <div class="pb-1">
                         <label class="control-label">密码：</label>
-                        <input class="form-control" id="login_password" type="text">
+                        <input class="form-control" id="login_password" type="password">
                     </div>
                 </form>
                 <div class="prompt" id="prompt_login">
@@ -215,29 +215,31 @@
             <div class="row" style="width: 100%">
                 <!--左侧论坛区-->
                 <div class="col-sm-8 col-md-8 col-lg-8 forum">
-                    <div id="forumList"></div>
+                    <div id="forumList">
+                        <h5 class="mt-15 text-center"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;社区信息加载中，请稍后</h5>
+                    </div>
                 </div>
                 <!-- #右侧乱七八糟信息区 -->
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                        <div class="forumSearch">
-                            <h4 class="forumSearch-title">查找：</h4>
-                            <form action="" class="search-form" method="get" role="search">
-                                <input class="search-field" placeholder="请输入关键词" type="text">
-                                <input class="search-submit text-center" value="Search" onclick="search()">
-                            </form>
-                            <div id="valueList">
-                                <!--<div class="valueListItem"></div>-->
-                            </div>
+                    <div class="forumSearch">
+                        <h4 class="forumSearch-title">查找：</h4>
+                        <form action="" class="search-form" method="get" role="search">
+                            <input class="search-field" placeholder="请输入关键词" type="text">
+                            <input class="search-submit text-center" onclick="search()" value="Search">
+                        </form>
+                        <div id="valueList">
+                            <!--<div class="valueListItem"></div>-->
                         </div>
-                        <div class="forumTopic">
-                            <h5 class="forumTopic-title">热议话题tag</h5>
-                            <ul>
-                                <li class="forumTopicItem" onclick="goTag(this)">咖啡豆品鉴</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">制作技巧</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">咖啡周边</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">咖啡探店</li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="forumTopic">
+                        <h5 class="forumTopic-title">热议话题Tag</h5>
+                        <ul>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-mug-marshmallows" ></i>咖啡豆品鉴</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-blender" ></i>制作技巧</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-box-heart"></i>咖啡周边</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-store-alt" ></i>咖啡探店</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -266,10 +268,6 @@
                     <div class="form-group">
                         <label class="control-label" style="line-height: 40px">内容：</label>
                         <textarea class="form-control" id="forum_content" rows="1"></textarea>
-                        <div class="prompt" id="prompt_content" style="display: none">
-                            <i class="far fa-exclamation-circle"></i>
-                            <span>标题以及内容不可为空</span>
-                        </div>
                     </div>
                     <div class="form-group">
                         <span>TAG：&nbsp;</span>
@@ -279,6 +277,10 @@
                             <option>咖啡周边</option>
                             <option>咖啡探店</option>
                         </select>
+                        <div class="prompt" id="prompt_content" style="display: none">
+                            <i class="far fa-exclamation-circle"></i>
+                            <span>标题以及tag不可为空</span>
+                        </div>
                     </div>
                 </form>
             </div>

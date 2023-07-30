@@ -1,13 +1,14 @@
 package com.example.coffee.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -40,6 +41,10 @@ public class Post {
 
     @TableField("picture_url")
     private String pictureUrl;
+    @TableField("avatar_url")
+    private String avatarUrl;
+    @TableField("username")
+    private String username;
     /**
      * 评论数
      */
@@ -51,7 +56,6 @@ public class Post {
      * 创建时间
      */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
-    private Date createTime;
-
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 }

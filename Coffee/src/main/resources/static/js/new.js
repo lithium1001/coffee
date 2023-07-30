@@ -32,7 +32,13 @@ function createElement(latestData) {
         const dateSpan = document.createElement('span');
         dateSpan.classList.add('post-date');
         dateSpan.id = 'd_latest1'; // 这里可能需要根据实际数据设置不同的 ID
-        dateSpan.textContent = data.date;
+        var time=data.date;
+        time=time.replace('T',' ')
+        time=time.split('.')[0]
+        dateSpan.innerHTML = '<br>' + time;
+
+
+
 
         // 将链接和日期元素添加到 li 元素中
         listItem.appendChild(link);

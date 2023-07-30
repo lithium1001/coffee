@@ -42,9 +42,12 @@ $(document).ready(function () {
         type: 'GET',
         dataType: 'json',
         success: function (json) {
+            var time=json.data.records[0].date;
+            time=time.replace('T',' ')
+            time=time.split('.')[0]
             $("#title_competition").text( json.data.records[0].title)
             $("#content_competition").text(json.data.records[0].abs)
-            $("#date_competition").text(json.data.records[0].date)
+            $("#date_competition").text(time)
             $('#img_competition').attr("src", json.data.records[0].pictureUrl);
 
             createNews("competition", json.data.records, "资讯分tag板块.html?name=资讯丨赛事&id=3")
