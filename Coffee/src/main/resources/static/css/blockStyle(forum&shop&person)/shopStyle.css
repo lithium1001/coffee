@@ -160,6 +160,7 @@
 .shopList{
     width: 900px;
     margin:0px auto 10px;
+    min-height: 40px;
 }
 .shopListItem{
     height: 175px;
