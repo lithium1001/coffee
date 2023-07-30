@@ -30,7 +30,7 @@ public class PostController extends CoffeeController {
     @GetMapping("/list")
     public ApiResult<Page<PostVO>> list(@RequestParam(value = "tab", defaultValue = "latest") String tab,
                                         @RequestParam(value = "pageNo", defaultValue = "1")  Integer pageNo,
-                                        @RequestParam(value = "size", defaultValue = "10") Integer pageSize) {
+                                        @RequestParam(value = "size", defaultValue = "100") Integer pageSize) {
         Page<PostVO> list = PostService.getList(new Page<>(pageNo, pageSize),tab);
         return ApiResult.success(list);
     }
