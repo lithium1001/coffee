@@ -81,7 +81,10 @@ function createElementList(blogData) {
         img.width = 650;//感觉这里有点问题
         // 创建日期元素
         const date = createElementWithClass('div', 'date-home');
-        date.textContent = data.date;
+        var time=data.date;
+        time=time.replace('T',' ')
+        time=time.split('.')[0]
+        date.textContent = time;
 
         // 创建标题元素
         const title = document.createElement('h2');
