@@ -215,29 +215,31 @@
             <div class="row" style="width: 100%">
                 <!--左侧论坛区-->
                 <div class="col-sm-8 col-md-8 col-lg-8 forum">
-                    <div id="forumList"></div>
+                    <div id="forumList">
+                        <h5 class="mt-15 text-center"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;店铺信息加载中，请稍后</h5>
+                    </div>
                 </div>
                 <!-- #右侧乱七八糟信息区 -->
                 <div class="col-sm-4 col-md-4 col-lg-4">
-                        <div class="forumSearch">
-                            <h4 class="forumSearch-title">查找：</h4>
-                            <form action="" class="search-form" method="get" role="search">
-                                <input class="search-field" placeholder="请输入关键词" type="text">
-                                <input class="search-submit text-center" value="Search" onclick="search()">
-                            </form>
-                            <div id="valueList">
-                                <!--<div class="valueListItem"></div>-->
-                            </div>
+                    <div class="forumSearch">
+                        <h4 class="forumSearch-title">查找：</h4>
+                        <form action="" class="search-form" method="get" role="search">
+                            <input class="search-field" placeholder="请输入关键词" type="text">
+                            <input class="search-submit text-center" onclick="search()" value="Search">
+                        </form>
+                        <div id="valueList">
+                            <!--<div class="valueListItem"></div>-->
                         </div>
-                        <div class="forumTopic">
-                            <h5 class="forumTopic-title">热议话题tag</h5>
-                            <ul>
-                                <li class="forumTopicItem" onclick="goTag(this)">咖啡豆品鉴</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">制作技巧</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">咖啡周边</li>
-                                <li class="forumTopicItem" onclick="goTag(this)">咖啡探店</li>
-                            </ul>
-                        </div>
+                    </div>
+                    <div class="forumTopic">
+                        <h5 class="forumTopic-title">热议话题Tag</h5>
+                        <ul>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-mug-marshmallows" ></i>&nbsp;&nbsp;咖啡豆品鉴</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-blender" ></i>&nbsp;&nbsp;制作技巧</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-box-heart"></i>&nbsp;&nbsp;咖啡周边</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-store-alt" ></i>&nbsp;&nbsp;咖啡探店</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

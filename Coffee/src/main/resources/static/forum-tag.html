@@ -214,7 +214,9 @@
             <div class="row" style="width: 100%">
                 <!--左侧论坛区-->
                 <div class="col-sm-8 col-md-8 col-lg-8 forum">
-                    <div id="forumList"></div>
+                    <div id="forumList">
+                        <h5 class="mt-15 text-center"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;&nbsp;店铺信息加载中，请稍后</h5>
+                    </div>
                 </div>
                 <!-- #右侧乱七八糟信息区 -->
                 <div class="col-sm-4 col-md-4 col-lg-4">
@@ -229,12 +231,12 @@
                         </div>
                     </div>
                     <div class="forumTopic">
-                        <h5 class="forumTopic-title">热议话题tag</h5>
+                        <h5 class="forumTopic-title">热议话题Tag</h5>
                         <ul>
-                            <li class="forumTopicItem" onclick="goTag(this)">咖啡豆品鉴</li>
-                            <li class="forumTopicItem" onclick="goTag(this)">制作技巧</li>
-                            <li class="forumTopicItem" onclick="goTag(this)">咖啡周边</li>
-                            <li class="forumTopicItem" onclick="goTag(this)">咖啡探店</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-mug-marshmallows" ></i>&nbsp;&nbsp;咖啡豆品鉴</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-blender" ></i>&nbsp;&nbsp;制作技巧</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-box-heart"></i>&nbsp;&nbsp;咖啡周边</li>
+                            <li class="forumTopicItem" onclick="goTag(this)"><i class="far fa-store-alt" ></i>&nbsp;&nbsp;咖啡探店</li>
                         </ul>
                     </div>
                 </div>
@@ -346,8 +348,6 @@ newslater-area
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-6">
-
-
                 </div>
                 <div class="col-xl-2 col-lg-2 col-sm-6">
                     <div class="footer-widget mb-30">

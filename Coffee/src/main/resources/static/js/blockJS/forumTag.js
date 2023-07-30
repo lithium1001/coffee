@@ -1,8 +1,6 @@
 var tagname=window.sessionStorage.getItem("tagname")
 //初始化列表
 $(function () {
-    alert('zzjz')
-    $('[data-toggle="popover"]').popover()
     $("#forumtitle").text("热议Tag："+tagname)
     $.ajax({
         type: "get",

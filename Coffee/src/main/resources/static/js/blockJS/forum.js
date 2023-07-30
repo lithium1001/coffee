@@ -6,7 +6,6 @@ $(function () {
         url: "http://localhost:8080/post/list",
         dataType: "json",
         success: function (forumlist) {
-            $("#forumList").empty()
             updateForumInfo(forumlist.data.records);
         },
         error: function () {
@@ -30,7 +29,7 @@ function updateForumInfo(forumlist) {
             + '</h4> <p class="forumContent"></p>')
             // +a.   看具体后面有没有content
         $.each(a.tags, function (itag, tag){
-            rows.push('<span class="badge rounded-pill">'+tag.name+'</span>')
+            rows.push('<span class="badge rounded-pill" onclick="goTag(this)">'+tag.name+'</span>')
         })
         rows.push('<div><span class="createtime">发帖时间:'
             +a.createTime
@@ -38,17 +37,17 @@ function updateForumInfo(forumlist) {
             + a.replynum
             + '</span><button class="btn" type="button" onclick="goForum(this)" hashId="'
             + a.postId
-            + '"><i class="far fa-comment" ></i></button><button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="http://localhost:8080/forum-detail?'
+            + '"><i class="far fa-comment" ></i></button><button class="btn" type="button" onClick = "share(\''
             +a.postId
-            +'"><i class="far fa-share"></i></button></div></div></div>')
+            +'\')"><i class="far fa-share"></i></button></div></div></div>')
     })
+    $("#forumList").empty()
     $("#forumList").append(rows.join(''));
 }
 
 // 页面跳转到个人主页
 function goPerson(a) {
     userId = $(a).attr("hashId");
-    alert('个人主页跳转'+ userId);
     window.sessionStorage.setItem("userId",userId)
     window.location.href = "http://localhost:8080/Person.html";
 }
@@ -56,16 +55,14 @@ function goPerson(a) {
 // 页面跳转到详细页面
 function goForum(a) {
     var postId = $(a).attr("hashId");
-    alert('论坛页面跳转'+ postId);
     window.sessionStorage.setItem("postId",postId)
     window.location.href = "http://localhost:8080/forum-detail.html";
 }
 
-//是否按热度排序
+//是否按热度排序,ok
 $("#sortByHot").click(function(){
     var sortbtn = document.getElementById("sortByHot")
     var sortnow = sortbtn.classList[3];
-    console.log(sortnow)
     var sort
     if(sortnow == "no"){
         sort="hot"
@@ -81,7 +78,6 @@ $("#sortByHot").click(function(){
             tab: sort
         },
         success: function (forumlist) {
-            $("#forumList").empty()
             updateForumInfo(forumlist.data.records);
         },
         error: function () {
@@ -91,5 +87,16 @@ $("#sortByHot").click(function(){
     $("#sortByHot").toggleClass("yes");
     $("#sortByHot").toggleClass("no");
 })
+
+//分享，ok
+function share(postId){
+    var dummyInput = document.createElement('input');
+    dummyInput.setAttribute('value', "http://localhost:8080/forum-detail?"+postId);
+    document.body.appendChild(dummyInput);
+    dummyInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummyInput);
+    alert('链接复制成功！');
+};
 
 
