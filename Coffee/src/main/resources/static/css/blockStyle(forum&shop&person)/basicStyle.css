@@ -298,3 +298,6 @@ label {
 .f-contact li:last-child{
     margin-bottom: 0px !important;
 }
+.spinner-border{
+    color:#76452f;
+}

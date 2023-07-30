@@ -134,32 +134,6 @@ $(function () {
         success: function (shoplist) {
             // alert('没有问题');
             updateShopInfo(shoplist.data.records);
-            $.each(shoplist.data.records, function (i, a) {
-                var coordinatesObj = JSON.parse(a.position);
-                var longitude = coordinatesObj[0];
-                var latitude = coordinatesObj[1];
-                longitude = parseFloat(longitude);
-                latitude = parseFloat(latitude)
-                console.log([longitude,latitude])
-                marker = new AMap.Marker({
-                    icon: "img/坐标.png",
-                    position: [longitude,latitude],
-                    offset: new AMap.Pixel(-13, -30)
-                });
-                marker.setMap(map);
-                AMap.event.addListener(marker, 'mouseover', function () {
-                    $(".card-title").text(a.name)
-                    $("#card-location").text("上海市"+a.district+a.location)
-                    $("#card-time").text(a.opentime)
-                    $("#card-picture").attr("src",a.pictureUrl)
-                });
-                AMap.event.addListener(marker, 'click', function () {
-                    $(".card-title").text(a.name)
-                    $("#card-location").text("上海市"+a.district+a.location)
-                    $("#card-time").text(a.opentime)
-                    $("#card-picture").attr("src",a.pictureUrl)
-                });
-            })
         },
         error: function () {
             alert('出现问题')
@@ -169,9 +143,10 @@ $(function () {
 
 // 添加店铺信息
 function updateShopInfo(shoplist) {
-    $(".shopList").empty()
     var rows = [];
     var number=0
+    map.clearMap();
+    //信息加载
     $.each(shoplist, function (i, a) {
         rows.push('<div class="media shopListItem"><img class="align-self-center" src="'
             + a.pictureUrl
@@ -180,24 +155,54 @@ function updateShopInfo(shoplist) {
             + a.name
             + '</h4> <div class="shopMark align-self-center"> <span id="rating">店铺评分：'
             + a.rating
-            + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(\''
+            + '分 &nbsp;</span> <button class="btn collection" type="button" onclick="addColletion(this)" hashId="'
             + a.name
-            + '\')">收藏')
+            + '">收藏')
         if(a.collection==true){
-            rows.push('<i class="fas fa-star" id="'+a.name+'"></i>')
+            rows.push('<i class="fa-star fas" id="'+a.name+'"></i>')
         }
         else{
-            rows.push('<i class="far fa-star"></i>')
+            rows.push('<i class="fa-star far"></i>')
         }
-        rows.push('</button><button class="btn" id="copyButton" type="button" data-content="http://localhost:8080/shopdetail?'+a.name+'">转发 <i class="far fa-share"></i></button></div><p>'
+        rows.push('</button><button class="btn" type="button" onclick="share(\''
+            + a.name+'\')">转发 <i class="far fa-share"></i></button></div><p>'
             + "上海市"+a.district+a.location
             + '</p> <p>'
             + a.opentime + '</p></div></div>')
         number=number+1
+        //标点加载
+        var coordinatesObj = JSON.parse(a.position);
+        var longitude = coordinatesObj[0];
+        var latitude = coordinatesObj[1];
+        longitude = parseFloat(longitude);
+        latitude = parseFloat(latitude)
+        console.log(a.name+"的坐标是"+[longitude,latitude])
+        marker = new AMap.Marker({
+            icon: "img/坐标.png",
+            position: [longitude,latitude],
+            offset: new AMap.Pixel(-13, -30)
+        });
+        marker.setMap(map);
+        map.setFitView(null, false, [0, 0, 0, 0]);
+        var newCenter = map.getCenter();
+        AMap.event.addListener(marker, 'mouseover', function () {
+            $(".card-title").text(a.name)
+            $("#card-location").text("上海市"+a.district+a.location)
+            $("#card-time").text(a.opentime)
+            $("#card-picture").attr("src",a.pictureUrl)
+        });
+        AMap.event.addListener(marker, 'click', function () {
+            $(".card-title").text(a.name)
+            $("#card-location").text("上海市"+a.district+a.location)
+            $("#card-time").text(a.opentime)
+            $("#card-picture").attr("src",a.pictureUrl)
+        });
     })
     if (number==0){
-        rows=['<h5>暂无满足要求的店铺 </h5>']
+        rows=['<h5 class="mt-15">暂无满足要求的店铺</h5>']
     }
+    console.log(number)
+    $(".shopList").empty()
     $(".shopList").append(rows.join(''));
 }
 
@@ -213,7 +218,6 @@ $("#sortbtn").click(function () {
     var sortbtn = document.getElementById("sortbtn")
     var sortnow = sortbtn.classList[1];
     sortS = sortnow == "no";
-    // console.log(sortS);
     $("#sortbtn").toggleClass("yes");
     $("#sortbtn").toggleClass("no");
     selectShop()
@@ -232,8 +236,7 @@ var districtCenter = [[121.53, 31.22], [121.43, 31.18], [121.42, 31.22], [121.40
 function selectByTag() {
     districtS = $("#sel-district").find("option:selected").text()
     i = $("#sel-district").find("option:selected").index()
-    if (districtS != null) {
-        //console.log("原" + map.getCenter())
+    if (i >= 0) {
         map.setCenter(districtCenter[i-1])
         map.setZoom(13)
     }
@@ -243,15 +246,26 @@ function selectByTag() {
 
 //实际筛选
 function selectShop() {
+    var username = window.localStorage.getItem("myname");
+    if (username == null) {
+        var info= {
+            sort: sortS,
+            district: districtS,
+            tag: tagS
+        }
+    } else {
+        var info= {
+            sort: sortS,
+            district: districtS,
+            tag: tagS,
+            username: username
+        }
+    }
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/shoplist",
         dataType: "json",
-        data: {
-            sort: sortS,
-            district: districtS,
-            tag: tagS
-        },
+        data: info,
         success: function (shoplist) {
             updateShopInfo(shoplist.data.records);
         },
@@ -297,7 +311,6 @@ $(".search-field").keyup(function (e) {
 
 //点击自动联想选项进行搜索
 function setInput(a) {
-    // console.log($(a).text())
     $(".search-field").val($(a).text())
     $("#valueList").attr("style", "display:none")
     search()
@@ -305,14 +318,23 @@ function setInput(a) {
 
 //搜索
 function search() {
+    var username = window.localStorage.getItem("myname");
+    if (username == null) {
+        var info= {
+            keyword: searchKey
+        }
+    } else {
+        var info= {
+            keyword: searchKey,
+            username: username
+        }
+    }
     var searchKey = $(".search-field").val()
     $.ajax({
         type: "get",
         url: "http://localhost:8080/coffee-shop/searchshop",
         dataType: "json",
-        data: {
-            keyword: searchKey
-        },
+        data: info,
         success: function (searchResult) {
             updateShopInfo(searchResult.data)
             location.hash='shopcard'
@@ -325,13 +347,20 @@ function search() {
 
 $("#shopcard").click(function () {
     name = $(".card-title").text();
+    if(name=="暂无店铺信息"){
+        return;
+    }
     window.sessionStorage.setItem('shopname', name)
     window.location.href = "http://localhost:8080/shop-detail.html";
 })
 
 //添加收藏
 function addColletion(a) {
-    var shopname = a
+    var icon=a.children[0]
+    console.log(icon)
+    var iconclass=icon.classList[1]
+    console.log(iconclass)
+    var shopname = $(a).attr("hashId");
     shopname = shopname.replace(/&/g, '%26')
     console.log(shopname)
     var token = window.localStorage.getItem("token");
@@ -341,59 +370,47 @@ function addColletion(a) {
         alert("请先进行登录");
         return;
     }
-    $.ajax({
-        type: "get",
-        url: "http://localhost:8080/coffee-shop/shopdetail?name=" + shopname + "&username=" + username,
-        contentType: "application/json",
-        dataType: "json",
-        success: function (a) {
-            console.log(a.data.collection)
-            if (a.data.collection != true) {
-                $.ajax({
-                    type: "post",
-                    url: "http://localhost:8080/coffee-shop/addshop?name=" + shopname + "&username=" + username,
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (reviewInfo) {
-                        alert('收藏成功');
-                        $(".collection i").removeClass("far")
-                        $(".collection i").addClass("fas")
-                    },
-                    error: function () {
-                        alert('出现问题1')
-                    }
-                })
-            } else {
-                $.ajax({
-                    type: "delete",
-                    url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (reviewInfo) {
-                        alert('取消收藏成功');
-                        $(".collection i").removeClass("fas")
-                        $(".collection i").addClass("far")
-                    },
-                    error: function () {
-                        alert('出现问题2')
-                    }
-                })
+    if (iconclass == "far") {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8080/coffee-shop/addshop?name=" + shopname + "&username=" + username,
+            contentType: "application/json",
+            dataType: "json",
+            success: function (reviewInfo) {
+                alert('收藏成功');
+                $(icon).removeClass("far")
+                $(icon).addClass("fas")
+            },
+            error: function () {
+                alert('出现问题1')
             }
-        },
-        error: function () {
-            alert('出现问题3')
-        }
-    })
+        })
+    } else {
+        $.ajax({
+            type: "delete",
+            url: "http://localhost:8080/coffee-shop/deleteshop?name=" + shopname + "&username=" + username,
+            contentType: "application/json",
+            dataType: "json",
+            success: function (reviewInfo) {
+                alert('取消收藏成功');
+                $(icon).removeClass("fas")
+                $(icon).addClass("far")
+            },
+            error: function () {
+                alert('出现问题2')
+            }
+        })
+    }
 }
 
 //分享
-$('#copyButton').click( function() {
+function share(shopname){
     alert('cf');
     var dummyInput = document.createElement('input');
-    dummyInput.setAttribute('value', window.location.href);
+    dummyInput.setAttribute('value', "http://localhost:8080/shopdetail?"+shopname);
     document.body.appendChild(dummyInput);
     dummyInput.select();
     document.execCommand('copy');
     document.body.removeChild(dummyInput);
     alert('链接复制成功！');
-});
+};

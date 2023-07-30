@@ -37,7 +37,7 @@ public class ShopController {
     private UserService userService;
 
     @GetMapping("/shoplist")   //分页功能（包括是否按评分rating降序显示、分类）
-    public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "30")int pageSize,
+    public ShopResult shoplist(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "100")int pageSize,
                                String district, String tag, @RequestParam(defaultValue = "false") boolean sort,
                                HttpServletResponse response, String username) {
 
