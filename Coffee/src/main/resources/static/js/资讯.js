@@ -10,6 +10,8 @@ $(document).ready(function () {
             // 请求成功后的处理
             $("#title_news").text( json.data.records[0].title)
             $("#content_news").text(json.data.records[0].abs)
+            $("#date_news").text(json.data.records[0].date)
+            $('#img_news').attr("src", json.data.records[0].pictureUrl);
             createNews("news", json.data.records, "资讯分tag板块.html?name=资讯丨新闻&id=1")
         },
         error: function () {
@@ -25,6 +27,9 @@ $(document).ready(function () {
             // 请求成功后的处理
             $("#title_report").text( json.data.records[0].title)
             $("#content_report").text(json.data.records[0].abs)
+            $("#date_report").text(json.data.records[0].date)
+            $('#img_report').attr("src", json.data.records[0].pictureUrl);
+
             createNews("bg", json.data.records, "资讯分tag板块.html?name=资讯丨行业报告&id=2")
         },
         error: function () {
@@ -39,6 +44,9 @@ $(document).ready(function () {
         success: function (json) {
             $("#title_competition").text( json.data.records[0].title)
             $("#content_competition").text(json.data.records[0].abs)
+            $("#date_competition").text(json.data.records[0].date)
+            $('#img_competition').attr("src", json.data.records[0].pictureUrl);
+
             createNews("competition", json.data.records, "资讯分tag板块.html?name=资讯丨赛事&id=3")
         },
         error: function () {

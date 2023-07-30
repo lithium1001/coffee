@@ -15,7 +15,6 @@ public class Shop {
     private String description;
     private String pictureUrl;
     private String district;
-    private String road;
-    private String number;
     private String location;
+    private String position;
 }

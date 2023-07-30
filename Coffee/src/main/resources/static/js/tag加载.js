@@ -77,10 +77,11 @@ function createElementList(blogData) {
         const img = document.createElement('img');
         img.src = data.pictureUrl;
         img.alt = '';
-
+        img.height = 350;
+        img.width = 650;//感觉这里有点问题
         // 创建日期元素
         const date = createElementWithClass('div', 'date-home');
-        date.textContent = " 24th March 2022";
+        date.textContent = data.date;
 
         // 创建标题元素
         const title = document.createElement('h2');

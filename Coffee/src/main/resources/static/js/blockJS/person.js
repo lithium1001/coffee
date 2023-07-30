@@ -15,12 +15,22 @@ $(document).ready(function () {
             $("#sign_username").val(a.username);
             $("#sign_pass").val(a.password);
             $("#sign_email").val(a.email);
+            updateForumInfo(personInfo.data.topics.records)
         },
         error: function () {
             alert('出现问题')
         }
     })
+    $.ajax({
+        type: "get",
+        url: "http://47.115.230.54:8080/Scollection/shoplist?username="+window.localStorage.getItem("myname"),
+        dataType: "json",
+        success: function (shoplist) {
+            updateShopInfo(shoplist)
+        }
+    })
 });
+
 //用户信息修改待完善
 $("#modifyInfo").click(function () {
     const username = document.getElementById("sign_username").value;
@@ -57,26 +67,82 @@ $("#modifyInfo").click(function () {
         }
     })
 })
+
 $("#avatar").change(function (e) {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('userName', window.localStorage.getItem("myname"));
+    formData.append('user', window.localStorage.getItem("myname"));
 
     $.ajax({
         type: "post",
-        url: "http://47.115.230.54:8080/user/avatar",
+
+        url: "http://47.115.230.54:8080/user/upload",
+
         data: formData,
         contentType: false,
         processData: false,
         success: function (res) {
-            $("#avatar_src").val("http://47.115.230.54:8080"+res.data.imgUrl)
+
+            $("#avatar_src").val(res.data.imgUrl)
+
             alert("头像上传成功！")
         }
     })
 })
+
+//登出
 $("#logout").click(function () {
     window.localStorage.clear();
     window.location.href = "http://47.115.230.54:8080/首页.html"
 })
 
+//右侧，用户收藏list
+function updateShopInfo(shoplist) {
+    $("#shop").empty();
+    var rows = [];
+    var number=0
+    $.each(shoplist.data.records, function (i, a) {
+        rows.push('<div class="col-lg-4 card" class="shopListItem"><img src="'
+            + a.pictureUrl+ '"/><h5 class="shopName" onclick="goShop(this)" hashId="'
+            + a.name+ '">' + a.name + '</h5> <button class="btn" type="button" onclick="deleteCollection(this)" hashId="'
+            + a.name+ '"><i class="fa-star fas"></i></button> <div class="shopMark align-self-center" style="height: 30px">'
+            +a.rating+'</span><p>所在地区：'+a.district+'</p></div></div>')
+        number=number+1
+    })
+    if (number==0){
+        rows=['<h5>暂无收藏店铺 </h5>']
+    }
+    $("#shop").append(rows.join(''));
+}
+
+//右侧，用户的发帖list
+
+//跳转到帖子详情
+function goForum(a) {
+    var postId = $(a).attr("hashId");
+    alert('论坛页面跳转'+ postId);
+    window.sessionStorage.setItem("postId",postId)
+    window.location.href = "http://47.115.230.54:8080/forum-detail.html";
+}
+
+function deleteForum(a) {
+    var token = window.localStorage.getItem("token");
+    var postId = $(a).attr("hashId");
+    $.ajax({
+        type: "post",
+        url: "http://47.115.230.54:8080/comment/delete/"+postId,
+        contentType : "application/json",
+        dataType: "json",
+        headers: {
+            'Authorization': "Bearer "+ token +""
+        },
+        success: function (reviewInfo) {
+            alert('删帖成功'+postId);
+            location.reload();
+        },
+        error: function () {
+            alert('出现问题')
+        }
+    })
+}

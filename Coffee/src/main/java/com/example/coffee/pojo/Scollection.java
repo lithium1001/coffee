@@ -7,6 +7,6 @@ import lombok.Data;
 @TableName("scollections")
 public class Scollection {
     private Integer shopId;
-    private Integer userId;
-    private String sUrl;
+    private String userId;
+    //private String sUrl;
 }

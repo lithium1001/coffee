@@ -31,8 +31,15 @@
     margin-right: 20px;
     line-height:1.3rem;
     font-size: 14px;
+    padding: 2px 10px;
 }
-
+.form-group span{
+    color: #444444;
+}
+.dropdown-toggle{
+    width: 300px;
+    background-color: transparent;
+}
 .forumtop .no{
     color: rgb(33, 37, 41);
     background-color: transparent;

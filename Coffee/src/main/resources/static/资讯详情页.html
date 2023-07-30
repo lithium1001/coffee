@@ -234,6 +234,7 @@
                                         <ul class="nav navbar-nav">
                                             <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="height: 60px">
+                                                    &emsp;&emsp;
                                                     <img id="myavatar" alt="" class="img-circle" src=""/>
                                                     <span id="myname" style="color: #FFFFFF;font-size: 16px"></span>
                                                 </a>
@@ -370,17 +371,17 @@
                             have more control.</h2>
                         <div class="meta-info">
                             <ul>
-                                <li><i class="fas fa-calendar-alt"></i> 时间</li>
-                                <li><i class="fab fa-internet-explorer"></i> 来源</li>
-                                <li><i class="fab fa-gratipay"></i> 点赞数</li>
-                                <li><i class="fas fa-star"></i>收藏数</li>
-                                <li><i class="fas fa-share"></i>分享数</li>
+                                <li id="date"></li>
+<!--                                <li><i class="fab fa-internet-explorer"></i> 来源</li>-->
+<!--                                <li><i class="fab fa-gratipay"></i> 点赞数</li>-->
+<!--                                <li><i class="fas fa-star"></i>收藏数</li>-->
+<!--                                <li><i class="fas fa-share"></i>分享数</li>-->
 
 
                             </ul>
                         </div>
                         <div class="details__content-img">
-                            <img src="img/blog/b_details01.jpg" id="img" alt="">
+                            <img src="img/blog/b_details01.jpg"  id="img" alt="" style="width: 650px; height: 350px;display: block; margin: 0 auto;">
                         </div>
                         <p id="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -404,7 +405,7 @@
                     <div class="widget-social">
                         <a href="#" style="margin-right: 50px;" id="likeButton"><i class="fab fa-gratipay"></i>
                             <p>点赞</p></a>
-                        <a href="#" style="margin-right:50px;"><i class=" fas fa-star"></i>
+                        <a href="#" style="margin-right:50px;" onclick="addColletion()"><i class=" fas fa-star"></i>
                             <p>收藏</p></a>
                         <a href="#" style="margin-right:50px;"  id="copyButton"><i class="fas fa-share"></i>
                             <p>分享</p></a>

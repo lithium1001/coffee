@@ -1,5 +1,6 @@
 //初始化列表
 $(function () {
+    $('[data-toggle="popover"]').popover()
     $.ajax({
         type: "get",
         url: "http://47.115.230.54:8080/post/list",
@@ -26,15 +27,22 @@ function updateForumInfo(forumlist) {
             + '</span> <h4 class="forumTitle" onclick="goForum(this)" hashId="'
             + a.postId+ '">'
             + a.title
-            + '</h4> <p class="forumContent">'
+            + '</h4> <p class="forumContent"></p>')
             // +a.   看具体后面有没有content
-            +'</p><div><span class="createtime">发帖时间:'
+        $.each(a.tags, function (itag, tag){
+            rows.push('<span class="badge rounded-pill">'+tag.name+'</span>')
+        })
+        rows.push('<div><span class="createtime">发帖时间:'
             +a.createTime
             +'</span><span class="replies">回帖数：'
             + a.replynum
-            + '</span><button class="btn" type="button"><i class="far fa-comment" ></i></button><button class="btn" type="button"><i class="far fa-share"/></i></button></div></div></div>')
-            })
-            $("#forumList").append(rows.join(''));
+            + '</span><button class="btn" type="button" onclick="goForum(this)" hashId="'
+            + a.postId
+            + '"><i class="far fa-comment" ></i></button><button class="btn" id="share" type="button" data-toggle="popover" data-placement="top" data-content="http://localhost:8080/forum-detail?'
+            +a.postId
+            +'"><i class="far fa-share"></i></button></div></div></div>')
+    })
+    $("#forumList").append(rows.join(''));
 }
 
 // 页面跳转到个人主页
@@ -44,6 +52,7 @@ function goPerson(a) {
     window.sessionStorage.setItem("userId",userId)
     window.location.href = "http://47.115.230.54:8080/Person.html";
 }
+
 // 页面跳转到详细页面
 function goForum(a) {
     var postId = $(a).attr("hashId");
@@ -84,9 +93,3 @@ $("#sortByHot").click(function(){
 })
 
 
-function goTag(){
-    tagname = $(a).text();
-    alert('tag跳转'+ userId);
-    window.sessionStorage.setItem("tagname",tagname)
-    window.location.href = "http://47.115.230.54:8080/forumTag.html";
-}

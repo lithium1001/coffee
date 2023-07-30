@@ -113,4 +113,11 @@ $("#button_forum").click(function(){
     })
 });
 
+//跳转到tag
+function goTag(a){
+    tagname = $(a).text();
+    window.sessionStorage.setItem("tagname",tagname)
+    window.location.href = "http://localhost:8080/forum-tag.html";
+}
+
 
