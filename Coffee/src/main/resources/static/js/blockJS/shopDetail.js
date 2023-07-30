@@ -106,7 +106,7 @@ function addColletion(){
 
 function share(){
     var dummyInput = document.createElement('input');
-    dummyInput.setAttribute('value', "http://localhost:8080/shopdetail?"+nameS);
+    dummyInput.setAttribute('value', "http://47.115.230.54:8080/shopdetail?"+nameS);
     document.body.appendChild(dummyInput);
     dummyInput.select();
     document.execCommand('copy');

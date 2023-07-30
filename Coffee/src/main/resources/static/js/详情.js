@@ -54,7 +54,7 @@ function getQueryString(name) {
         }
         $.ajax({
             type: "post",
-            url: "http://localhost:8080/CoffeeVerse/articles/add?username=" + username + "&articlename=" + title,
+            url: "http://47.115.230.54:8080/CoffeeVerse/articles/add?username=" + username + "&articlename=" + title,
             contentType: "application/json",
             dataType: "json",
             success: function (reviewInfo) {
@@ -71,7 +71,7 @@ function getQueryString(name) {
                 else{
                     $.ajax({
                         type: "delete",
-                        url: "http://localhost:8080/CoffeeVerse/articles/delete?username=" + username + "&articlename=" + title,
+                        url: "http://47.115.230.54:8080/CoffeeVerse/articles/delete?username=" + username + "&articlename=" + title,
                         contentType: "application/json",
                         dataType: "json",
                         success: function (reviewInfo) {

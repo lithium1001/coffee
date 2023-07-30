@@ -31,7 +31,7 @@ $(document).ready(function () {
     })
     $.ajax({
         type: "get",
-        url: "http://localhost:8080/CoffeeVerse/user/acollection?uname="+window.localStorage.getItem("myname")+"&pageSize=100",
+        url: "http://47.115.230.54:8080/CoffeeVerse/user/acollection?uname="+window.localStorage.getItem("myname")+"&pageSize=100",
         dataType: "json",
         success: function (articlelist) {
             updateArticleInfo(articlelist)
@@ -136,7 +136,7 @@ function updateArticleInfo(articlelist) {
         var id = a.aid;
 
         $.ajax({
-            url: 'http://localhost:8080/CoffeeVerse/articles/detail?id=' + id,
+            url: 'http://47.115.230.54:8080/CoffeeVerse/articles/detail?id=' + id,
             type: 'GET',
             dataType: 'json',
             success: function (json) {
